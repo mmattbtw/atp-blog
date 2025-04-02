@@ -14,10 +14,10 @@ export async function GET() {
   const posts = await getPosts();
 
   const rss = new RSS({
-    title: "mozzius.dev",
-    feed_url: "https://mozzius.dev/rss",
-    site_url: "https://mozzius.dev",
-    description: "a webbed site",
+    title: "mmatt.net",
+    feed_url: "https://mmatt.net/rss",
+    site_url: "https://mmatt.net",
+    description: "<_< ^_^ >_>",
   });
 
   for (const post of posts) {
