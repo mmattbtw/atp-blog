@@ -12,6 +12,7 @@ export async function getPosts() {
       repo: env.NEXT_PUBLIC_BSKY_DID,
       collection: "com.whtwnd.blog.entry",
       // todo: pagination
+      // hi this is matt from the forking realm i'm never going to implement pagination
     },
   });
   return posts.data.records.filter(
