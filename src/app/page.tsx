@@ -15,7 +15,7 @@ export default function Home() {
         </div>
         <Title level="h2">Hello!</Title>
         <Paragraph>
-          my name is <b>matt morris</b> and i'm head technologist for{" "}
+          my name is <b>matt morris</b> and i&apos;m head technologist for{" "}
           <a href="https://songish.app?via=mmatt.net" className="underline">
             Songish
           </a>
