@@ -9,10 +9,7 @@ export const size = {
 export const contentType = "image/png";
 
 export default async function OpenGraphImage() {
-  const fontData = await loadGoogleFont(
-    "Inter:ital,opsz,wght@100..900",
-    "mmatt.net",
-  );
+  const fontData = await loadGoogleFont("Inter:wght@100..900", "mmatt.net");
 
   return new ImageResponse(
     (

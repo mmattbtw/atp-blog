@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import NextPlausible from "next-plausible";
 import { Inter } from "next/font/google";
 
 import { cx } from "#/lib/cx";
@@ -32,12 +33,12 @@ export default function RootLayout({
     <html lang="en">
       <head>
         {/* TODO: */}
-        {/* <NextPlausible
-          domain="mozzius.dev"
-          customDomain="https://plausible.mozzius.dev"
+        <NextPlausible
+          domain="mmatt.net"
+          customDomain="https://plausible.mmatt.net"
           trackOutboundLinks
           selfHosted
-        /> */}
+        />
       </head>
       <body
         className={cx(
