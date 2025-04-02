@@ -29,14 +29,15 @@ export async function generateMetadata({
   const post = await getPost(rkey);
 
   return {
-    title: post.value.title + " — mozzius.dev",
+    metadataBase: new URL("https://mmatt.net"),
+    title: post.value.title + " — mmatt.net",
     authors: [
       {
-        name: "Samuel",
+        name: "Matt",
         url: `https://bsky.app/profile/${env.NEXT_PUBLIC_BSKY_DID}`,
       },
     ],
-    description: `by Samuel · ${readingTime(post.value.content).text}`,
+    description: `by Matt · ${readingTime(post.value.content).text}`,
   };
 }
 

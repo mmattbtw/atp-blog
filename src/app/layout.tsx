@@ -12,6 +12,7 @@ const sans = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://mmatt.net"),
   title: "mmatt.net",
   description: "a webbed site",
   alternates: {
