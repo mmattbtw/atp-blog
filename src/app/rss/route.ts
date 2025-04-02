@@ -21,15 +21,25 @@ export async function GET() {
   });
 
   for (const post of posts) {
+    const titleParts = post.value.title?.split(" || ") ?? ["Untitled", ""];
+    const title = titleParts[0];
+    const extractedDescription = titleParts.slice(1).join(" || ");
+
+    const contentDescription = await unified()
+      .use(remarkParse)
+      .use(remarkRehype)
+      .use(rehypeFormat)
+      .use(rehypeStringify)
+      .process(post.value.content)
+      .then((v) => v.toString());
+
+    const fullDescription = extractedDescription
+      ? `<p>Description: ${extractedDescription}</p><br><br>${contentDescription}`
+      : contentDescription;
+
     rss.item({
-      title: post.value.title ?? "Untitled",
-      description: await unified()
-        .use(remarkParse)
-        .use(remarkRehype)
-        .use(rehypeFormat)
-        .use(rehypeStringify)
-        .process(post.value.content)
-        .then((v) => v.toString()),
+      title: title,
+      description: fullDescription,
       url: `https://mmatt.net/post/${post.uri.split("/").pop()}`,
       date: new Date(post.value.createdAt ?? Date.now()),
     });
