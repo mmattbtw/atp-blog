@@ -10,7 +10,6 @@ import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
 import remarkGfm from "remark-gfm";
 
 import { BlueskyPostEmbed } from "#/components/bluesky-embed";
-import { Footer } from "#/components/footer";
 import { PostInfo } from "#/components/post-info";
 import { Code, Paragraph, Title } from "#/components/typography";
 import { ViewCount } from "#/components/view-count";
@@ -53,7 +52,7 @@ export default async function BlogPage({
   return (
     <div className="grid grid-rows-[20px_1fr_20px] justify-items-center min-h-dvh py-8 px-4 xs:px-8 pb-20 gap-16 sm:p-20">
       <link rel="alternate" href={post.uri} />
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start w-full max-w-[600px] overflow-hidden">
+      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start w-full max-w-6xl overflow-hidden">
         <article className="w-full space-y-8">
           <div className="space-y-4 w-full">
             <Link
@@ -63,16 +62,19 @@ export default async function BlogPage({
               <ArrowLeftIcon className="inline size-4 align-middle mb-px mr-1" />
               Back
             </Link>
-            <Title>{post.value.title}</Title>
+            <Title className="text-center">
+              {post.value.title?.split(" || ")[0]}
+            </Title>
             <PostInfo
               content={post.value.content}
               createdAt={post.value.createdAt}
               includeAuthor
               className="text-sm"
+              desc={post.value.title?.split(" || ")[1]}
             >
               <ViewCount path={`/post/${rkey}`} />
             </PostInfo>
-            <div className="diagonal-pattern w-full h-3" />
+            <hr />
           </div>
           <div className="[&>.bluesky-embed]:mt-8 [&>.bluesky-embed]:mb-0">
             <Markdown
@@ -171,7 +173,6 @@ export default async function BlogPage({
           </div>
         </article>
       </main>
-      <Footer />
     </div>
   );
 }

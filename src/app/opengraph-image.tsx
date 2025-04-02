@@ -10,8 +10,8 @@ export const contentType = "image/png";
 
 export default async function OpenGraphImage() {
   const fontData = await loadGoogleFont(
-    "Libre+Baskerville:ital@1",
-    "MOZZIUS.DEV a webbed site",
+    "Inter:ital,opsz,wght@100..900",
+    "mmatt.net",
   );
 
   return new ImageResponse(
@@ -19,22 +19,12 @@ export default async function OpenGraphImage() {
       <div tw="h-full w-full bg-white flex flex-col justify-center items-center">
         <h1
           style={{
-            fontFamily: '"Libre Baskerville"',
+            fontFamily: '"Inter"',
             fontSize: 80,
-            fontWeight: 700,
-            fontStyle: "italic",
+            fontWeight: 1000,
           }}
         >
-          MOZZIUS.DEV
-        </h1>
-        <h1
-          style={{
-            fontSize: 32,
-            fontStyle: "italic",
-            fontFamily: '"Libre Baskerville"',
-          }}
-        >
-          a webbed site
+          mmatt.net
         </h1>
       </div>
     ),
@@ -42,7 +32,7 @@ export default async function OpenGraphImage() {
       ...size,
       fonts: [
         {
-          name: "Libre Baskerville",
+          name: "Inter",
           data: fontData,
         },
       ],

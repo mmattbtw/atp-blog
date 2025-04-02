@@ -6,7 +6,13 @@ import { ViewCount } from "./view-count";
 export async function PostList() {
   const posts = await getPosts();
 
-  return posts.map((record) => {
+  const sortedPosts = posts.sort(
+    (a, b) =>
+      new Date(b.value.createdAt ?? 0).getTime() -
+      new Date(a.value.createdAt ?? 0).getTime(),
+  );
+
+  return sortedPosts.map((record) => {
     const post = record.value;
     const rkey = record.uri.split("/").pop() || "";
     return (

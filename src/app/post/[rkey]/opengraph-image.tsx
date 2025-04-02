@@ -19,8 +19,8 @@ export default async function OpenGraphImage({
   const post = await getPost(rkey);
 
   const fontData = await loadGoogleFont(
-    "Libre+Baskerville:ital@1",
-    "mozzius.dev" + post.value.title?.toLocaleUpperCase(),
+    "Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900",
+    "mmatt.net" + post.value.title,
   );
 
   return new ImageResponse(
@@ -28,23 +28,23 @@ export default async function OpenGraphImage({
       <div tw="h-full w-full bg-white flex flex-col justify-center items-center px-20">
         <h1
           style={{
-            fontFamily: '"Libre Baskerville"',
+            fontFamily: '"Inter"',
             fontSize: 80,
-            fontWeight: 700,
-            fontStyle: "italic",
+            fontWeight: 900,
             textAlign: "center",
+            fontOpticalSizing: "auto",
+            fontStyle: "normal",
           }}
         >
-          {post.value.title?.toLocaleUpperCase()}
+          {post.value.title}
         </h1>
         <h1
           style={{
             fontSize: 32,
-            fontStyle: "italic",
-            fontFamily: '"Libre Baskerville"',
+            fontFamily: '"Inter"',
           }}
         >
-          mozzius.dev
+          mmatt.net
         </h1>
       </div>
     ),
@@ -52,7 +52,7 @@ export default async function OpenGraphImage({
       ...size,
       fonts: [
         {
-          name: "Libre Baskerville",
+          name: "Inter",
           data: fontData,
         },
       ],
