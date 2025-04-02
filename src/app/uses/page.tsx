@@ -121,10 +121,10 @@ export default function Uses() {
           >
             Elgato Stream Deck: MK.1
           </a>
-          (linking the MK.2 because appearently the MK.1 is 'unsupported' or
-          whatever.......... but it works just fine, so if you can find a used
-          one for a good price I say go for it, the differences between the MK.1
-          and the MK.2 are negligible.)
+          (linking the MK.2 because appearently the MK.1 is
+          &apos;unsupported&apos; or whatever.......... but it works just fine,
+          so if you can find a used one for a good price I say go for it, the
+          differences between the MK.1 and the MK.2 are negligible.)
         </li>
         <li>
           Webcam:{" "}
@@ -374,7 +374,7 @@ export default function Uses() {
           >
             Xbox 360 w/ Kinect
           </a>{" "}
-          (I can't believe this is still sold on Amazon)
+          (I can&apos;t believe this is still sold on Amazon)
         </li>
         <li>
           <a
