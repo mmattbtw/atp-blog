@@ -19,7 +19,7 @@ export default async function OpenGraphImage({
   const post = await getPost(rkey);
 
   const fontData = await loadGoogleFont(
-    "Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900",
+    "Inter:wght@100..900",
     "mmatt.net" + post.value.title,
   );
 
