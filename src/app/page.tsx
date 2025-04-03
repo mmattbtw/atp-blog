@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { PostList } from "#/components/post-list";
 import { Paragraph, Title } from "#/components/typography";
 
@@ -153,6 +155,9 @@ export default function Home() {
         <Title id="blog" level="h2">
           Blog Posts:
         </Title>
+        <Link className="-mt-6 underline" href="/rss">
+          Subscribe via RSS
+        </Link>
         <div className="flex flex-col gap-4 w-full">
           <PostList />
         </div>
