@@ -30,7 +30,7 @@ export async function generateMetadata({
 
   return {
     metadataBase: new URL("https://mmatt.net"),
-    title: post.value.title + " — mmatt.net",
+    title: (post.value.title?.split(" || ")[0] ?? "Untitled") + " — mmatt.net",
     authors: [
       {
         name: "Matt",
