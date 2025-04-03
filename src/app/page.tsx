@@ -150,7 +150,9 @@ export default function Home() {
           </a>
         </Paragraph>
 
-        <Title level="h2">Blog Posts:</Title>
+        <Title id="blog" level="h2">
+          Blog Posts:
+        </Title>
         <div className="flex flex-col gap-4 w-full">
           <PostList />
         </div>
