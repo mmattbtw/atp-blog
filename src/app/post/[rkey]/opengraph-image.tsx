@@ -20,7 +20,7 @@ export default async function OpenGraphImage({
 
   const fontData = await loadGoogleFont(
     "Inter:wght@100..900",
-    "mmatt.net" + post.value.title,
+    "mmatt.net" + (post.value.title?.split(" || ")[0] ?? "Untitled"),
   );
 
   return new ImageResponse(
@@ -36,7 +36,7 @@ export default async function OpenGraphImage({
             fontStyle: "normal",
           }}
         >
-          {post.value.title}
+          {post.value.title?.split(" || ")[0] ?? "Untitled"}
         </h1>
         <h1
           style={{
