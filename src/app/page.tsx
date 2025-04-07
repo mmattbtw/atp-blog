@@ -139,6 +139,15 @@ export default function Home() {
             </a>
           </li>
           <li>
+            <a
+              className="underline"
+              href="https://music.apple.com/profile/air2earth"
+              rel="me"
+            >
+              apple music
+            </a>
+          </li>
+          <li>
             <a className="underline" href="https://matt.omg.lol">
               everywhere else...
             </a>
