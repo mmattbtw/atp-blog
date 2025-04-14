@@ -8,6 +8,10 @@ const envVars = {
   PLAUSIBLE_API_KEY: process.env.PLAUSIBLE_API_KEY,
   NEXT_PUBLIC_BSKY_DID: process.env.NEXT_PUBLIC_BSKY_DID,
   NEXT_PUBLIC_BSKY_PDS: process.env.NEXT_PUBLIC_BSKY_PDS,
+  TWILIO_ACCOUNT_SID: process.env.TWILIO_ACCOUNT_SID,
+  TWILIO_AUTH_TOKEN: process.env.TWILIO_AUTH_TOKEN,
+  TWILIO_PHONE_NUMBER: process.env.TWILIO_PHONE_NUMBER,
+  MY_PHONE_NUMBER: process.env.MY_PHONE_NUMBER,
 };
 
 // Use cleanEnv to validate and parse the environment variables
@@ -24,4 +28,8 @@ export const env = cleanEnv(envVars, {
   NEXT_PUBLIC_BSKY_PDS: url({
     default: "https://pds.mmatt.net",
   }),
+  TWILIO_ACCOUNT_SID: str({ default: "" }),
+  TWILIO_AUTH_TOKEN: str({ default: "" }),
+  TWILIO_PHONE_NUMBER: str({ default: "" }),
+  MY_PHONE_NUMBER: str({ default: "" }),
 });
