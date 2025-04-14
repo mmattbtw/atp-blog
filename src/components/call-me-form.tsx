@@ -8,28 +8,13 @@ export function CallMeForm() {
   const [input, setInput] = useState("");
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus("idle");
-    try {
-      const result = await callMeAction(input);
-      if (result.success) {
-        setStatus("success");
-      } else {
-        setStatus("error");
-      }
-    } catch {
-      setStatus("error");
-    }
-  };
-
   return (
     <div className="flex flex-col gap-4 w-full">
       <h2 className="text-xl font-bold">Call Me</h2>
 
       <label htmlFor="message" className="font-bold">
-        I'm not kidding, this is very stupid. Enter a message for me to hear
-        shortly.
+        I&apos;m not kidding, this is very stupid. Enter a message for me to
+        hear shortly.
       </label>
       <input
         id="message"
