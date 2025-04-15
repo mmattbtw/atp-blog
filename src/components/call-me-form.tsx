@@ -29,14 +29,23 @@ export function CallMeForm() {
       <button
         className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
         onClick={async () => {
-          await callMeAction(input);
-          setStatus("success");
+          const action = await callMeAction(input);
+          if (action.success) {
+            setStatus("success");
+          } else {
+            setStatus("error");
+          }
         }}
       >
         Call Me
       </button>
       {status === "success" && (
         <p className="text-green-500">Call initiated successfully!</p>
+      )}
+      {status === "error" && (
+        <p className="text-red-500">
+          Error initiating call. Please try again in a minute.
+        </p>
       )}
     </div>
   );
