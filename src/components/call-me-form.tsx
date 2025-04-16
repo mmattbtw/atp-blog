@@ -4,18 +4,22 @@ import { useState } from "react";
 
 import { callMeAction } from "#/server/actions/callme";
 
+import { Paragraph, Title } from "./typography";
+
 export function CallMeForm() {
   const [input, setInput] = useState("");
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
 
   return (
     <div className="flex flex-col gap-4 w-full">
-      <h2 className="text-xl font-bold">Call Me</h2>
+      <Title level="h2" className="text-xl font-bold">
+        Call Me
+      </Title>
 
-      <label htmlFor="message" className="font-bold">
+      <Paragraph>
         I&apos;m not kidding, this is very stupid. Enter a message for me to
         hear shortly.
-      </label>
+      </Paragraph>
       <input
         id="message"
         type="text"
@@ -40,12 +44,14 @@ export function CallMeForm() {
         Call Me
       </button>
       {status === "success" && (
-        <p className="text-green-500">Call initiated successfully!</p>
+        <Paragraph className="text-green-500">
+          Call initiated successfully!
+        </Paragraph>
       )}
       {status === "error" && (
-        <p className="text-red-500">
+        <Paragraph className="text-red-500">
           Error initiating call. Please try again in a minute.
-        </p>
+        </Paragraph>
       )}
     </div>
   );
