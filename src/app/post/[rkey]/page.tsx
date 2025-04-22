@@ -1,6 +1,6 @@
 import { ArrowLeftIcon } from "lucide-react";
 import Markdown from "react-markdown";
-import { type Metadata } from "next";
+import { Viewport, type Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Code as SyntaxHighlighter } from "bright";
@@ -40,6 +40,13 @@ export async function generateMetadata({
     description: `by Matt · ${readingTime(post.value.content).text}`,
   };
 }
+
+export const viewport: Viewport = {
+  themeColor: {
+    color: "#BEFCFF",
+    media: "not screen",
+  },
+};
 
 export default async function BlogPage({
   params,

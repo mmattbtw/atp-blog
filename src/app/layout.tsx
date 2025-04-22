@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import NextPlausible from "next-plausible";
 import { Inter } from "next/font/google";
 
@@ -21,6 +21,13 @@ export const metadata: Metadata = {
     types: {
       "application/rss+xml": "https://mmatt.net/rss",
     },
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: {
+    color: "#BEFCFF",
+    media: "not screen",
   },
 };
 
