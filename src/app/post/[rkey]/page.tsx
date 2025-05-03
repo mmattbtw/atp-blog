@@ -38,6 +38,9 @@ export async function generateMetadata({
       },
     ],
     description: `by Matt · ${readingTime(post.value.content).text}`,
+    other: {
+      "fediverse:creator": "@matt@social.lol",
+    },
   };
 }
 
