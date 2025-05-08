@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-import { CallMeForm } from "#/components/call-me-form";
 import { PostList } from "#/components/post-list";
 import { Paragraph, Title } from "#/components/typography";
 
@@ -161,9 +160,6 @@ export default function Home() {
             matt at mmatt.net
           </a>
         </Paragraph>
-
-        {/* call me */}
-        <CallMeForm />
 
         <Title id="blog" level="h2">
           Blog Posts:
