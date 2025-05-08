@@ -22,6 +22,9 @@ export const metadata: Metadata = {
       "application/rss+xml": "https://mmatt.net/rss",
     },
   },
+  other: {
+    "fediverse:creator": "@matt@social.lol",
+  },
 };
 
 export const viewport: Viewport = {
