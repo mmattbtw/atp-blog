@@ -39,7 +39,7 @@ export default function Home() {
             className="underline"
           >
             Bluesky
-          </a>
+          </a>{" "}
           and{" "}
           <a href="https://status.lol/matt" className="underline">
             status.lol
