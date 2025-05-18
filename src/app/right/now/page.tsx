@@ -40,6 +40,10 @@ export default function Home() {
           >
             Bluesky
           </a>
+          and{" "}
+          <a href="https://status.lol/matt" className="underline">
+            status.lol
+          </a>
           .
         </Paragraph>
         <div className="flex flex-col gap-4 w-full">
