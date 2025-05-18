@@ -8,6 +8,8 @@ import { Paragraph, Title } from "#/components/typography";
 
 import me from "../../../assets/matt.jpeg";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://mmatt.net"),
   title: "Right Now - mmatt.net",
