@@ -23,6 +23,19 @@ export async function getPosts() {
   })[];
 }
 
+export async function getLastestStatus() {
+  const posts = await bsky.get("com.atproto.repo.listRecords", {
+    params: {
+      repo: env.NEXT_PUBLIC_BSKY_DID,
+      collection: "net.mmatt.right.now",
+      limit: 1,
+    },
+  });
+  return posts.data.records[0] as ComAtprotoRepoListRecords.Record & {
+    value: NetMmattRightNow.Record;
+  };
+}
+
 export async function getStatuses() {
   const posts = await bsky.get("com.atproto.repo.listRecords", {
     params: {
@@ -36,6 +49,7 @@ export async function getStatuses() {
     value: NetMmattRightNow.Record;
   })[];
 }
+
 function drafts(record: ComAtprotoRepoListRecords.Record) {
   if (process.env.NODE_ENV === "development") return true;
   const post = record.value as ComWhtwndBlogEntry.Record;

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import LatestStatus from "#/components/latest-status";
 import { PostList } from "#/components/post-list";
 import { Paragraph, Title } from "#/components/typography";
 
@@ -167,6 +168,8 @@ export default function Home() {
             matt at mmatt.net
           </a>
         </Paragraph>
+
+        <LatestStatus />
 
         <Title id="blog" level="h2">
           Blog Posts:
