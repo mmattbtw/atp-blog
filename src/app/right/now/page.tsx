@@ -15,12 +15,6 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://mmatt.net"),
   title: "Right Now - mmatt.net",
   description: "its- its like its like. <_< ^_^ >_>",
-  alternates: {
-    canonical: "https://mmatt.net",
-    types: {
-      "application/rss+xml": "https://mmatt.net/rss",
-    },
-  },
   other: {
     "fediverse:creator": "@matt@social.lol",
   },
