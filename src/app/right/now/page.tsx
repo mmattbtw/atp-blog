@@ -1,4 +1,5 @@
 import { ArrowLeftIcon } from "lucide-react";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -10,7 +11,22 @@ import me from "../../../assets/matt.jpeg";
 export const dynamic = "force-static";
 export const revalidate = 3600; // 1 hour
 
-export default function Home() {
+export const metadata: Metadata = {
+  metadataBase: new URL("https://mmatt.net"),
+  title: "Right Now - mmatt.net",
+  description: "its- its like its like. <_< ^_^ >_>",
+  alternates: {
+    canonical: "https://mmatt.net",
+    types: {
+      "application/rss+xml": "https://mmatt.net/rss",
+    },
+  },
+  other: {
+    "fediverse:creator": "@matt@social.lol",
+  },
+};
+
+export default function RightNowPage() {
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-dvh p-8 pb-20 gap-16 sm:p-20">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start w-full max-w-[600px]">
