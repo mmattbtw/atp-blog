@@ -12,11 +12,17 @@ export async function NowList() {
   return sortedPosts.map((record) => {
     const post = record.value;
     return (
-      <div key={record.cid}>
-        <p className="text-pretty">{post.text}</p>
-        <p className="text-xs text-gray-500">
-          {new Date(post.createdAt).toLocaleString()}
-        </p>
+      <div
+        className="flex flex-row justify-between items-center"
+        key={record.cid}
+      >
+        <div>
+          <p className="text-pretty">{post.text}</p>
+          <p className="text-xs text-gray-500">
+            {new Date(post.createdAt).toLocaleString()}
+          </p>
+        </div>
+        {post.emoji && <p className="text-5xl">{post.emoji}</p>}
       </div>
     );
   });

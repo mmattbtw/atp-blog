@@ -9,7 +9,8 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier -w src",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "lexi": "lex gen-api ./lexiconTypes ./lexicons/net/mmatt/right/now.json"
   },
   "dependencies": {
     "@atcute/client": "^2.0.8",

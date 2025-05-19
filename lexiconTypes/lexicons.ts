@@ -31,6 +31,10 @@ export const schemaDict = {
               type: 'string',
               description: 'The text of the status update',
             },
+            emoji: {
+              type: 'string',
+              description: 'The emoji of the status update',
+            },
           },
         },
       },
