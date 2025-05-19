@@ -20,6 +20,8 @@ export interface Record {
   createdAt: string
   /** The text of the status update */
   text: string
+  /** The emoji of the status update */
+  emoji?: string
   [k: string]: unknown
 }
 
