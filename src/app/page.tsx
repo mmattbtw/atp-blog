@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import LatestStatus from "#/components/latest-status";
 import { PostList } from "#/components/post-list";
 import { Paragraph, Title } from "#/components/typography";
 
@@ -168,12 +169,20 @@ export default function Home() {
           </a>
         </Paragraph>
 
+        <LatestStatus />
+
         <Title id="blog" level="h2">
           Blog Posts:
         </Title>
-        <Link className="-mt-6 underline" href="/rss">
-          Subscribe via RSS
-        </Link>
+        <div className="flex flex-row items-baseline gap-1">
+          <Link className="-mt-6 underline" href="/rss">
+            Subscribe via RSS
+          </Link>
+          <p> - </p>
+          <Link className="-mt-6 underline" href="/right/now">
+            right now: statuses
+          </Link>
+        </div>
         <div className="flex flex-col gap-4 w-full">
           <PostList />
         </div>
