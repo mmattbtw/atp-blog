@@ -3,6 +3,7 @@ import {
   type ComWhtwndBlogEntry,
 } from "@atcute/client/lexicons";
 
+import { NetMmattRightNow } from "../../lexiconTypes";
 import { bsky } from "./bsky";
 import { env } from "./env";
 
@@ -19,6 +20,33 @@ export async function getPosts() {
     drafts,
   ) as (ComAtprotoRepoListRecords.Record & {
     value: ComWhtwndBlogEntry.Record;
+  })[];
+}
+
+export async function getLastestStatus() {
+  const posts = await bsky.get("com.atproto.repo.listRecords", {
+    params: {
+      repo: env.NEXT_PUBLIC_BSKY_DID,
+      collection: "net.mmatt.right.now",
+      limit: 1,
+    },
+  });
+  return posts.data.records[0] as ComAtprotoRepoListRecords.Record & {
+    value: NetMmattRightNow.Record;
+  };
+}
+
+export async function getStatuses() {
+  const posts = await bsky.get("com.atproto.repo.listRecords", {
+    params: {
+      repo: env.NEXT_PUBLIC_BSKY_DID,
+      collection: "net.mmatt.right.now",
+      // todo: pagination
+      // hi this is matt from the forking realm i'm never going to implement pagination
+    },
+  });
+  return posts.data.records as (ComAtprotoRepoListRecords.Record & {
+    value: NetMmattRightNow.Record;
   })[];
 }
 

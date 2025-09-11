@@ -13,7 +13,7 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "cdn.some.pics",
-        pathname: "/mm/*",
+        pathname: "/(mm|matt)/*",
       },
     ],
   },
@@ -38,6 +38,10 @@ const nextConfig = {
       {
         source: "/devices",
         destination: "/uses",
+      },
+      {
+        source: "/now",
+        destination: "/right/now",
       },
     ];
   },
