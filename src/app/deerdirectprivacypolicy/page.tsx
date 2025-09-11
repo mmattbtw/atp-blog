@@ -132,19 +132,31 @@ export default function DeerDirectPrivacyPolicyPage() {
                 ),
                 li: (props) => <li className="leading-7" {...props} />,
                 code: (props) => {
-                  const { children, className, ...rest } = props as any;
+                  const { children, className, ...rest } = props as {
+                    children: React.ReactNode;
+                    className?: string;
+                    [key: string]: unknown;
+                  };
                   const match = /language-(\w+)/.exec(className || "");
                   if (match) {
                     return (
                       <SyntaxHighlighter
                         {...rest}
-                        children={String(children).replace(/\n$/, "")}
                         lang={match[1]}
                         className="mt-8! text-sm rounded-sm max-w-full! overflow-hidden"
-                      />
+                      >
+                        {String(children).replace(/\n$/, "")}
+                      </SyntaxHighlighter>
                     );
                   }
-                  return <Code {...(props as any)} />;
+                  return (
+                    <Code
+                      {...(props as {
+                        children: React.ReactNode;
+                        className?: string;
+                      })}
+                    />
+                  );
                 },
                 a: ({ href, ...props }) => (
                   <a
