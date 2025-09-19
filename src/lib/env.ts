@@ -26,7 +26,7 @@ export const env = cleanEnv(envVars, {
   PLAUSIBLE_API_KEY: str({ default: "" }),
   NEXT_PUBLIC_BSKY_DID: str({ default: "did:plc:tas6hj2xjrqben5653v5kohk" }),
   NEXT_PUBLIC_BSKY_PDS: url({
-    default: "https://pds.mmatt.net",
+    default: "https://evil.gay",
   }),
   TWILIO_ACCOUNT_SID: str({ default: "" }),
   TWILIO_AUTH_TOKEN: str({ default: "" }),
