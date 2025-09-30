@@ -1,0 +1,26 @@
+{
+    "lexicon": 1,
+    "id": "net.mmatt.personal.vitals",
+    "defs": {
+      "main": {
+        "type": "record",
+        "description": "A personal lexicon for mmatt's vitals.",
+        "key": "tid",
+        "record": {
+          "type": "object",
+          "required": ["createdAt", "vital"],
+          "properties": {
+            "createdAt": {
+              "type": "string",
+              "format": "datetime",
+              "description": "The unix timestamp of when the vital was recorded"
+            },
+            "vital": {
+              "type": "string",
+"description": "The vital"
+            }
+          }
+        }
+      }
+    }
+  }
