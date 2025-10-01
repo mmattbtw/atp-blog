@@ -5,7 +5,7 @@ import DitheredVideoFilter from "./video-filter";
 export default function HomeVideoBackground() {
   return (
     <DitheredVideoFilter
-      videoSrc="/test_transparent.webm"
+      videoSrc="/Untitled.webm"
       pixelSize={3}
       maxFPS={12}
       maxWidth={1000}
