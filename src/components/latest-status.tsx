@@ -7,24 +7,6 @@ import { Paragraph, Title } from "./typography";
 export default async function LatestStatus() {
   const status = await getLastestStatus();
 
-  if (!status) {
-    return (
-      <div className="flex flex-col w-full dark:border-white border-black border-2 rounded-lg p-4">
-        <div className="flex flex-row justify-between items-center">
-          <div>
-            <Title level="h4">Current Status:</Title>
-            <Paragraph>No status available</Paragraph>
-            <Paragraph className="text-sm text-gray-500">
-              <Link href="/right/now" className="underline">
-                View all statuses
-              </Link>
-            </Paragraph>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="flex flex-col w-full dark:border-white border-black border-2 rounded-lg p-4">
       <div className="flex flex-row justify-between items-center">
