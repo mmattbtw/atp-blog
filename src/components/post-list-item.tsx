@@ -1,14 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import * as Whitewind from "@atcute/whitewind";
+import { ComWhtwndBlogEntry } from "@atcute/client/lexicons";
 
 export function PostListItem({
   post,
   rkey,
-  viewCount,
 }: {
-  post: Whitewind.ComWhtwndBlogEntry.Main;
+  post: ComWhtwndBlogEntry.Record;
   rkey: string;
   viewCount?: React.ReactNode;
 }) {

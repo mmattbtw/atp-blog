@@ -1,18 +1,11 @@
-import type { Nsid } from "@atcute/lexicons";
-import type { NetMmattRightNow } from "../../lexiconTypes";
-import type { ComWhtwndBlogEntry } from "@atcute/whitewind/lexicons/types/com/whtwnd/blog/entry";
+import {
+  type ComAtprotoRepoListRecords,
+  type ComWhtwndBlogEntry,
+} from "@atcute/client/lexicons";
 
+import { NetMmattRightNow } from "../../lexiconTypes";
 import { bsky } from "./bsky";
 import { env } from "./env";
-
-type ListRecordsRecord<T> = {
-  uri: string;
-  cid: string;
-  value: T;
-  rkey: string;
-  repo: string;
-  collection: Nsid;
-};
 
 export async function getPosts() {
   const posts = await bsky.get("com.atproto.repo.listRecords", {
@@ -23,9 +16,11 @@ export async function getPosts() {
       // hi this is matt from the forking realm i'm never going to implement pagination
     },
   });
-  return posts.data.records.filter(drafts) as ListRecordsRecord<
-    ComWhtwndBlogEntry.Record
-  >[];
+  return posts.data.records.filter(
+    drafts,
+  ) as (ComAtprotoRepoListRecords.Record & {
+    value: ComWhtwndBlogEntry.Record;
+  })[];
 }
 
 export async function getLastestStatus() {
@@ -36,7 +31,9 @@ export async function getLastestStatus() {
       limit: 1,
     },
   });
-  return posts.data.records[0] as ListRecordsRecord<NetMmattRightNow.Record>;
+  return posts.data.records[0] as ComAtprotoRepoListRecords.Record & {
+    value: NetMmattRightNow.Record;
+  };
 }
 
 export async function getStatuses() {
@@ -48,10 +45,12 @@ export async function getStatuses() {
       // hi this is matt from the forking realm i'm never going to implement pagination
     },
   });
-  return posts.data.records as ListRecordsRecord<NetMmattRightNow.Record>[];
+  return posts.data.records as (ComAtprotoRepoListRecords.Record & {
+    value: NetMmattRightNow.Record;
+  })[];
 }
 
-function drafts(record: ListRecordsRecord<ComWhtwndBlogEntry.Record>) {
+function drafts(record: ComAtprotoRepoListRecords.Record) {
   if (process.env.NODE_ENV === "development") return true;
   const post = record.value as ComWhtwndBlogEntry.Record;
   return post.visibility === "public";
@@ -66,5 +65,7 @@ export async function getPost(rkey: string) {
     },
   });
 
-  return post.data as ListRecordsRecord<ComWhtwndBlogEntry.Record>;
+  return post.data as ComAtprotoRepoListRecords.Record & {
+    value: ComWhtwndBlogEntry.Record;
+  };
 }
