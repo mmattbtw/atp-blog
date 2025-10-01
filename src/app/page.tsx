@@ -9,10 +9,10 @@ export default function Home() {
       <HomeVideoBackground />
       <div className="absolute inset-0 z-10 min-h-screen">
         <div className="max-w-xl pt-1.5 pl-1.5 space-y-4">
-          <h1 className="font-bold text-black dark:text-white drop-shadow-lg bg-white dark:bg-black">
+          <h1 className="font-bold text-black dark:text-white bg-white dark:bg-black">
             ˙⋆✮ matt ✮⋆˙
           </h1>
-          <p className="text-black dark:text-white drop-shadow-md bg-white dark:bg-black">
+          <p className="text-black dark:text-white bg-white dark:bg-black">
             (ﾉ´ヮ`)ﾉ*: ･ﾟ i&apos;m a full time computer science student at{" "}
             <a
               href="https://mtsu.edu"
