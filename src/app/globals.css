@@ -125,3 +125,183 @@
     );
   }
 }
+
+/* Monochrome 2-bit pixelation/dithering effect */
+.monochrome-video-filter {
+  position: relative;
+  overflow: hidden;
+}
+
+.monochrome-video-filter::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    /* Bayer matrix dithering pattern for authentic 2-bit look */ conic-gradient(
+    from 0deg at 0px 0px,
+    transparent 0deg,
+    transparent 45deg,
+    rgba(0, 0, 0, 0.15) 45deg,
+    rgba(0, 0, 0, 0.15) 90deg,
+    transparent 90deg,
+    transparent 135deg,
+    rgba(0, 0, 0, 0.15) 135deg,
+    rgba(0, 0, 0, 0.15) 180deg,
+    transparent 180deg,
+    transparent 225deg,
+    rgba(0, 0, 0, 0.15) 225deg,
+    rgba(0, 0, 0, 0.15) 270deg,
+    transparent 270deg,
+    transparent 315deg,
+    rgba(0, 0, 0, 0.15) 315deg,
+    rgba(0, 0, 0, 0.15) 360deg
+  );
+  background-size: 2px 2px;
+  pointer-events: none;
+  z-index: 2;
+  mix-blend-mode: multiply;
+  opacity: 0.8;
+}
+
+.monochrome-video-filter video {
+  filter: grayscale(100%) contrast(500%) brightness(0.5) saturate(0%)
+    sepia(100%) hue-rotate(0deg);
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  /* Force extreme pixelation by scaling down and up */
+  transform: scale(0.125);
+  transform-origin: top left;
+  width: 800%;
+  height: 800%;
+}
+
+/* Alternative dithering effect using CSS masks */
+.monochrome-dither {
+  position: relative;
+}
+
+.monochrome-dither::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    /* Bayer matrix dithering pattern */
+    linear-gradient(
+      45deg,
+      transparent 0%,
+      transparent 25%,
+      rgba(0, 0, 0, 0.1) 25%,
+      rgba(0, 0, 0, 0.1) 50%,
+      transparent 50%,
+      transparent 75%,
+      rgba(0, 0, 0, 0.1) 75%,
+      rgba(0, 0, 0, 0.1) 100%
+    ),
+    linear-gradient(
+      -45deg,
+      transparent 0%,
+      transparent 25%,
+      rgba(0, 0, 0, 0.1) 25%,
+      rgba(0, 0, 0, 0.1) 50%,
+      transparent 50%,
+      transparent 75%,
+      rgba(0, 0, 0, 0.1) 75%,
+      rgba(0, 0, 0, 0.1) 100%
+    );
+  background-size:
+    2px 2px,
+    2px 2px;
+  background-position:
+    0 0,
+    1px 1px;
+  pointer-events: none;
+  z-index: 2;
+  mix-blend-mode: multiply;
+}
+
+/* High contrast monochrome with pixelation */
+.monochrome-pixelated {
+  filter: grayscale(100%) contrast(600%) brightness(0.4) saturate(0%)
+    sepia(100%) hue-rotate(0deg);
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  transform: scale(0.1);
+  transform-origin: top left;
+  width: 1000%;
+  height: 1000%;
+}
+
+/* Simple monochrome with ordered dithering */
+.monochrome-simple {
+  position: relative;
+}
+
+.monochrome-simple video {
+  filter: grayscale(100%) contrast(400%) brightness(0.6) saturate(0%);
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  /* Add pixelation scaling */
+  transform: scale(0.2);
+  transform-origin: top left;
+  width: 500%;
+  height: 500%;
+}
+
+.monochrome-simple::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    /* Ordered dithering pattern */ repeating-conic-gradient(
+    from 0deg at 0px 0px,
+    transparent 0deg,
+    transparent 22.5deg,
+    rgba(0, 0, 0, 0.1) 22.5deg,
+    rgba(0, 0, 0, 0.1) 45deg,
+    transparent 45deg,
+    transparent 67.5deg,
+    rgba(0, 0, 0, 0.1) 67.5deg,
+    rgba(0, 0, 0, 0.1) 90deg,
+    transparent 90deg,
+    transparent 112.5deg,
+    rgba(0, 0, 0, 0.1) 112.5deg,
+    rgba(0, 0, 0, 0.1) 135deg,
+    transparent 135deg,
+    transparent 157.5deg,
+    rgba(0, 0, 0, 0.1) 157.5deg,
+    rgba(0, 0, 0, 0.1) 180deg,
+    transparent 180deg,
+    transparent 202.5deg,
+    rgba(0, 0, 0, 0.1) 202.5deg,
+    rgba(0, 0, 0, 0.1) 225deg,
+    transparent 225deg,
+    transparent 247.5deg,
+    rgba(0, 0, 0, 0.1) 247.5deg,
+    rgba(0, 0, 0, 0.1) 270deg,
+    transparent 270deg,
+    transparent 292.5deg,
+    rgba(0, 0, 0, 0.1) 292.5deg,
+    rgba(0, 0, 0, 0.1) 315deg,
+    transparent 315deg,
+    transparent 337.5deg,
+    rgba(0, 0, 0, 0.1) 337.5deg,
+    rgba(0, 0, 0, 0.1) 360deg
+  );
+  background-size: 4px 4px;
+  pointer-events: none;
+  z-index: 2;
+  mix-blend-mode: multiply;
+  opacity: 0.7;
+}
