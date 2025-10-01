@@ -6,7 +6,6 @@ import * as Whitewind from "@atcute/whitewind";
 export function PostListItem({
   post,
   rkey,
-  viewCount,
 }: {
   post: Whitewind.ComWhtwndBlogEntry.Main;
   rkey: string;

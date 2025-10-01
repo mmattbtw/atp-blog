@@ -13,7 +13,7 @@ export default function Home() {
             ˙⋆✮ matt ✮⋆˙
           </h1>
           <p className="text-black dark:text-white drop-shadow-md bg-white dark:bg-black">
-            (ﾉ´ヮ`)ﾉ*: ･ﾟ i'm a full time computer science student at{" "}
+            (ﾉ´ヮ`)ﾉ*: ･ﾟ i&apos;m a full time computer science student at{" "}
             <a
               href="https://mtsu.edu"
               className="underline  bg-white dark:bg-black hover:text-white hover:bg-black dark:hover:text-black dark:hover:bg-white"

@@ -7,7 +7,6 @@ interface DitheredVideoFilterProps {
   pixelSize?: number;
   ditherStrength?: number;
   className?: string;
-  maxFPS?: number;
   maxWidth?: number;
 }
 
@@ -16,7 +15,6 @@ export default function DitheredVideoFilter({
   pixelSize = 4,
   ditherStrength = 1,
   className = "",
-  maxFPS = 15, // Significantly reduced from 30fps
   maxWidth = 640, // Limit maximum processing width
 }: DitheredVideoFilterProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -362,7 +360,14 @@ export default function DitheredVideoFilter({
       video.removeEventListener("ended", handleEnded);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
-  }, [handlePlay, handleLoadedMetadata, handleEnded, cleanup, processFrame]);
+  }, [
+    handlePlay,
+    handleLoadedMetadata,
+    handleEnded,
+    cleanup,
+    processFrame,
+    reducedMotion,
+  ]);
 
   return (
     <div className={`relative ${className}`}>
