@@ -12,6 +12,12 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "evil.gay",
+        pathname: "/xrpc/com.atproto.sync.getBlob",
+        // search: '?did=did%3Aplc%3Ap2cp5gopk7mgjegy6wadk3ep&cid=**',
+      },
+      {
+        protocol: "https",
         hostname: "cdn.some.pics",
         pathname: "/(mm|matt)/*",
       },

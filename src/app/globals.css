@@ -101,6 +101,20 @@
   .animate-fade-out {
     animation: fadeOut 0.3s ease-in-out forwards;
   }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee,
+    .animate-fade-in,
+    .animate-fade-out {
+      animation: none;
+    }
+
+    /* Reduce video processing frequency for reduced motion */
+    .reduced-motion {
+      animation: none;
+    }
+  }
 }
 
 .diagonal-pattern {
