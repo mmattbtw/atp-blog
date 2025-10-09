@@ -11,9 +11,9 @@ const nextConfig = {
         // search: '?did=did%3Aplc%3Ap2cp5gopk7mgjegy6wadk3ep&cid=**',
       },
       {
-	protocol: "https",
-	hostname: "pds.mmatt.net",
-	pathname: "/xrpc/com.atproto.sync.getBlob",
+        protocol: "https",
+        hostname: "pds.mmatt.net",
+        pathname: "/xrpc/com.atproto.sync.getBlob",
       },
       {
         protocol: "https",

@@ -41,6 +41,9 @@ export default function DitheredVideoFilter({
   const staticFrameRef = useRef<ImageData | null>(null);
   const lastProcessedTimeRef = useRef(0);
 
+  // Error state for CORS issues
+  const [hasVideoError, setHasVideoError] = useState(false);
+
   // Check for reduced motion preference
   const checkReducedMotion = useCallback(() => {
     if (typeof window !== "undefined") {
@@ -114,8 +117,8 @@ export default function DitheredVideoFilter({
 
   // Highly optimized processFrame function with aggressive frame skipping
   const processFrame = useCallback(() => {
-    // Don't process anything if reduced motion is enabled
-    if (reducedMotion) {
+    // Don't process anything if reduced motion is enabled or there's a video error
+    if (reducedMotion || hasVideoError) {
       return;
     }
 
@@ -186,8 +189,17 @@ export default function DitheredVideoFilter({
       return;
     }
 
-    ctx.drawImage(video, 0, 0, scaledW, scaledH);
-    const imageData = ctx.getImageData(0, 0, scaledW, scaledH);
+    let imageData: ImageData;
+    try {
+      ctx.drawImage(video, 0, 0, scaledW, scaledH);
+      imageData = ctx.getImageData(0, 0, scaledW, scaledH);
+    } catch (error) {
+      // Handle CORS errors or other canvas manipulation issues
+      console.warn("Canvas manipulation blocked due to CORS policy:", error);
+      setHasVideoError(true);
+      isProcessingRef.current = false;
+      return;
+    }
 
     // Apply dithering with reduced motion support
     const dithered = applyDithering(imageData, scaledW, scaledH, reducedMotion);
@@ -208,24 +220,30 @@ export default function DitheredVideoFilter({
 
   // Optimized event handlers with useCallback for better performance
   const handlePlay = useCallback(() => {
-    if (!isProcessingRef.current && !reducedMotion) {
+    if (!isProcessingRef.current && !reducedMotion && !hasVideoError) {
       frameSkipRef.current = 0; // Reset frame skip counter
       processFrame();
     }
-  }, [processFrame, reducedMotion]);
+  }, [processFrame, reducedMotion, hasVideoError]);
 
   const handleLoadedMetadata = useCallback(() => {
     const video = videoRef.current;
-    if (video && !video.paused && !isProcessingRef.current && !reducedMotion) {
+    if (
+      video &&
+      !video.paused &&
+      !isProcessingRef.current &&
+      !reducedMotion &&
+      !hasVideoError
+    ) {
       frameSkipRef.current = 0; // Reset frame skip counter
       processFrame();
     }
-  }, [processFrame, reducedMotion]);
+  }, [processFrame, reducedMotion, hasVideoError]);
 
   const handleEnded = useCallback(() => {
     // Video ended, restart processing for loop
     const video = videoRef.current;
-    if (video && video.loop && !reducedMotion) {
+    if (video && video.loop && !reducedMotion && !hasVideoError) {
       // Reset frame counters for smooth loop
       frameCountRef.current = 0;
       frameSkipRef.current = 0;
@@ -236,7 +254,7 @@ export default function DitheredVideoFilter({
         }
       }, 16); // ~1 frame at 60fps
     }
-  }, [processFrame, reducedMotion]);
+  }, [processFrame, reducedMotion, hasVideoError]);
 
   // Enhanced cleanup function with memory management
   const cleanup = useCallback(() => {
@@ -376,14 +394,18 @@ export default function DitheredVideoFilter({
       <video
         ref={videoRef}
         src={videoSrc}
-        className={`absolute inset-0 w-full h-full object-cover invisible ${
-          reducedMotion ? "reduced-motion" : ""
-        }`}
+        crossOrigin="anonymous"
+        className={`absolute inset-0 w-full h-full object-cover ${
+          hasVideoError ? "opacity-50" : "invisible"
+        } ${reducedMotion ? "reduced-motion" : ""}`}
         autoPlay
         loop
         muted
         playsInline
-        onError={(e) => console.error("Video error:", e)}
+        onError={(e) => {
+          console.error("Video error:", e);
+          setHasVideoError(true);
+        }}
         onLoadStart={() => console.log("Video loading started")}
         onLoadedMetadata={() => console.log("Video metadata loaded")}
       />
@@ -392,6 +414,11 @@ export default function DitheredVideoFilter({
         className="absolute inset-0 w-full h-full object-cover"
         style={{ imageRendering: "pixelated" }}
       />
+      {hasVideoError && (
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-900 text-white text-sm opacity-75">
+          Video filter unavailable (CORS)
+        </div>
+      )}
     </div>
   );
 }
