@@ -16,6 +16,7 @@ export function PostListItem({
       href={`/post/${rkey}`}
       className="underline bg-white dark:bg-black hover:text-white hover:bg-black dark:hover:text-black dark:hover:bg-white "
     >
+      {new Date(post.createdAt ?? "").toLocaleDateString()} -{" "}
       {post.title?.split(" || ")[0]}
     </Link>
   );

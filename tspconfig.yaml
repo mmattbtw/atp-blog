@@ -1,0 +1,5 @@
+emit:
+  - "@typelex/emitter"
+options:
+  "@typelex/emitter":
+    output-dir: "./lexicons"

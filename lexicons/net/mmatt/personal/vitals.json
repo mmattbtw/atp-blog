@@ -1,26 +1,133 @@
 {
-    "lexicon": 1,
-    "id": "net.mmatt.personal.vitals",
-    "defs": {
-      "main": {
-        "type": "record",
-        "description": "A personal lexicon for mmatt's vitals.",
-        "key": "tid",
-        "record": {
-          "type": "object",
-          "required": ["createdAt", "vital"],
-          "properties": {
-            "createdAt": {
-              "type": "string",
-              "format": "datetime",
-              "description": "The unix timestamp of when the vital was recorded"
-            },
-            "vital": {
-              "type": "string",
-"description": "The vital"
-            }
+  "lexicon": 1,
+  "id": "net.mmatt.personal.vitals",
+  "defs": {
+    "main": {
+      "type": "record",
+      "key": "tid",
+      "record": {
+        "type": "object",
+        "properties": {
+          "createdAt": {
+            "type": "string",
+            "format": "datetime",
+            "description": "The unix timestamp of when the vital was recorded"
+          },
+          "ringsMove": {
+            "type": "integer",
+            "description": "The move ring value"
+          },
+          "ringsExercise": {
+            "type": "integer",
+            "description": "The exercise ring value"
+          },
+          "ringsStandHours": {
+            "type": "integer",
+            "description": "The stand hours ring value"
+          },
+          "ringsMoveGoal": {
+            "type": "integer",
+            "description": "The move goal ring value"
+          },
+          "ringsExerciseGoal": {
+            "type": "integer",
+            "description": "The exercise goal ring value"
+          },
+          "ringsStandHoursGoal": {
+            "type": "integer",
+            "description": "The stand hours goal ring value"
+          },
+          "ringsSteps": {
+            "type": "integer",
+            "description": "The steps value"
+          },
+          "ringsBurnedCalories": {
+            "type": "integer",
+            "description": "The burned calories value"
+          },
+          "phoneMotion": {
+            "type": "string",
+            "description": "The phone motion value"
+          },
+          "phoneVolume": {
+            "type": "string",
+            "description": "The phone volume value"
+          },
+          "phoneAppearance": {
+            "type": "string",
+            "description": "The phone appearance value"
+          },
+          "phoneBrightness": {
+            "type": "string",
+            "description": "The phone brightness value"
+          },
+          "phoneOrientation": {
+            "type": "string",
+            "description": "The phone orientation value"
+          },
+          "phoneCellBars": {
+            "type": "string",
+            "description": "The phone cell bars value"
+          },
+          "phoneCellNetwork": {
+            "type": "string",
+            "description": "The phone cell network value"
+          },
+          "phoneBatteryLevel": {
+            "type": "string",
+            "description": "The phone battery level value"
+          },
+          "phoneBatteryCharging": {
+            "type": "string",
+            "description": "The phone battery charging value"
+          },
+          "phoneOs": {
+            "type": "string",
+            "description": "The phone OS value"
+          },
+          "phoneOsVersion": {
+            "type": "string",
+            "description": "The phone OS version value"
+          },
+          "phoneModel": {
+            "type": "string",
+            "description": "The phone model value"
+          },
+          "carFuelLevel": {
+            "type": "integer",
+            "description": "The car fuel level value"
+          },
+          "carTraveledDistance": {
+            "type": "integer",
+            "description": "The car traveled distance value"
           }
-        }
+        },
+        "required": [
+          "createdAt",
+          "ringsMove",
+          "ringsExercise",
+          "ringsStandHours",
+          "ringsMoveGoal",
+          "ringsExerciseGoal",
+          "ringsStandHoursGoal",
+          "ringsSteps",
+          "ringsBurnedCalories",
+          "phoneMotion",
+          "phoneVolume",
+          "phoneAppearance",
+          "phoneBrightness",
+          "phoneOrientation",
+          "phoneCellBars",
+          "phoneCellNetwork",
+          "phoneBatteryLevel",
+          "phoneBatteryCharging",
+          "phoneOs",
+          "phoneOsVersion",
+          "phoneModel",
+          "carFuelLevel",
+          "carTraveledDistance"
+        ]
       }
     }
   }
+}
