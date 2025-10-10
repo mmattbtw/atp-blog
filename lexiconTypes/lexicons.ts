@@ -60,12 +60,14 @@ export const schemaDict = {
               description: 'The car fuel range value in miles',
             },
             carPercentFuelRemaining: {
-              type: 'integer',
-              description: 'The car fuel level value in percentage',
+              type: 'string',
+              description:
+                'The car fuel level value in percentage (floating point string)',
             },
             amountRemaining: {
-              type: 'integer',
-              description: 'The car fuel amount remaining value',
+              type: 'string',
+              description:
+                'The car fuel amount remaining value (floating point string)',
             },
             carTraveledDistance: {
               type: 'integer',

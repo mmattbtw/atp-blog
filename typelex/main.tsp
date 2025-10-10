@@ -105,12 +105,12 @@ namespace net.mmatt.vitals.car {
     /** The car fuel range value in miles */
     @required
     carFuelRange: integer;
-    /** The car fuel level value in percentage */
+    /** The car fuel level value in percentage (floating point string) */
     @required
-    carPercentFuelRemaining: integer;
-    /** The car fuel amount remaining value */
+    carPercentFuelRemaining: string;
+    /** The car fuel amount remaining value (floating point string) */
     @required
-    amountRemaining: integer;
+    amountRemaining: string;
     /** The car traveled distance value */
     @required
     carTraveledDistance: integer;

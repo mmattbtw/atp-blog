@@ -20,10 +20,10 @@ export interface Record {
   createdAt: string
   /** The car fuel range value in miles */
   carFuelRange: number
-  /** The car fuel level value in percentage */
-  carPercentFuelRemaining: number
-  /** The car fuel amount remaining value */
-  amountRemaining: number
+  /** The car fuel level value in percentage (floating point string) */
+  carPercentFuelRemaining: string
+  /** The car fuel amount remaining value (floating point string) */
+  amountRemaining: string
   /** The car traveled distance value */
   carTraveledDistance: number
   /** The car make value */
