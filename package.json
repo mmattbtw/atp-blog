@@ -10,7 +10,8 @@
     "lint": "next lint",
     "format": "prettier -w src",
     "typecheck": "tsc --noEmit",
-    "build:lexicons": "tsp compile typelex/main.tsp"
+    "build:lexicons": "tsp compile typelex/main.tsp",
+    "lexitypes": "./lexicon-type.sh"
   },
   "dependencies": {
     "@atcute/client": "^2.0.8",

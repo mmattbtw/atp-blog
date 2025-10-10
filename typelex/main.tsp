@@ -15,7 +15,7 @@ namespace net.mmatt.right.now {
   }
 }
 
-namespace net.mmatt.personal.vitals {
+namespace net.mmatt.vitals.rings {
   @rec("tid")
   model Main {
     /** The unix timestamp of when the vital was recorded */
@@ -48,7 +48,15 @@ namespace net.mmatt.personal.vitals {
     /** The burned calories value */
     @required
     ringsBurnedCalories: integer;
+  }
+}
 
+namespace net.mmatt.vitals.phone {
+  @rec("tid")
+  model Main {
+    /** The unix timestamp of when the vital was recorded */
+    @required
+    createdAt: datetime;
     /** The phone motion value */
     @required
     phoneMotion: string;
@@ -85,10 +93,24 @@ namespace net.mmatt.personal.vitals {
     /** The phone model value */
     @required
     phoneModel: string;
+  }
+}
 
-    /** The car fuel level value */
+namespace net.mmatt.vitals.car {
+  @rec("tid")
+  model Main {
+    /** The unix timestamp of when the vital was recorded */
     @required
-    carFuelLevel: integer;
+    createdAt: datetime;
+    /** The car fuel range value in miles */
+    @required
+    carFuelRange: integer;
+    /** The car fuel level value in percentage */
+    @required
+    carPercentFuelRemaining: integer;
+    /** The car fuel amount remaining value */
+    @required
+    amountRemaining: integer;
     /** The car traveled distance value */
     @required
     carTraveledDistance: integer;

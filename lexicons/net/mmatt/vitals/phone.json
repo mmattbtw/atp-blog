@@ -1,6 +1,6 @@
 {
   "lexicon": 1,
-  "id": "net.mmatt.personal.vitals",
+  "id": "net.mmatt.vitals.phone",
   "defs": {
     "main": {
       "type": "record",
@@ -12,38 +12,6 @@
             "type": "string",
             "format": "datetime",
             "description": "The unix timestamp of when the vital was recorded"
-          },
-          "ringsMove": {
-            "type": "integer",
-            "description": "The move ring value"
-          },
-          "ringsExercise": {
-            "type": "integer",
-            "description": "The exercise ring value"
-          },
-          "ringsStandHours": {
-            "type": "integer",
-            "description": "The stand hours ring value"
-          },
-          "ringsMoveGoal": {
-            "type": "integer",
-            "description": "The move goal ring value"
-          },
-          "ringsExerciseGoal": {
-            "type": "integer",
-            "description": "The exercise goal ring value"
-          },
-          "ringsStandHoursGoal": {
-            "type": "integer",
-            "description": "The stand hours goal ring value"
-          },
-          "ringsSteps": {
-            "type": "integer",
-            "description": "The steps value"
-          },
-          "ringsBurnedCalories": {
-            "type": "integer",
-            "description": "The burned calories value"
           },
           "phoneMotion": {
             "type": "string",
@@ -92,26 +60,10 @@
           "phoneModel": {
             "type": "string",
             "description": "The phone model value"
-          },
-          "carFuelLevel": {
-            "type": "integer",
-            "description": "The car fuel level value"
-          },
-          "carTraveledDistance": {
-            "type": "integer",
-            "description": "The car traveled distance value"
           }
         },
         "required": [
           "createdAt",
-          "ringsMove",
-          "ringsExercise",
-          "ringsStandHours",
-          "ringsMoveGoal",
-          "ringsExerciseGoal",
-          "ringsStandHoursGoal",
-          "ringsSteps",
-          "ringsBurnedCalories",
           "phoneMotion",
           "phoneVolume",
           "phoneAppearance",
@@ -123,9 +75,7 @@
           "phoneBatteryCharging",
           "phoneOs",
           "phoneOsVersion",
-          "phoneModel",
-          "carFuelLevel",
-          "carTraveledDistance"
+          "phoneModel"
         ]
       }
     }

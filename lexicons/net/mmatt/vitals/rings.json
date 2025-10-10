@@ -1,0 +1,63 @@
+{
+  "lexicon": 1,
+  "id": "net.mmatt.vitals.rings",
+  "defs": {
+    "main": {
+      "type": "record",
+      "key": "tid",
+      "record": {
+        "type": "object",
+        "properties": {
+          "createdAt": {
+            "type": "string",
+            "format": "datetime",
+            "description": "The unix timestamp of when the vital was recorded"
+          },
+          "ringsMove": {
+            "type": "integer",
+            "description": "The move ring value"
+          },
+          "ringsExercise": {
+            "type": "integer",
+            "description": "The exercise ring value"
+          },
+          "ringsStandHours": {
+            "type": "integer",
+            "description": "The stand hours ring value"
+          },
+          "ringsMoveGoal": {
+            "type": "integer",
+            "description": "The move goal ring value"
+          },
+          "ringsExerciseGoal": {
+            "type": "integer",
+            "description": "The exercise goal ring value"
+          },
+          "ringsStandHoursGoal": {
+            "type": "integer",
+            "description": "The stand hours goal ring value"
+          },
+          "ringsSteps": {
+            "type": "integer",
+            "description": "The steps value"
+          },
+          "ringsBurnedCalories": {
+            "type": "integer",
+            "description": "The burned calories value"
+          }
+        },
+        "required": [
+          "createdAt",
+          "ringsMove",
+          "ringsExercise",
+          "ringsStandHours",
+          "ringsMoveGoal",
+          "ringsExerciseGoal",
+          "ringsStandHoursGoal",
+          "ringsSteps",
+          "ringsBurnedCalories"
+        ]
+      }
+    }
+  }
+}
