@@ -26,6 +26,12 @@ export interface Record {
   amountRemaining: number
   /** The car traveled distance value */
   carTraveledDistance: number
+  /** The car make value */
+  carMake?: string
+  /** The car model value */
+  carModel?: string
+  /** The car year value */
+  carYear?: number
   [k: string]: unknown
 }
 

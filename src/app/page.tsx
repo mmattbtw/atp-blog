@@ -1,3 +1,5 @@
+import InfoBox from "#/components/info-box";
+
 import HomeVideoBackground from "../components/home-video-background";
 
 // Revalidate every hour (3600 seconds)
@@ -60,6 +62,7 @@ export default function Home() {
             </a>
           </p>
         </div>
+        <InfoBox />
       </div>
     </main>
   );

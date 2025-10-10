@@ -71,6 +71,18 @@ export const schemaDict = {
               type: 'integer',
               description: 'The car traveled distance value',
             },
+            carMake: {
+              type: 'string',
+              description: 'The car make value',
+            },
+            carModel: {
+              type: 'string',
+              description: 'The car model value',
+            },
+            carYear: {
+              type: 'integer',
+              description: 'The car year value',
+            },
           },
           required: [
             'createdAt',

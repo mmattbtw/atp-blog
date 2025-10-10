@@ -114,5 +114,12 @@ namespace net.mmatt.vitals.car {
     /** The car traveled distance value */
     @required
     carTraveledDistance: integer;
+
+    /** The car make value */
+    carMake?: string;
+    /** The car model value */
+    carModel?: string;
+    /** The car year value */
+    carYear?: integer;
   }
 }
