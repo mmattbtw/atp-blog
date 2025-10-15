@@ -44,6 +44,10 @@
           "ringsBurnedCalories": {
             "type": "integer",
             "description": "The burned calories value"
+          },
+          "heartRate": {
+            "type": "integer",
+            "description": "The heart rate value"
           }
         },
         "required": [
@@ -55,7 +59,8 @@
           "ringsExerciseGoal",
           "ringsStandHoursGoal",
           "ringsSteps",
-          "ringsBurnedCalories"
+          "ringsBurnedCalories",
+          "heartRate"
         ]
       }
     }

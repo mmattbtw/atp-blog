@@ -144,6 +144,10 @@ export const schemaDict = {
               type: 'integer',
               description: 'The burned calories value',
             },
+            heartRate: {
+              type: 'integer',
+              description: 'The heart rate value',
+            },
           },
           required: [
             'createdAt',
@@ -155,6 +159,7 @@ export const schemaDict = {
             'ringsStandHoursGoal',
             'ringsSteps',
             'ringsBurnedCalories',
+            'heartRate',
           ],
         },
       },

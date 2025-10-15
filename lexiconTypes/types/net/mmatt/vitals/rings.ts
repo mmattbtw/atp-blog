@@ -34,6 +34,8 @@ export interface Record {
   ringsSteps: number
   /** The burned calories value */
   ringsBurnedCalories: number
+  /** The heart rate value */
+  heartRate: number
   [k: string]: unknown
 }
 

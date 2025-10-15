@@ -48,6 +48,10 @@ namespace net.mmatt.vitals.rings {
     /** The burned calories value */
     @required
     ringsBurnedCalories: integer;
+
+    /** The heart rate value */
+    @required
+    heartRate: integer;
   }
 }
 
