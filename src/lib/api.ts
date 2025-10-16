@@ -3,7 +3,7 @@ import {
   type ComWhtwndBlogEntry,
 } from "@atcute/client/lexicons";
 
-import { NetMmattRightNow } from "../../lexiconTypes";
+import { Record } from "../../lexiconTypes/types/net/mmatt/right/now";
 import { bsky } from "./bsky";
 import { env } from "./env";
 
@@ -32,7 +32,7 @@ export async function getLastestStatus() {
     },
   });
   return posts.data.records[0] as ComAtprotoRepoListRecords.Record & {
-    value: NetMmattRightNow.Record;
+    value: Record;
   };
 }
 
@@ -46,7 +46,7 @@ export async function getStatuses() {
     },
   });
   return posts.data.records as (ComAtprotoRepoListRecords.Record & {
-    value: NetMmattRightNow.Record;
+    value: Record;
   })[];
 }
 
