@@ -1,10 +1,11 @@
 import { ArrowLeftIcon } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import NextLink from "next/link";
 
 import { NowList } from "#/components/now-list";
 import { Paragraph, Title } from "#/components/typography";
+import Link from "#/components/ui/link";
 
 import me from "../../../assets/matt.jpeg";
 
@@ -23,13 +24,13 @@ export default function RightNowPage() {
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-dvh p-8 pb-20 gap-16 sm:p-20">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start w-full max-w-[600px]">
-        <Link
+        <NextLink
           href="/"
           className="hover:underline hover:underline-offset-4 font-medium"
         >
           <ArrowLeftIcon className="inline size-4 align-middle mb-px mr-1" />
           Back
-        </Link>
+        </NextLink>
         <div className="self-center flex flex-col">
           <Image
             src={me}
@@ -43,17 +44,10 @@ export default function RightNowPage() {
         <Title level="h2">matt: right now</Title>
         <Paragraph>
           view on{" "}
-          <a
-            href="https://bsky.app/profile/did:plc:rwb72l7iwkraojrbrbwitnkd"
-            className="underline"
-          >
+          <Link href="https://bsky.app/profile/did:plc:rwb72l7iwkraojrbrbwitnkd">
             Bluesky
-          </a>{" "}
-          and{" "}
-          <a href="https://status.lol/matt" className="underline">
-            status.lol
-          </a>
-          .
+          </Link>{" "}
+          and <Link href="https://status.lol/matt">status.lol</Link>.
         </Paragraph>
         <div className="flex flex-col gap-4 w-full">
           <NowList />

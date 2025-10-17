@@ -1,7 +1,5 @@
-import {
-  type ComAtprotoRepoListRecords,
-  type ComWhtwndBlogEntry,
-} from "@atcute/client/lexicons";
+import { type ComAtprotoRepoListRecords } from "@atcute/client/lexicons";
+import { ComWhtwndBlogEntry } from "@atcute/whitewind";
 
 import { Record } from "../../lexiconTypes/types/net/mmatt/right/now";
 import { bsky } from "./bsky";
@@ -19,7 +17,7 @@ export async function getPosts() {
   return posts.data.records.filter(
     drafts,
   ) as (ComAtprotoRepoListRecords.Record & {
-    value: ComWhtwndBlogEntry.Record;
+    value: ComWhtwndBlogEntry.Main;
   })[];
 }
 
@@ -52,7 +50,7 @@ export async function getStatuses() {
 
 function drafts(record: ComAtprotoRepoListRecords.Record) {
   if (process.env.NODE_ENV === "development") return true;
-  const post = record.value as ComWhtwndBlogEntry.Record;
+  const post = record.value as ComWhtwndBlogEntry.Main;
   return post.visibility === "public";
 }
 
@@ -66,6 +64,6 @@ export async function getPost(rkey: string) {
   });
 
   return post.data as ComAtprotoRepoListRecords.Record & {
-    value: ComWhtwndBlogEntry.Record;
+    value: ComWhtwndBlogEntry.Main;
   };
 }

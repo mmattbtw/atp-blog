@@ -1,21 +1,19 @@
 "use client";
 
-import Link from "next/link";
-import { ComWhtwndBlogEntry } from "@atcute/client/lexicons";
+import { ComWhtwndBlogEntry } from "@atcute/whitewind";
+
+import Link from "./ui/link";
 
 export function PostListItem({
   post,
   rkey,
 }: {
-  post: ComWhtwndBlogEntry.Record;
+  post: ComWhtwndBlogEntry.Main;
   rkey: string;
   viewCount?: React.ReactNode;
 }) {
   return (
-    <Link
-      href={`/post/${rkey}`}
-      className="underline bg-white dark:bg-black hover:text-white hover:bg-black dark:hover:text-black dark:hover:bg-white "
-    >
+    <Link href={`/post/${rkey}`}>
       {new Date(post.createdAt ?? "").toLocaleDateString()} -{" "}
       {post.title?.split(" || ")[0]}
     </Link>

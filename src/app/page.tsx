@@ -1,4 +1,5 @@
 import InfoBox from "#/components/info-box";
+import Link from "#/components/ui/link";
 
 import HomeVideoBackground from "../components/home-video-background";
 
@@ -16,53 +17,31 @@ export default function Home() {
           </h1>
           <p className="text-black dark:text-white bg-white dark:bg-black">
             (ﾉ´ヮ`)ﾉ*: ･ﾟ i&apos;m a full time computer science student at{" "}
-            <a
-              href="https://mtsu.edu"
-              className="underline  bg-white dark:bg-black hover:text-white hover:bg-black dark:hover:text-black dark:hover:bg-white"
-            >
-              MTSU
-            </a>
-            , part time technologist for{" "}
-            <a
-              href="https://teal.fm"
-              className="underline  bg-white dark:bg-black hover:text-white hover:bg-black dark:hover:text-black dark:hover:bg-white"
-            >
-              teal.fm
-            </a>
-            , and a resident at{" "}
-            <a
-              href="https://opn.haus"
-              className="underline  bg-white dark:bg-black hover:text-white hover:bg-black dark:hover:text-black dark:hover:bg-white"
-            >
-              Open House*
-            </a>
-            .
+            <Link href="https://mtsu.edu">MTSU</Link>, part time technologist
+            for <Link href="https://teal.fm">teal.fm</Link>, and a resident at{" "}
+            <Link href="https://opn.haus">Open House*</Link>.
           </p>
           <p>
-            <a
-              href="https://matt.omg.lol"
-              className="underline bg-white dark:bg-black hover:text-white hover:bg-black dark:hover:text-black dark:hover:bg-white"
-            >
+            <Link href="https://matt.omg.lol">
               &gt;&gt; all over the web &lt;&lt;
-            </a>
+            </Link>
             {" <_< ^_^ >_>  "}
-            <a
-              href="mailto:matt@mmatt.net"
-              className="underline bg-white dark:bg-black hover:text-white hover:bg-black dark:hover:text-black dark:hover:bg-white"
-            >
-              &gt;&gt; mail me &lt;&lt;
-            </a>
+            <Link href="mailto:matt@mmatt.net">&gt;&gt; mail me &lt;&lt;</Link>
           </p>
           <p>
-            <a
-              href="/writing"
-              className="underline bg-white dark:bg-black hover:text-white hover:bg-black dark:hover:text-black dark:hover:bg-white"
-            >
-              (;;;*_*) writing
-            </a>
+            <Link href="/writing">(;;;*_*) writing</Link>
           </p>
         </div>
-        <InfoBox />
+
+        {/* InfoBox positioned for desktop and mobile */}
+        <div className="fixed top-4 right-4 z-20 md:block hidden">
+          <InfoBox />
+        </div>
+
+        {/* Mobile InfoBox - positioned below main content */}
+        <div className="md:hidden pt-8 px-1.5">
+          <InfoBox />
+        </div>
       </div>
     </main>
   );
