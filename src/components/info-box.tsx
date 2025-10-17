@@ -240,14 +240,15 @@ export default function InfoBox() {
               limit: 10,
             },
           });
-          const publicPost = blog.data.records.find(
-            (record: any) => record.value.visibility === "public",
-          );
+          const publicPost = blog.data.records.find((record) => {
+            const value = record.value as ComWhtwndBlogEntry.Main;
+            return value.visibility === "public";
+          });
           if (publicPost) {
             setBlogPost(publicPost.value as ComWhtwndBlogEntry.Main);
             setBlogPostRkey(publicPost.uri.split("/").pop() || null);
           }
-        } catch (error) {
+        } catch {
           console.log("Blog collection not found or accessible");
         }
 
@@ -261,14 +262,15 @@ export default function InfoBox() {
             },
           });
           // Find the first post that is not a reply (doesn't have reply field)
-          const nonReplyPost = bluesky.data.records.find(
-            (record: any) => !record.value.reply,
-          );
+          const nonReplyPost = bluesky.data.records.find((record) => {
+            const value = record.value as BlueskyPostRecord;
+            return !value.reply;
+          });
           if (nonReplyPost) {
             setBlueskyPost(nonReplyPost.value as BlueskyPostRecord);
             setBlueskyPostRkey(nonReplyPost.uri.split("/").pop() || null);
           }
-        } catch (error) {
+        } catch {
           console.log("Bluesky posts not found or accessible");
         }
 
@@ -284,7 +286,7 @@ export default function InfoBox() {
           if (teal.data.records.length > 0) {
             setTealPlay(teal.data.records[0].value as TealPlayRecord);
           }
-        } catch (error) {
+        } catch {
           console.log("Teal.fm plays not found or accessible");
         }
 
@@ -297,7 +299,7 @@ export default function InfoBox() {
               setLetterboxdEntry(data.entries[0]);
             }
           }
-        } catch (error) {
+        } catch {
           console.log("Letterboxd RSS not accessible");
         }
 
@@ -313,7 +315,7 @@ export default function InfoBox() {
           if (now.data.records.length > 0) {
             setNowEntry(now.data.records[0].value as NowRecord);
           }
-        } catch (error) {
+        } catch {
           console.log("Statuslog entries not found or accessible");
         }
       } catch (error) {
