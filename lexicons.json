@@ -1,6 +1,7 @@
 {
   "lexicons": [
     "app.bsky.feed.post",
-    "com.whtwnd.blog.entry"
+    "com.whtwnd.blog.entry",
+    "app.bsky.richtext.facet"
   ]
 }

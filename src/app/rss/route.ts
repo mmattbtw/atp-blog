@@ -1,4 +1,4 @@
-import { ComWhtwndBlogEntry } from "@atcute/client/lexicons";
+import { ComWhtwndBlogEntry } from "@atcute/whitewind";
 import rehypeFormat from "rehype-format";
 import rehypeStringify from "rehype-stringify";
 import remarkParse from "remark-parse";
@@ -22,7 +22,7 @@ export async function GET() {
   });
 
   for (const post of posts) {
-    const postValue = post.value as ComWhtwndBlogEntry.Record;
+    const postValue = post.value as ComWhtwndBlogEntry.Main;
     const titleParts = postValue.title?.split(" || ") ?? ["Untitled", ""];
     const title = titleParts[0];
     const extractedDescription = titleParts.slice(1).join(" || ");

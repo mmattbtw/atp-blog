@@ -1,6 +1,5 @@
 import Markdown from "react-markdown";
 import { Viewport, type Metadata } from "next";
-import Image from "next/image";
 import { Code as SyntaxHighlighter } from "bright";
 import rehypeRaw from "rehype-raw";
 import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
@@ -167,13 +166,7 @@ export default function DeerDirectPrivacyPolicyPage() {
                 ),
                 img: ({ src, alt }) => (
                   <span className="block mt-8 w-full aspect-video relative">
-                    <Image
-                      src={src!}
-                      alt={alt!}
-                      className="object-contain"
-                      quality={90}
-                      fill
-                    />
+                    <p>image</p>
                   </span>
                 ),
               }}
