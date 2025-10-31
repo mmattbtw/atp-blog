@@ -164,7 +164,7 @@ export default function DeerDirectPrivacyPolicyPage() {
                     {...props}
                   />
                 ),
-                img: ({ src, alt }) => (
+                img: () => (
                   <span className="block mt-8 w-full aspect-video relative">
                     <p>image</p>
                   </span>

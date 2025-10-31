@@ -49,7 +49,7 @@ async function fetchLetterboxdData(): Promise<LetterboxdEntry | null> {
 }
 
 export default async function InfoBox() {
-  let data: InfoBoxData = {
+  const data: InfoBoxData = {
     carInfo: null,
     blogPost: null,
     blogPostRkey: null,

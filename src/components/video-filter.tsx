@@ -216,7 +216,7 @@ export default function DitheredVideoFilter({
 
     isProcessingRef.current = false;
     animationRef.current = requestAnimationFrame(processFrame);
-  }, [pixelSize, maxWidth, applyDithering, reducedMotion]);
+  }, [pixelSize, maxWidth, applyDithering, reducedMotion, hasVideoError]);
 
   // Optimized event handlers with useCallback for better performance
   const handlePlay = useCallback(() => {
