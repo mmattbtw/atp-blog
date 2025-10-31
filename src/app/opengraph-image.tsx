@@ -9,27 +9,41 @@ export const size = {
 export const contentType = "image/png";
 
 export default async function OpenGraphImage() {
-  const fontData = await loadGoogleFont("Inter:wght@100..900", "mmatt.net");
+  const fontData = await loadGoogleFont("VT323", "mmatt.net");
 
   return new ImageResponse(
     (
-      <div tw="h-full w-full bg-white flex flex-col justify-center items-center">
-        <h1
-          style={{
-            fontFamily: '"Inter"',
-            fontSize: 80,
-            fontWeight: 1000,
-          }}
+      <div
+        tw="h-full w-full flex items-center justify-center"
+        style={{
+          backgroundColor: "#ffffff",
+          color: "#000000",
+          border: "16px solid #000000",
+        }}
+      >
+        <div
+          tw="flex items-center justify-center"
+          style={{ width: "100%", height: "100%" }}
         >
-          mmatt.net
-        </h1>
+          <h1
+            style={{
+              fontFamily: '"VT323"',
+              fontSize: 96,
+              lineHeight: 1.2,
+              letterSpacing: -1,
+              textTransform: "lowercase",
+            }}
+          >
+            mmatt.net
+          </h1>
+        </div>
       </div>
     ),
     {
       ...size,
       fonts: [
         {
-          name: "Inter",
+          name: "VT323",
           data: fontData,
         },
       ],

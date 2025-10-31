@@ -1,15 +1,21 @@
 import type { Metadata, Viewport } from "next";
 import NextPlausible from "next-plausible";
-import { Inter } from "next/font/google";
+import { VT323, Jersey_10 } from "next/font/google";
 
 import { cx } from "#/lib/cx";
 
 import "./globals.css";
 
-const sans = Inter({
-  variable: "--font-inter",
+const heading = VT323({
+  variable: "--font-vt323",
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
+  weight: "400",
+});
+
+const body = Jersey_10({
+  variable: "--font-jersey",
+  subsets: ["latin"],
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -52,7 +58,8 @@ export default function RootLayout({
       </head>
       <body
         className={cx(
-          sans.variable,
+          heading.variable,
+          body.variable,
 
           "antialiased font-sans",
         )}

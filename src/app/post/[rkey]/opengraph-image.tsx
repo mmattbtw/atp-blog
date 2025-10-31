@@ -19,40 +19,55 @@ export default async function OpenGraphImage({
   const post = await getPost(rkey);
 
   const fontData = await loadGoogleFont(
-    "Inter:wght@100..900",
+    "VT323",
     "mmatt.net" + (post.value.title?.split(" || ")[0] ?? "Untitled"),
   );
 
   return new ImageResponse(
     (
-      <div tw="h-full w-full bg-white flex flex-col justify-center items-center px-20">
-        <h1
+      <div
+        tw="h-full w-full flex items-center justify-center px-20"
+        style={{
+          backgroundColor: "#ffffff",
+          color: "#000000",
+          border: "16px solid #000000",
+        }}
+      >
+        <div
+          tw="flex flex-col items-center justify-center"
           style={{
-            fontFamily: '"Inter"',
-            fontSize: 80,
-            fontWeight: 900,
+            width: "100%",
+            height: "100%",
             textAlign: "center",
-            fontOpticalSizing: "auto",
-            fontStyle: "normal",
           }}
         >
-          {post.value.title?.split(" || ")[0] ?? "Untitled"}
-        </h1>
-        <h1
-          style={{
-            fontSize: 32,
-            fontFamily: '"Inter"',
-          }}
-        >
-          mmatt.net
-        </h1>
+          <h1
+            style={{
+              fontFamily: '\"VT323\"',
+              fontSize: 80,
+              lineHeight: 1.2,
+              letterSpacing: -1,
+            }}
+          >
+            {post.value.title?.split(" || ")[0] ?? "Untitled"}
+          </h1>
+          <h2
+            style={{
+              fontFamily: '\"VT323\"',
+              fontSize: 36,
+              marginTop: 16,
+            }}
+          >
+            mmatt.net
+          </h2>
+        </div>
       </div>
     ),
     {
       ...size,
       fonts: [
         {
-          name: "Inter",
+          name: "VT323",
           data: fontData,
         },
       ],
