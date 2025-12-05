@@ -168,7 +168,7 @@ export default function DeerDirectPrivacyPolicyPage() {
                 img: ({ src, alt }) => (
                   <span className="block mt-8 w-full aspect-video relative">
                     <Image
-                      src={src!}
+                      src={typeof src === "string" ? src : ""}
                       alt={alt!}
                       className="object-contain"
                       quality={90}
