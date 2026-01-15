@@ -18,6 +18,9 @@ export default async function OpenGraphImage() {
         backgroundColor: "#ffffff",
         color: "#000000",
         border: "16px solid #000000",
+        backgroundImage: "url(https://mmatt.net/indexbg.png)",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
       }}
     >
       <div
