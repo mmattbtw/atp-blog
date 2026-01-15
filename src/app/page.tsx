@@ -1,4 +1,5 @@
 import InfoBox from "#/components/info-box";
+import { Title, Paragraph } from "#/components/typography";
 import Link from "#/components/ui/link";
 
 import HomeVideoBackground from "../components/home-video-background";
