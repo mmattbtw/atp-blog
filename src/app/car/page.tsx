@@ -11,8 +11,8 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://mmatt.net"),
-  title: "Car Stats - mmatt.net",
-  description: "Historical car stats and data visualization",
+  title: "my car - mmatt.net",
+  description: "various statistics about my car and how I drive.",
   other: {
     "fediverse:creator": "@matt@social.lol",
   },
