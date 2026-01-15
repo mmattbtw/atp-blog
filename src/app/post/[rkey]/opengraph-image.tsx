@@ -19,7 +19,7 @@ export default async function OpenGraphImage({
   const post = await getPost(rkey);
 
   const fontData = await loadGoogleFont(
-    "VT323",
+    "Google+Sans+Code",
     "mmatt.net" + (post.value.title?.split(" || ")[0] ?? "Untitled"),
   );
 
@@ -44,7 +44,7 @@ export default async function OpenGraphImage({
       >
         <h1
           style={{
-            fontFamily: '\"VT323\"',
+            fontFamily: '"Google Sans Code"',
             fontSize: 80,
             lineHeight: 1.2,
             letterSpacing: -1,
@@ -54,7 +54,7 @@ export default async function OpenGraphImage({
         </h1>
         <h2
           style={{
-            fontFamily: '\"VT323\"',
+            fontFamily: '"Google Sans Code"',
             fontSize: 36,
             marginTop: 16,
           }}
@@ -67,7 +67,7 @@ export default async function OpenGraphImage({
       ...size,
       fonts: [
         {
-          name: "VT323",
+          name: "Google Sans Code",
           data: fontData,
         },
       ],

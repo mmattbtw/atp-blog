@@ -9,41 +9,39 @@ export const size = {
 export const contentType = "image/png";
 
 export default async function OpenGraphImage() {
-  const fontData = await loadGoogleFont("VT323", "mmatt.net");
+  const fontData = await loadGoogleFont("Google+Sans+Code", "mmatt.net");
 
   return new ImageResponse(
-    (
+    <div
+      tw="h-full w-full flex items-center justify-center"
+      style={{
+        backgroundColor: "#ffffff",
+        color: "#000000",
+        border: "16px solid #000000",
+      }}
+    >
       <div
-        tw="h-full w-full flex items-center justify-center"
-        style={{
-          backgroundColor: "#ffffff",
-          color: "#000000",
-          border: "16px solid #000000",
-        }}
+        tw="flex items-center justify-center"
+        style={{ width: "100%", height: "100%" }}
       >
-        <div
-          tw="flex items-center justify-center"
-          style={{ width: "100%", height: "100%" }}
+        <h1
+          style={{
+            fontFamily: '"Google Sans Code"',
+            fontSize: 96,
+            lineHeight: 1.2,
+            letterSpacing: -1,
+            textTransform: "lowercase",
+          }}
         >
-          <h1
-            style={{
-              fontFamily: '"VT323"',
-              fontSize: 96,
-              lineHeight: 1.2,
-              letterSpacing: -1,
-              textTransform: "lowercase",
-            }}
-          >
-            mmatt.net
-          </h1>
-        </div>
+          mmatt.net
+        </h1>
       </div>
-    ),
+    </div>,
     {
       ...size,
       fonts: [
         {
-          name: "VT323",
+          name: "Google Sans Code",
           data: fontData,
         },
       ],
