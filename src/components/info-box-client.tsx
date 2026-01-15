@@ -57,7 +57,7 @@ export default function InfoBoxClient({ data }: InfoBoxClientProps) {
             id: "car",
             title: "My Car",
             content: (
-              <div className="space-y-1 text-xs text-black dark:text-white">
+              <div className="text-xs text-black dark:text-white">
                 <p>
                   Range:{" "}
                   <SlidingNumber number={data.carInfo.carFuelRange} inView />
@@ -85,6 +85,9 @@ export default function InfoBoxClient({ data }: InfoBoxClientProps) {
                     inView
                   />
                 </p>
+                <Link href="/car" className="underline">
+                  View Car Stats
+                </Link>
               </div>
             ),
           },

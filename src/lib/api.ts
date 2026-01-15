@@ -3,6 +3,7 @@ import { ok } from "@atcute/client";
 import { ComWhtwndBlogEntry } from "@atcute/whitewind";
 
 import { Record } from "../../lexiconTypes/types/net/mmatt/right/now";
+import { Record as CarRecord } from "../../lexiconTypes/types/net/mmatt/vitals/car";
 import { bsky } from "./bsky";
 import { env } from "./env";
 
@@ -70,5 +71,24 @@ export async function getPost(rkey: string) {
 
   return post.data as ComAtprotoRepoListRecords.Record & {
     value: ComWhtwndBlogEntry.Main;
+  };
+}
+
+export async function getCarRecords(cursor?: string) {
+  const cars = await ok(
+    bsky.get("com.atproto.repo.listRecords", {
+      params: {
+        repo: env.NEXT_PUBLIC_BSKY_DID as `did:plc:${string}`,
+        collection: "net.mmatt.vitals.car",
+        limit: 100,
+        cursor,
+      },
+    }),
+  );
+  return {
+    records: cars.records as (ComAtprotoRepoListRecords.Record & {
+      value: CarRecord;
+    })[],
+    cursor: cars.cursor,
   };
 }
