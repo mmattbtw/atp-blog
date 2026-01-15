@@ -9,8 +9,15 @@ import {
   useReactTable,
   type SortingState,
 } from "@tanstack/react-table";
-import { Loader2Icon } from "lucide-react";
-import { useCallback, useMemo, useState, useTransition } from "react";
+import { Loader2Icon, WifiIcon, WifiOffIcon } from "lucide-react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  useTransition,
+} from "react";
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
 
 import {
@@ -19,11 +26,63 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "#/components/ui/chart";
+import { SlidingNumber } from "#/components/ui/shadcn-io/sliding-number";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "#/components/ui/tooltip";
+
+// Helper component to display numbers with comma separators
+function FormattedSlidingNumber({
+  number,
+  decimalPlaces,
+}: {
+  number: number;
+  decimalPlaces?: number;
+}) {
+  // Split number into groups of 3 digits for comma formatting
+  const integerPart = Math.floor(Math.abs(number));
+  const intStr = integerPart.toString();
+  const groups: number[] = [];
+
+  // Split into groups of 3 from right to left
+  for (let i = intStr.length; i > 0; i -= 3) {
+    const start = Math.max(0, i - 3);
+    groups.unshift(parseInt(intStr.slice(start, i), 10));
+  }
+
+  // Calculate padding for groups (except first group)
+  const paddedGroups = groups.map((g, i) =>
+    i === 0 ? g : g.toString().padStart(3, "0"),
+  );
+
+  return (
+    <span className="inline-flex items-center">
+      {number < 0 && <span>-</span>}
+      {paddedGroups.map((group, i) => (
+        <span key={i} className="inline-flex items-center">
+          {i > 0 && <span className="mx-px">,</span>}
+          <SlidingNumber
+            number={typeof group === "string" ? parseInt(group, 10) : group}
+            padStart={i > 0}
+          />
+        </span>
+      ))}
+      {decimalPlaces !== undefined && decimalPlaces > 0 && (
+        <>
+          <span>.</span>
+          <SlidingNumber
+            number={Math.round(
+              (Math.abs(number) - integerPart) * Math.pow(10, decimalPlaces),
+            )}
+            padStart
+          />
+        </>
+      )}
+    </span>
+  );
+}
 
 interface CarDataPoint {
   createdAt: string;
@@ -116,8 +175,8 @@ function FuelChart({ data }: { data: CarDataPoint[] }) {
       <div className="flex justify-between items-start mb-4">
         <div>
           <p className="text-sm text-muted-foreground">Fuel Level</p>
-          <p className="text-2xl font-bold">
-            {latestValue.toFixed(0)}
+          <p className="text-2xl font-bold flex items-baseline">
+            <SlidingNumber number={Math.round(latestValue)} />
             <span className="text-sm font-normal text-muted-foreground ml-1">
               %
             </span>
@@ -205,9 +264,9 @@ function OdometerChart({ data }: { data: CarDataPoint[] }) {
       <div className="flex justify-between items-start mb-4">
         <div>
           <p className="text-sm text-muted-foreground">Odometer</p>
-          <p className="text-2xl font-bold">
-            {latestValue.toLocaleString()}
-            <span className="text-sm font-normal text-muted-foreground ml-1">
+          <p className="text-2xl font-bold flex items-baseline gap-1">
+            <FormattedSlidingNumber number={latestValue} />
+            <span className="text-sm font-normal text-muted-foreground">
               mi
             </span>
           </p>
@@ -293,9 +352,9 @@ function RangeChart({ data }: { data: CarDataPoint[] }) {
       <div className="flex justify-between items-start mb-4">
         <div>
           <p className="text-sm text-muted-foreground">Estimated Range</p>
-          <p className="text-2xl font-bold">
-            {latestValue.toLocaleString()}
-            <span className="text-sm font-normal text-muted-foreground ml-1">
+          <p className="text-2xl font-bold flex items-baseline gap-1">
+            <SlidingNumber number={latestValue} />
+            <span className="text-sm font-normal text-muted-foreground">
               mi
             </span>
           </p>
@@ -387,6 +446,41 @@ const columns = [
   }),
 ];
 
+// Jetstream event types
+interface JetstreamCommitEvent {
+  did: string;
+  time_us: number;
+  kind: "commit";
+  commit: {
+    rev: string;
+    operation: "create" | "update" | "delete";
+    collection: string;
+    rkey: string;
+    record?: {
+      $type: string;
+      createdAt: string;
+      carFuelRange: number;
+      carPercentFuelRemaining: string;
+      amountRemaining: string;
+      carTraveledDistance: number;
+      carMake?: string;
+      carModel?: string;
+      carYear?: number;
+    };
+    cid?: string;
+  };
+}
+
+interface JetstreamEvent {
+  did: string;
+  time_us: number;
+  kind: "commit" | "identity" | "account";
+  commit?: JetstreamCommitEvent["commit"];
+}
+
+const JETSTREAM_URL =
+  "wss://jetstream.fire.hose.cam/subscribe?wantedCollections=net.mmatt.vitals.car&wantedDids=did:plc:tas6hj2xjrqben5653v5kohk";
+
 export function CarStatsClient({
   initialRecords,
   initialCursor,
@@ -398,6 +492,77 @@ export function CarStatsClient({
   const [sorting, setSorting] = useState<SortingState>([
     { id: "createdAt", desc: true },
   ]);
+  const [isLiveConnected, setIsLiveConnected] = useState(false);
+  const wsRef = useRef<WebSocket | null>(null);
+
+  // Connect to Jetstream for real-time updates
+  useEffect(() => {
+    const connect = () => {
+      const ws = new WebSocket(JETSTREAM_URL);
+      wsRef.current = ws;
+
+      ws.onopen = () => {
+        console.log("[Jetstream] Connected to live feed");
+        setIsLiveConnected(true);
+      };
+
+      ws.onmessage = (event) => {
+        try {
+          const data: JetstreamEvent = JSON.parse(event.data);
+
+          // Only handle commit events for net.mmatt.vitals.car creates
+          if (
+            data.kind === "commit" &&
+            data.commit?.operation === "create" &&
+            data.commit?.collection === "net.mmatt.vitals.car" &&
+            data.commit?.record
+          ) {
+            const record = data.commit.record;
+            const newDataPoint: CarDataPoint = {
+              createdAt: record.createdAt,
+              carFuelRange: record.carFuelRange,
+              carPercentFuelRemaining: record.carPercentFuelRemaining,
+              amountRemaining: record.amountRemaining,
+              carTraveledDistance: record.carTraveledDistance,
+            };
+
+            console.log("[Jetstream] New car record received:", newDataPoint);
+
+            setRecords((prev) => {
+              // Add new record and sort by date (oldest first for charts)
+              const updated = [...prev, newDataPoint].sort(
+                (a, b) =>
+                  new Date(a.createdAt).getTime() -
+                  new Date(b.createdAt).getTime(),
+              );
+              return updated;
+            });
+          }
+        } catch (err) {
+          console.error("[Jetstream] Failed to parse message:", err);
+        }
+      };
+
+      ws.onclose = () => {
+        console.log("[Jetstream] Disconnected, reconnecting in 5s...");
+        setIsLiveConnected(false);
+        setTimeout(connect, 5000);
+      };
+
+      ws.onerror = (err) => {
+        console.error("[Jetstream] WebSocket error:", err);
+        ws.close();
+      };
+    };
+
+    connect();
+
+    return () => {
+      if (wsRef.current) {
+        wsRef.current.close();
+      }
+    };
+  }, []);
 
   const loadMore = useCallback(async () => {
     if (!cursor) return;
@@ -486,31 +651,66 @@ export function CarStatsClient({
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="p-4 border rounded-lg bg-white/5">
             <p className="text-sm text-muted-foreground">Current Odometer</p>
-            <p className="text-xl font-bold">
-              {stats.latestOdometer.toLocaleString()} mi
+            <p className="text-xl font-bold flex items-baseline gap-1">
+              <FormattedSlidingNumber number={stats.latestOdometer} />
+              <span className="text-sm font-normal text-muted-foreground">
+                mi
+              </span>
             </p>
           </div>
           <div className="p-4 border rounded-lg bg-white/5">
             <p className="text-sm text-muted-foreground">Fuel Level</p>
-            <p className="text-xl font-bold">
-              {Math.round(stats.latestFuelPercent)}%
+            <p className="text-xl font-bold flex items-baseline">
+              <SlidingNumber number={Math.round(stats.latestFuelPercent)} />
+              <span className="text-sm font-normal text-muted-foreground">
+                %
+              </span>
             </p>
           </div>
           <div className="p-4 border rounded-lg bg-white/5">
             <p className="text-sm text-muted-foreground">Est. Range</p>
-            <p className="text-xl font-bold">{stats.latestRange} mi</p>
+            <p className="text-xl font-bold flex items-baseline gap-1">
+              <SlidingNumber number={stats.latestRange} />
+              <span className="text-sm font-normal text-muted-foreground">
+                mi
+              </span>
+            </p>
           </div>
           <div className="p-4 border rounded-lg bg-white/5">
             <p className="text-sm text-muted-foreground">Avg Miles/Day</p>
-            <p className="text-xl font-bold">
-              {stats.avgMilesPerDay.toFixed(1)}
+            <p className="text-xl font-bold flex items-baseline">
+              <SlidingNumber number={stats.avgMilesPerDay} decimalPlaces={1} />
             </p>
           </div>
         </div>
       )}
 
       <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-        <span>{records.length} records loaded</span>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <span className="inline-flex items-center gap-1.5 cursor-help">
+              {isLiveConnected ? (
+                <>
+                  <WifiIcon className="size-3.5 text-green-500" />
+                  <span className="text-green-500">Live</span>
+                </>
+              ) : (
+                <>
+                  <WifiOffIcon className="size-3.5 text-muted-foreground" />
+                  <span>Connecting...</span>
+                </>
+              )}
+            </span>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>
+              {isLiveConnected
+                ? "Connected to Jetstream for real-time updates"
+                : "Reconnecting to Jetstream..."}
+            </p>
+          </TooltipContent>
+        </Tooltip>
+        <span>• {records.length} records loaded</span>
         {stats && stats.duplicatesRemoved > 0 && (
           <span>
             • {stats.duplicatesRemoved} duplicate
