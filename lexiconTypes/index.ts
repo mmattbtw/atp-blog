@@ -2,121 +2,283 @@
  * GENERATED CODE - DO NOT MODIFY
  */
 import {
-  ComAtprotoRepoCreateRecord,
-  ComAtprotoRepoDeleteRecord,
-  ComAtprotoRepoGetRecord,
-  ComAtprotoRepoListRecords,
-} from "@atcute/client/lexicons";
-import {
-  XrpcClient,
-  type FetchHandler,
-  type FetchHandlerOptions,
-} from "@atproto/xrpc";
+  createServer as createXrpcServer,
+  Server as XrpcServer,
+  type Auth,
+  type MethodConfigOrHandler,
+  type Options as XrpcOptions,
+} from "@atproto/xrpc-server";
 
 import { schemas } from "./lexicons.js";
-import * as NetMmattRightNow from "./types/net/mmatt/right/now.js";
-import { type OmitKey, type Un$Typed } from "./util.js";
+import * as FmTealAlphaActorGetProfile from "./types/fm/teal/alpha/actor/getProfile.js";
+import * as FmTealAlphaActorGetProfiles from "./types/fm/teal/alpha/actor/getProfiles.js";
+import * as FmTealAlphaActorSearchActors from "./types/fm/teal/alpha/actor/searchActors.js";
+import * as FmTealAlphaFeedGetActorFeed from "./types/fm/teal/alpha/feed/getActorFeed.js";
+import * as FmTealAlphaFeedGetPlay from "./types/fm/teal/alpha/feed/getPlay.js";
+import * as FmTealAlphaStatsGetLatest from "./types/fm/teal/alpha/stats/getLatest.js";
+import * as FmTealAlphaStatsGetTopArtists from "./types/fm/teal/alpha/stats/getTopArtists.js";
+import * as FmTealAlphaStatsGetTopReleases from "./types/fm/teal/alpha/stats/getTopReleases.js";
+import * as FmTealAlphaStatsGetUserTopArtists from "./types/fm/teal/alpha/stats/getUserTopArtists.js";
+import * as FmTealAlphaStatsGetUserTopReleases from "./types/fm/teal/alpha/stats/getUserTopReleases.js";
 
-export * as NetMmattRightNow from "./types/net/mmatt/right/now.js";
+export function createServer(options?: XrpcOptions): Server {
+  return new Server(options);
+}
 
-export class AtpBaseClient extends XrpcClient {
+export class Server {
+  xrpc: XrpcServer;
+  app: AppNS;
+  fm: FmNS;
   net: NetNS;
 
-  constructor(options: FetchHandler | FetchHandlerOptions) {
-    super(options, schemas);
+  constructor(options?: XrpcOptions) {
+    this.xrpc = createXrpcServer(schemas, options);
+    this.app = new AppNS(this);
+    this.fm = new FmNS(this);
     this.net = new NetNS(this);
   }
+}
 
-  /** @deprecated use `this` instead */
-  get xrpc(): XrpcClient {
-    return this;
+export class AppNS {
+  _server: Server;
+  bsky: AppBskyNS;
+
+  constructor(server: Server) {
+    this._server = server;
+    this.bsky = new AppBskyNS(server);
+  }
+}
+
+export class AppBskyNS {
+  _server: Server;
+  richtext: AppBskyRichtextNS;
+
+  constructor(server: Server) {
+    this._server = server;
+    this.richtext = new AppBskyRichtextNS(server);
+  }
+}
+
+export class AppBskyRichtextNS {
+  _server: Server;
+
+  constructor(server: Server) {
+    this._server = server;
+  }
+}
+
+export class FmNS {
+  _server: Server;
+  teal: FmTealNS;
+
+  constructor(server: Server) {
+    this._server = server;
+    this.teal = new FmTealNS(server);
+  }
+}
+
+export class FmTealNS {
+  _server: Server;
+  alpha: FmTealAlphaNS;
+
+  constructor(server: Server) {
+    this._server = server;
+    this.alpha = new FmTealAlphaNS(server);
+  }
+}
+
+export class FmTealAlphaNS {
+  _server: Server;
+  actor: FmTealAlphaActorNS;
+  feed: FmTealAlphaFeedNS;
+  stats: FmTealAlphaStatsNS;
+
+  constructor(server: Server) {
+    this._server = server;
+    this.actor = new FmTealAlphaActorNS(server);
+    this.feed = new FmTealAlphaFeedNS(server);
+    this.stats = new FmTealAlphaStatsNS(server);
+  }
+}
+
+export class FmTealAlphaActorNS {
+  _server: Server;
+
+  constructor(server: Server) {
+    this._server = server;
+  }
+
+  getProfile<A extends Auth = void>(
+    cfg: MethodConfigOrHandler<
+      A,
+      FmTealAlphaActorGetProfile.QueryParams,
+      FmTealAlphaActorGetProfile.HandlerInput,
+      FmTealAlphaActorGetProfile.HandlerOutput
+    >,
+  ) {
+    const nsid = "fm.teal.alpha.actor.getProfile"; // @ts-ignore
+    return this._server.xrpc.method(nsid, cfg);
+  }
+
+  getProfiles<A extends Auth = void>(
+    cfg: MethodConfigOrHandler<
+      A,
+      FmTealAlphaActorGetProfiles.QueryParams,
+      FmTealAlphaActorGetProfiles.HandlerInput,
+      FmTealAlphaActorGetProfiles.HandlerOutput
+    >,
+  ) {
+    const nsid = "fm.teal.alpha.actor.getProfiles"; // @ts-ignore
+    return this._server.xrpc.method(nsid, cfg);
+  }
+
+  searchActors<A extends Auth = void>(
+    cfg: MethodConfigOrHandler<
+      A,
+      FmTealAlphaActorSearchActors.QueryParams,
+      FmTealAlphaActorSearchActors.HandlerInput,
+      FmTealAlphaActorSearchActors.HandlerOutput
+    >,
+  ) {
+    const nsid = "fm.teal.alpha.actor.searchActors"; // @ts-ignore
+    return this._server.xrpc.method(nsid, cfg);
+  }
+}
+
+export class FmTealAlphaFeedNS {
+  _server: Server;
+
+  constructor(server: Server) {
+    this._server = server;
+  }
+
+  getActorFeed<A extends Auth = void>(
+    cfg: MethodConfigOrHandler<
+      A,
+      FmTealAlphaFeedGetActorFeed.QueryParams,
+      FmTealAlphaFeedGetActorFeed.HandlerInput,
+      FmTealAlphaFeedGetActorFeed.HandlerOutput
+    >,
+  ) {
+    const nsid = "fm.teal.alpha.feed.getActorFeed"; // @ts-ignore
+    return this._server.xrpc.method(nsid, cfg);
+  }
+
+  getPlay<A extends Auth = void>(
+    cfg: MethodConfigOrHandler<
+      A,
+      FmTealAlphaFeedGetPlay.QueryParams,
+      FmTealAlphaFeedGetPlay.HandlerInput,
+      FmTealAlphaFeedGetPlay.HandlerOutput
+    >,
+  ) {
+    const nsid = "fm.teal.alpha.feed.getPlay"; // @ts-ignore
+    return this._server.xrpc.method(nsid, cfg);
+  }
+}
+
+export class FmTealAlphaStatsNS {
+  _server: Server;
+
+  constructor(server: Server) {
+    this._server = server;
+  }
+
+  getLatest<A extends Auth = void>(
+    cfg: MethodConfigOrHandler<
+      A,
+      FmTealAlphaStatsGetLatest.QueryParams,
+      FmTealAlphaStatsGetLatest.HandlerInput,
+      FmTealAlphaStatsGetLatest.HandlerOutput
+    >,
+  ) {
+    const nsid = "fm.teal.alpha.stats.getLatest"; // @ts-ignore
+    return this._server.xrpc.method(nsid, cfg);
+  }
+
+  getTopArtists<A extends Auth = void>(
+    cfg: MethodConfigOrHandler<
+      A,
+      FmTealAlphaStatsGetTopArtists.QueryParams,
+      FmTealAlphaStatsGetTopArtists.HandlerInput,
+      FmTealAlphaStatsGetTopArtists.HandlerOutput
+    >,
+  ) {
+    const nsid = "fm.teal.alpha.stats.getTopArtists"; // @ts-ignore
+    return this._server.xrpc.method(nsid, cfg);
+  }
+
+  getTopReleases<A extends Auth = void>(
+    cfg: MethodConfigOrHandler<
+      A,
+      FmTealAlphaStatsGetTopReleases.QueryParams,
+      FmTealAlphaStatsGetTopReleases.HandlerInput,
+      FmTealAlphaStatsGetTopReleases.HandlerOutput
+    >,
+  ) {
+    const nsid = "fm.teal.alpha.stats.getTopReleases"; // @ts-ignore
+    return this._server.xrpc.method(nsid, cfg);
+  }
+
+  getUserTopArtists<A extends Auth = void>(
+    cfg: MethodConfigOrHandler<
+      A,
+      FmTealAlphaStatsGetUserTopArtists.QueryParams,
+      FmTealAlphaStatsGetUserTopArtists.HandlerInput,
+      FmTealAlphaStatsGetUserTopArtists.HandlerOutput
+    >,
+  ) {
+    const nsid = "fm.teal.alpha.stats.getUserTopArtists"; // @ts-ignore
+    return this._server.xrpc.method(nsid, cfg);
+  }
+
+  getUserTopReleases<A extends Auth = void>(
+    cfg: MethodConfigOrHandler<
+      A,
+      FmTealAlphaStatsGetUserTopReleases.QueryParams,
+      FmTealAlphaStatsGetUserTopReleases.HandlerInput,
+      FmTealAlphaStatsGetUserTopReleases.HandlerOutput
+    >,
+  ) {
+    const nsid = "fm.teal.alpha.stats.getUserTopReleases"; // @ts-ignore
+    return this._server.xrpc.method(nsid, cfg);
   }
 }
 
 export class NetNS {
-  _client: XrpcClient;
+  _server: Server;
   mmatt: NetMmattNS;
 
-  constructor(client: XrpcClient) {
-    this._client = client;
-    this.mmatt = new NetMmattNS(client);
+  constructor(server: Server) {
+    this._server = server;
+    this.mmatt = new NetMmattNS(server);
   }
 }
 
 export class NetMmattNS {
-  _client: XrpcClient;
+  _server: Server;
   right: NetMmattRightNS;
+  vitals: NetMmattVitalsNS;
 
-  constructor(client: XrpcClient) {
-    this._client = client;
-    this.right = new NetMmattRightNS(client);
+  constructor(server: Server) {
+    this._server = server;
+    this.right = new NetMmattRightNS(server);
+    this.vitals = new NetMmattVitalsNS(server);
   }
 }
 
 export class NetMmattRightNS {
-  _client: XrpcClient;
-  now: NetMmattRightNowRecord;
+  _server: Server;
 
-  constructor(client: XrpcClient) {
-    this._client = client;
-    this.now = new NetMmattRightNowRecord(client);
+  constructor(server: Server) {
+    this._server = server;
   }
 }
 
-export class NetMmattRightNowRecord {
-  _client: XrpcClient;
+export class NetMmattVitalsNS {
+  _server: Server;
 
-  constructor(client: XrpcClient) {
-    this._client = client;
-  }
-
-  async list(
-    params: OmitKey<ComAtprotoRepoListRecords.Params, "collection">,
-  ): Promise<{
-    cursor?: string;
-    records: { uri: string; value: NetMmattRightNow.Record }[];
-  }> {
-    const res = await this._client.call("com.atproto.repo.listRecords", {
-      collection: "net.mmatt.right.now",
-      ...params,
-    });
-    return res.data;
-  }
-
-  async get(
-    params: OmitKey<ComAtprotoRepoGetRecord.Params, "collection">,
-  ): Promise<{ uri: string; cid: string; value: NetMmattRightNow.Record }> {
-    const res = await this._client.call("com.atproto.repo.getRecord", {
-      collection: "net.mmatt.right.now",
-      ...params,
-    });
-    return res.data;
-  }
-
-  async create(
-    params: OmitKey<ComAtprotoRepoCreateRecord.Input, "collection" | "record">,
-    record: Un$Typed<NetMmattRightNow.Record>,
-    headers?: Record<string, string>,
-  ): Promise<{ uri: string; cid: string }> {
-    const collection = "net.mmatt.right.now";
-    const res = await this._client.call(
-      "com.atproto.repo.createRecord",
-      undefined,
-      { collection, ...params, record: { ...record, $type: collection } },
-      { encoding: "application/json", headers },
-    );
-    return res.data;
-  }
-
-  async delete(
-    params: OmitKey<ComAtprotoRepoDeleteRecord.Input, "collection">,
-    headers?: Record<string, string>,
-  ): Promise<void> {
-    await this._client.call(
-      "com.atproto.repo.deleteRecord",
-      undefined,
-      { collection: "net.mmatt.right.now", ...params },
-      { headers },
-    );
+  constructor(server: Server) {
+    this._server = server;
   }
 }

@@ -1,15 +1,15 @@
 import type { Metadata, Viewport } from "next";
 import NextPlausible from "next-plausible";
-import { Inter } from "next/font/google";
+import { Google_Sans_Code } from "next/font/google";
 
 import { cx } from "#/lib/cx";
 
 import "./globals.css";
 
-const sans = Inter({
-  variable: "--font-inter",
+const googleSansCode = Google_Sans_Code({
+  variable: "--font-google-sans-code",
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
+  weight: ["400"],
 });
 
 export const metadata: Metadata = {
@@ -52,7 +52,7 @@ export default function RootLayout({
       </head>
       <body
         className={cx(
-          sans.variable,
+          googleSansCode.variable,
 
           "antialiased font-sans",
         )}

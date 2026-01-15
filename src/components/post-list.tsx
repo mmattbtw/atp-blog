@@ -12,16 +12,20 @@ export async function PostList() {
       new Date(a.value.createdAt ?? 0).getTime(),
   );
 
-  return sortedPosts.map((record) => {
-    const post = record.value;
-    const rkey = record.uri.split("/").pop() || "";
-    return (
-      <PostListItem
-        key={record.uri}
-        post={post}
-        rkey={rkey}
-        viewCount={<ViewCount path={`/post/${rkey}`} />}
-      />
-    );
-  });
+  return (
+    <div className="flex flex-col">
+      {sortedPosts.map((record) => {
+        const post = record.value;
+        const rkey = record.uri.split("/").pop() || "";
+        return (
+          <PostListItem
+            key={record.uri}
+            post={post}
+            rkey={rkey}
+            viewCount={<ViewCount path={`/post/${rkey}`} />}
+          />
+        );
+      })}
+    </div>
+  );
 }

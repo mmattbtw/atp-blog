@@ -4,11 +4,9 @@
   "defs": {
     "main": {
       "type": "record",
-      "description": "A personal lexicon for mmatt's statuslog.",
       "key": "tid",
       "record": {
         "type": "object",
-        "required": ["createdAt", "text"],
         "properties": {
           "createdAt": {
             "type": "string",
@@ -23,8 +21,13 @@
             "type": "string",
             "description": "The emoji of the status update"
           }
-        }
-      }
+        },
+        "required": [
+          "createdAt",
+          "text"
+        ]
+      },
+      "description": "A personal lexicon for mmatt's statuslog."
     }
   }
 }

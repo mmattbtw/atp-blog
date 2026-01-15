@@ -1,3 +1,4 @@
+import { ComWhtwndBlogEntry } from "@atcute/whitewind";
 import rehypeFormat from "rehype-format";
 import rehypeStringify from "rehype-stringify";
 import remarkParse from "remark-parse";
@@ -21,7 +22,8 @@ export async function GET() {
   });
 
   for (const post of posts) {
-    const titleParts = post.value.title?.split(" || ") ?? ["Untitled", ""];
+    const postValue = post.value as ComWhtwndBlogEntry.Main;
+    const titleParts = postValue.title?.split(" || ") ?? ["Untitled", ""];
     const title = titleParts[0];
     const extractedDescription = titleParts.slice(1).join(" || ");
 
@@ -30,7 +32,7 @@ export async function GET() {
       .use(remarkRehype)
       .use(rehypeFormat)
       .use(rehypeStringify)
-      .process(post.value.content)
+      .process(postValue.content)
       .then((v) => v.toString());
 
     const fullDescription = extractedDescription
@@ -41,7 +43,7 @@ export async function GET() {
       title: title,
       description: fullDescription,
       url: `https://mmatt.net/post/${post.uri.split("/").pop()}`,
-      date: new Date(post.value.createdAt ?? Date.now()),
+      date: new Date(postValue.createdAt ?? Date.now()),
     });
   }
 

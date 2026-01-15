@@ -7,7 +7,7 @@ export default function GglbRedirect() {
   const router = useRouter();
 
   useEffect(() => {
-    router.push("/#blog");
+    router.push("/writing");
   }, [router]);
 
   return <p>Redirecting...</p>; // Or any loading indicator

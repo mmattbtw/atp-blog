@@ -1,27 +1,36 @@
-import Image from "next/image";
-import Link from "next/link";
+import InfoBox from "#/components/info-box";
+import Link from "#/components/ui/link";
 
-import LatestStatus from "#/components/latest-status";
-import { PostList } from "#/components/post-list";
-import { Paragraph, Title } from "#/components/typography";
+import HomeVideoBackground from "../components/home-video-background";
 
-import me from "../assets/matt.jpeg";
-
-export const dynamic = "force-static";
-export const revalidate = 3600; // 1 hour
+// Revalidate every hour (3600 seconds)
+export const revalidate = 3600;
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-dvh p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start w-full max-w-[600px]">
-        <div className="self-center flex flex-col">
-          <Image
-            src={me}
-            alt="Photo of Matt Morris, red hair, glasses, holding his iPhone in the mirror, taking a picture of himself."
-            width={100}
-            height={100}
-            className="rounded-lg"
-          />
+    <main className="relative min-h-screen overflow-hidden">
+      <HomeVideoBackground />
+      <div className="absolute inset-0 z-10 min-h-screen">
+        <div className="max-w-148 pt-1.5 pl-1.5 space-y-4">
+          <h1 className="font-bold text-black dark:text-white bg-white dark:bg-black">
+            ˙⋆✮ matt ✮⋆˙
+          </h1>
+          <p className="text-black dark:text-white bg-white dark:bg-black">
+            (ﾉ´ヮ`)ﾉ*: ･ﾟ i&apos;m a full time computer science student at{" "}
+            <Link href="https://mtsu.edu">MTSU</Link>, part time technologist
+            for <Link href="https://teal.fm">teal.fm</Link>, and a resident at{" "}
+            <Link href="https://opn.haus">Open House*</Link>.
+          </p>
+          <p>
+            <Link href="https://matt.omg.lol">
+              &gt;&gt; all over the web &lt;&lt;
+            </Link>
+            {" <_< ^_^ >_>  "}
+            <Link href="mailto:matt@mmatt.net">&gt;&gt; mail me &lt;&lt;</Link>
+          </p>
+          <p>
+            <Link href="/writing">(;;;*_*) writing</Link>
+          </p>
         </div>
         <Title level="h2">Hello!</Title>
         <Paragraph>
@@ -106,87 +115,16 @@ export default function Home() {
           </a>
         </ul>
 
-        <Paragraph>you can find me all over the web at:</Paragraph>
-
-        <ul className="list-disc -mt-5">
-          <li>
-            <a
-              className="underline"
-              href="https://bsky.app/profile/did:plc:tas6hj2xjrqben5653v5kohk"
-              rel="me"
-            >
-              bluesky
-            </a>
-          </li>
-          <li>
-            <a
-              className="underline"
-              href="https://youtube.com/@mmattbtw"
-              rel="me"
-            >
-              youtube
-            </a>
-          </li>
-          <li>
-            <a
-              className="underline"
-              href="https://github.com/mmattbtw"
-              rel="me"
-            >
-              github
-            </a>
-          </li>
-          <li>
-            <a className="underline" href="https://twitch.tv/mmattbtw" rel="me">
-              twitch
-            </a>
-          </li>
-          <li>
-            <a className="underline" href="https://social.lol/@matt" rel="me">
-              mastodon
-            </a>
-          </li>
-          <li>
-            <a
-              className="underline"
-              href="https://music.apple.com/profile/air2earth"
-              rel="me"
-            >
-              apple music
-            </a>
-          </li>
-          <li>
-            <a className="underline" href="https://matt.omg.lol">
-              everywhere else...
-            </a>
-          </li>
-        </ul>
-
-        <Paragraph>
-          my email is{" "}
-          <a className="underline" href="mailto:matt@mmatt.net" rel="me">
-            matt at mmatt.net
-          </a>
-        </Paragraph>
-
-        <LatestStatus />
-
-        <Title id="blog" level="h2">
-          Blog Posts:
-        </Title>
-        <div className="flex flex-row items-baseline gap-1">
-          <Link className="-mt-6 underline" href="/rss">
-            Subscribe via RSS
-          </Link>
-          <p> - </p>
-          <Link className="-mt-6 underline" href="/right/now">
-            right now: statuses
-          </Link>
+        {/* InfoBox positioned for desktop and mobile */}
+        <div className="fixed top-4 right-4 z-20 md:block hidden">
+          <InfoBox />
         </div>
-        <div className="flex flex-col gap-4 w-full">
-          <PostList />
+
+        {/* Mobile InfoBox - positioned below main content */}
+        <div className="md:hidden pt-8 px-1.5">
+          <InfoBox />
         </div>
-      </main>
-    </div>
+      </div>
+    </main>
   );
 }
