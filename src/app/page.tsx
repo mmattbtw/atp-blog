@@ -11,7 +11,7 @@ export default function Home() {
     <main className="relative min-h-screen overflow-hidden">
       <HomeVideoBackground />
       <div className="absolute inset-0 z-10 min-h-screen">
-        <div className="max-w-xl pt-1.5 pl-1.5 space-y-4">
+        <div className="max-w-148 pt-1.5 pl-1.5 space-y-4">
           <h1 className="font-bold text-black dark:text-white bg-white dark:bg-black">
             ˙⋆✮ matt ✮⋆˙
           </h1>

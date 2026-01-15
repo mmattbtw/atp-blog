@@ -55,7 +55,7 @@ export default function InfoBoxClient({ data }: InfoBoxClientProps) {
       ? [
           {
             id: "car",
-            title: "Car Info",
+            title: "My Car",
             content: (
               <div className="space-y-1 text-xs text-black dark:text-white">
                 <p>
@@ -241,7 +241,7 @@ export default function InfoBoxClient({ data }: InfoBoxClientProps) {
   }
 
   return (
-    <div className="w-48 h-48 dark:border-white border-black border-2 rounded-lg bg-white dark:bg-black overflow-hidden">
+    <div className="w-56 h-48 dark:border-white border-black border-2 rounded-lg bg-white dark:bg-black overflow-hidden">
       <Carousel className="w-full h-full" opts={{ loop: true }} setApi={setApi}>
         <CarouselContent className="h-full">
           {contentItems.map((item) => (
