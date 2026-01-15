@@ -1,5 +1,4 @@
 import InfoBox from "#/components/info-box";
-import { Title, Paragraph } from "#/components/typography";
 import Link from "#/components/ui/link";
 
 import HomeVideoBackground from "../components/home-video-background";
@@ -33,88 +32,6 @@ export default function Home() {
             <Link href="/writing">(;;;*_*) writing</Link>
           </p>
         </div>
-        <Title level="h2">Hello!</Title>
-        <Paragraph>
-          my name is <b>matt morris</b> and i&apos;m head technologist for{" "}
-          <a href="https://songish.app?via=mmatt.net" className="underline">
-            Songish
-          </a>
-          , part time maintainer for{" "}
-          <a href="https://teal.fm?via=mmatt.net" className="underline">
-            teal.fm
-          </a>
-          , resident at{" "}
-          <a href="https://opn.haus?via=mmatt.net" className="underline">
-            Open House*
-          </a>
-          , and student at{" "}
-          <a href="https://mtsu.edu?via=mmatt.net" className="underline">
-            MTSU
-          </a>{" "}
-          🧑‍🔬
-        </Paragraph>
-        <Paragraph>
-          welcome to my new Work-In-Progress website! powered by{" "}
-          <a href="https://whtwnd.com?via=mmatt.net" className="underline">
-            WhiteWind
-          </a>{" "}
-          &{" "}
-          <a href="https://atproto.com?via=mmatt.net" className="underline">
-            ATProto
-          </a>
-          . this is a fork from the wonderful{" "}
-          <a
-            className="underline"
-            href="https://bsky.app/profile/did:plc:p2cp5gopk7mgjegy6wadk3ep"
-          >
-            @samuel.bsky.team
-          </a>{" "}
-          (originally{" "}
-          <a
-            href="https://github.com/mozzius/mozzius.dev"
-            className="underline"
-          >
-            here
-          </a>
-          , my repo{" "}
-          <a href="https://github.com/mmattbtw/atp-blog" className="underline">
-            here
-          </a>
-          ) that I am going to continue to iterate on. hoping to add blog post
-          comments & reactions!
-        </Paragraph>
-        <Paragraph>my past projects include...</Paragraph>
-        <ul className="list-disc -mt-5">
-          <li>
-            <a
-              className="underline"
-              href="https://github.com/mmattDonk/AI-TTS-Donations"
-            >
-              the <b>first</b> free and open source AI Text to Speech program
-              for Twitch Streamers.
-            </a>
-          </li>
-          <li>
-            <a
-              className="underline"
-              href="https://github.com/mmattDonk/TwitchTunes"
-            >
-              the (at the time) best way for Spotify users to recieve Song
-              Requests on Twitch.
-            </a>
-          </li>
-          <li>
-            <a
-              className="underline"
-              href="https://github.com/mmattbtw/Super-VCs"
-            >
-              the <b>best</b> automatic voice channel bot on Discord.
-            </a>
-          </li>
-          <a className="underline" href="https://github.com/mmattbtw">
-            and more...
-          </a>
-        </ul>
 
         {/* InfoBox positioned for desktop and mobile */}
         <div className="fixed top-4 right-4 z-20 md:block hidden">
