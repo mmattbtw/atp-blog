@@ -135,9 +135,10 @@ export default async function BlogPage({
           ) : (
             <LeafletRenderer
               document={post.value}
-              did={env.NEXT_PUBLIC_BSKY_DID}
+              did={post.uri.split("/")[2]} // Extract DID from AT URI
               uri={post.uri}
               basePath={post.basePath}
+              isExternal={post.isExternal}
             />
           )}
         </article>

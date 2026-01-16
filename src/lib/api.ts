@@ -5,12 +5,18 @@ import { ComWhtwndBlogEntry } from "@atcute/whitewind";
 
 import { Record } from "../../lexiconTypes/types/net/mmatt/right/now";
 import { Record as CarRecord } from "../../lexiconTypes/types/net/mmatt/vitals/car";
-import { bsky } from "./bsky";
+import { bsky, resolvePds, createPdsClient } from "./bsky";
 import { env } from "./env";
 
+// Manual list of external AT URIs to include in the post list
+// These are posts written for other publications that should appear on this site
+export const EXTERNAL_POSTS: string[] = [
+  "at://did:plc:iwhuynr6mm6xxuh25o4do2tx/pub.leaflet.document/3lzlwe6puis2l",
+];
+
 export type BlogPost =
-  | { type: "whitewind"; value: ComWhtwndBlogEntry.Main; uri: string; cid: string }
-  | { type: "leaflet"; value: PubLeafletDocument.Main; uri: string; cid: string; basePath?: string };
+  | { type: "whitewind"; value: ComWhtwndBlogEntry.Main; uri: string; cid: string; isExternal?: false }
+  | { type: "leaflet"; value: PubLeafletDocument.Main; uri: string; cid: string; basePath?: string; isExternal?: boolean };
 
 export async function getPosts(): Promise<BlogPost[]> {
   // Fetch WhiteWind posts
@@ -43,22 +49,123 @@ export async function getPosts(): Promise<BlogPost[]> {
     value: PubLeafletDocument.Main;
   })[];
 
+  // Fetch external posts
+  const externalPosts = await Promise.all(
+    EXTERNAL_POSTS.map(async (atUri) => {
+      try {
+        return await fetchExternalPost(atUri);
+      } catch (error) {
+        console.error(`Failed to fetch external post ${atUri}:`, error);
+        return null;
+      }
+    }),
+  );
+
   const posts: BlogPost[] = [
     ...whitewindFiltered.map((r) => ({
       type: "whitewind" as const,
       value: r.value,
       uri: r.uri,
       cid: r.cid,
+      isExternal: false as const,
     })),
     ...leafletFiltered.map((r) => ({
       type: "leaflet" as const,
       value: r.value,
       uri: r.uri,
       cid: r.cid,
+      isExternal: false as const,
     })),
+    ...externalPosts.filter((p): p is BlogPost => p !== null),
   ];
 
   return posts;
+}
+
+// Helper to parse AT URI components
+function parseAtUri(atUri: string): { did: string; collection: string; rkey: string } {
+  // at://did:plc:xxx/collection/rkey
+  const match = atUri.match(/^at:\/\/(did:[^/]+)\/([^/]+)\/([^/]+)$/);
+  if (!match) throw new Error(`Invalid AT URI: ${atUri}`);
+  return { did: match[1], collection: match[2], rkey: match[3] };
+}
+
+
+// Fetch an external post by AT URI
+async function fetchExternalPost(atUri: string): Promise<BlogPost | null> {
+  const { did, collection, rkey } = parseAtUri(atUri);
+
+  // Resolve the DID to get its PDS URL
+  const pdsUrl = await resolvePds(did);
+  const pdsClient = createPdsClient(pdsUrl);
+
+  if (collection === "pub.leaflet.document") {
+    const post = await ok(
+      pdsClient.get("com.atproto.repo.getRecord", {
+        params: {
+          repo: did as `did:plc:${string}`,
+          rkey,
+          collection: "pub.leaflet.document",
+        },
+      }),
+    );
+
+    const leafletDoc = post.value as PubLeafletDocument.Main;
+
+    // Fetch publication to get base_path
+    let basePath: string | undefined;
+    if (leafletDoc.publication) {
+      try {
+        const pubParsed = parseAtUri(leafletDoc.publication);
+        // Publication might be on a different PDS
+        const pubPdsUrl = await resolvePds(pubParsed.did);
+        const pubPdsClient = createPdsClient(pubPdsUrl);
+        const publication = await ok(
+          pubPdsClient.get("com.atproto.repo.getRecord", {
+            params: {
+              repo: pubParsed.did as `did:plc:${string}`,
+              rkey: pubParsed.rkey,
+              collection: "pub.leaflet.publication",
+            },
+          }),
+        );
+        basePath = (publication.value as PubLeafletPublication.Main).base_path;
+      } catch {
+        // If we can't fetch the publication, continue without basePath
+      }
+    }
+
+    return {
+      type: "leaflet",
+      value: leafletDoc,
+      uri: post.uri,
+      cid: post.cid!,
+      basePath,
+      isExternal: true,
+    };
+  }
+
+  if (collection === "com.whtwnd.blog.entry") {
+    const post = await ok(
+      pdsClient.get("com.atproto.repo.getRecord", {
+        params: {
+          repo: did as `did:plc:${string}`,
+          rkey,
+          collection: "com.whtwnd.blog.entry",
+        },
+      }),
+    );
+
+    return {
+      type: "whitewind",
+      value: post.value as ComWhtwndBlogEntry.Main,
+      uri: post.uri,
+      cid: post.cid!,
+      isExternal: false, // WhiteWind doesn't support isExternal yet
+    };
+  }
+
+  return null;
 }
 
 export async function getLastestStatus() {
@@ -106,6 +213,13 @@ function draftsLeaflet(record: ComAtprotoRepoListRecords.Record) {
 }
 
 export async function getPost(rkey: string): Promise<BlogPost> {
+  // Check if this rkey matches an external post
+  const externalAtUri = EXTERNAL_POSTS.find((uri) => uri.endsWith(`/${rkey}`));
+  if (externalAtUri) {
+    const externalPost = await fetchExternalPost(externalAtUri);
+    if (externalPost) return externalPost;
+  }
+
   // Try WhiteWind first
   try {
     const post = await ok(
@@ -143,12 +257,12 @@ export async function getPost(rkey: string): Promise<BlogPost> {
     if (leafletDoc.publication) {
       try {
         // publication is an at-uri like at://did:plc:xxx/pub.leaflet.publication/rkey
-        const pubRkey = leafletDoc.publication.split("/").pop();
+        const pubParsed = parseAtUri(leafletDoc.publication);
         const publication = await ok(
           bsky.get("com.atproto.repo.getRecord", {
             params: {
-              repo: env.NEXT_PUBLIC_BSKY_DID as `did:plc:${string}`,
-              rkey: pubRkey!,
+              repo: pubParsed.did as `did:plc:${string}`,
+              rkey: pubParsed.rkey,
               collection: "pub.leaflet.publication",
             },
           }),

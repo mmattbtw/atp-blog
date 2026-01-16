@@ -358,11 +358,13 @@ export function LeafletRenderer({
   did,
   uri,
   basePath,
+  isExternal,
 }: {
   document: PubLeafletDocument.Main;
   did: string;
   uri: string;
   basePath?: string;
+  isExternal?: boolean;
 }) {
   // Convert AT URI to Leaflet.pub URL
   // base_path from publication is the full domain (e.g., "mat.leaflet.pub")
@@ -375,17 +377,34 @@ export function LeafletRenderer({
   return (
     <div className="[&>.bluesky-embed]:mt-8 [&>.bluesky-embed]:mb-0">
       <p className="text-sm text-muted-foreground italic mb-6 bg-yellow-100/50 dark:bg-yellow-900/50 p-4 rounded-sm">
-        This was originally written on Leaflet so it might look better over
-        there, see the original{" "}
-        <a
-          href={leafletUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline underline-offset-4 hover:text-foreground"
-        >
-          here
-        </a>
-        .
+        {isExternal ? (
+          <>
+            This article was written for another publication, see the original{" "}
+            <a
+              href={leafletUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-4 hover:text-foreground"
+            >
+              here
+            </a>
+            .
+          </>
+        ) : (
+          <>
+            This was originally written on Leaflet so it might look better over
+            there, see the original{" "}
+            <a
+              href={leafletUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-4 hover:text-foreground"
+            >
+              here
+            </a>
+            .
+          </>
+        )}
       </p>
       {document.pages.map((page, idx) => {
         if (page.$type === "pub.leaflet.pages.linearDocument") {
