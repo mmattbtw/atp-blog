@@ -11,9 +11,9 @@ import type {
   PubLeafletPagesLinearDocument,
   PubLeafletRichtextFacet,
 } from "@atcute/leaflet";
+import { BlueskyPostEmbed } from "@hamstack/bluesky-embed-rsc";
 import { Code as SyntaxHighlighter } from "bright";
 
-import { BlueskyPostEmbed } from "./bluesky-embed";
 import { Code, Paragraph, Title } from "./typography";
 
 type RichtextFacet = PubLeafletRichtextFacet.Main;
@@ -198,7 +198,19 @@ function HorizontalRuleBlock() {
 }
 
 function BskyPostBlock({ block }: { block: PubLeafletBlocksBskyPost.Main }) {
-  return <BlueskyPostEmbed uri={block.postRef.uri} />;
+  // Convert AT URI to bsky.app URL
+  // at://did:plc:xxx/app.bsky.feed.post/rkey -> https://bsky.app/profile/did:plc:xxx/post/rkey
+  const atUri = block.postRef.uri;
+  const [, , did, , rkey] = atUri.split("/");
+  const bskyUrl = `https://bsky.app/profile/${did}/post/${rkey}`;
+
+  return (
+    <BlueskyPostEmbed src={bskyUrl}>
+      <p className="text-muted-foreground italic">
+        Failed to load Bluesky post
+      </p>
+    </BlueskyPostEmbed>
+  );
 }
 
 function ListItemContent({
