@@ -1,5 +1,6 @@
 import { type ComAtprotoRepoListRecords } from "@atcute/atproto";
 import { ok } from "@atcute/client";
+import type { PubLeafletDocument, PubLeafletPublication } from "@atcute/leaflet";
 import { ComWhtwndBlogEntry } from "@atcute/whitewind";
 
 import { Record } from "../../lexiconTypes/types/net/mmatt/right/now";
@@ -7,8 +8,13 @@ import { Record as CarRecord } from "../../lexiconTypes/types/net/mmatt/vitals/c
 import { bsky } from "./bsky";
 import { env } from "./env";
 
-export async function getPosts() {
-  const posts = await ok(
+export type BlogPost =
+  | { type: "whitewind"; value: ComWhtwndBlogEntry.Main; uri: string; cid: string }
+  | { type: "leaflet"; value: PubLeafletDocument.Main; uri: string; cid: string; basePath?: string };
+
+export async function getPosts(): Promise<BlogPost[]> {
+  // Fetch WhiteWind posts
+  const whitewindPosts = await ok(
     bsky.get("com.atproto.repo.listRecords", {
       params: {
         repo: env.NEXT_PUBLIC_BSKY_DID as `did:plc:${string}`,
@@ -18,9 +24,41 @@ export async function getPosts() {
       },
     }),
   );
-  return posts.records?.filter(drafts) as (ComAtprotoRepoListRecords.Record & {
+
+  // Fetch Leaflet documents
+  const leafletPosts = await ok(
+    bsky.get("com.atproto.repo.listRecords", {
+      params: {
+        repo: env.NEXT_PUBLIC_BSKY_DID as `did:plc:${string}`,
+        collection: "pub.leaflet.document",
+      },
+    }),
+  );
+
+  const whitewindFiltered = (whitewindPosts.records?.filter(drafts) ?? []) as (ComAtprotoRepoListRecords.Record & {
     value: ComWhtwndBlogEntry.Main;
   })[];
+
+  const leafletFiltered = (leafletPosts.records?.filter(draftsLeaflet) ?? []) as (ComAtprotoRepoListRecords.Record & {
+    value: PubLeafletDocument.Main;
+  })[];
+
+  const posts: BlogPost[] = [
+    ...whitewindFiltered.map((r) => ({
+      type: "whitewind" as const,
+      value: r.value,
+      uri: r.uri,
+      cid: r.cid,
+    })),
+    ...leafletFiltered.map((r) => ({
+      type: "leaflet" as const,
+      value: r.value,
+      uri: r.uri,
+      cid: r.cid,
+    })),
+  ];
+
+  return posts;
 }
 
 export async function getLastestStatus() {
@@ -60,18 +98,75 @@ function drafts(record: ComAtprotoRepoListRecords.Record) {
   return post.visibility === "public";
 }
 
-export async function getPost(rkey: string) {
-  const post = await bsky.get("com.atproto.repo.getRecord", {
-    params: {
-      repo: env.NEXT_PUBLIC_BSKY_DID as `did:plc:${string}`,
-      rkey: rkey,
-      collection: "com.whtwnd.blog.entry",
-    },
-  });
+function draftsLeaflet(record: ComAtprotoRepoListRecords.Record) {
+  if (process.env.NODE_ENV === "development") return true;
+  const post = record.value as PubLeafletDocument.Main;
+  // Leaflet documents are public if they have a publishedAt date
+  return !!post.publishedAt;
+}
 
-  return post.data as ComAtprotoRepoListRecords.Record & {
-    value: ComWhtwndBlogEntry.Main;
-  };
+export async function getPost(rkey: string): Promise<BlogPost> {
+  // Try WhiteWind first
+  try {
+    const post = await ok(
+      bsky.get("com.atproto.repo.getRecord", {
+        params: {
+          repo: env.NEXT_PUBLIC_BSKY_DID as `did:plc:${string}`,
+          rkey: rkey,
+          collection: "com.whtwnd.blog.entry",
+        },
+      }),
+    );
+
+    return {
+      type: "whitewind",
+      value: post.value as ComWhtwndBlogEntry.Main,
+      uri: post.uri,
+      cid: post.cid!,
+    };
+  } catch {
+    // Try Leaflet if WhiteWind fails
+    const post = await ok(
+      bsky.get("com.atproto.repo.getRecord", {
+        params: {
+          repo: env.NEXT_PUBLIC_BSKY_DID as `did:plc:${string}`,
+          rkey: rkey,
+          collection: "pub.leaflet.document",
+        },
+      }),
+    );
+
+    const leafletDoc = post.value as PubLeafletDocument.Main;
+
+    // Fetch publication to get base_path if document has a publication reference
+    let basePath: string | undefined;
+    if (leafletDoc.publication) {
+      try {
+        // publication is an at-uri like at://did:plc:xxx/pub.leaflet.publication/rkey
+        const pubRkey = leafletDoc.publication.split("/").pop();
+        const publication = await ok(
+          bsky.get("com.atproto.repo.getRecord", {
+            params: {
+              repo: env.NEXT_PUBLIC_BSKY_DID as `did:plc:${string}`,
+              rkey: pubRkey!,
+              collection: "pub.leaflet.publication",
+            },
+          }),
+        );
+        basePath = (publication.value as PubLeafletPublication.Main).base_path;
+      } catch {
+        // If we can't fetch the publication, just use the DID
+      }
+    }
+
+    return {
+      type: "leaflet",
+      value: leafletDoc,
+      uri: post.uri,
+      cid: post.cid!,
+      basePath,
+    };
+  }
 }
 
 export async function getCarRecords(cursor?: string) {

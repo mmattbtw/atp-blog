@@ -3,6 +3,7 @@ import { withPlausibleProxy } from "next-plausible";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
+    qualities: [75, 90, 100],
     remotePatterns: [
       {
         protocol: "https",
@@ -25,6 +26,11 @@ const nextConfig = {
         protocol: "https",
         hostname: "cdn.some.pics",
         pathname: "/(mm|matt)/*",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.bsky.app",
+        pathname: "/img/**",
       },
     ],
   },

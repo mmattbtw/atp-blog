@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-import { getPost } from "#/lib/api";
+import { getPost, type BlogPost } from "#/lib/api";
 import { loadGoogleFont } from "#/lib/google-font";
 
 export const size = {
@@ -8,6 +8,14 @@ export const size = {
   height: 630,
 };
 export const contentType = "image/png";
+
+// Helper to get title from either post type
+function getPostTitle(post: BlogPost): string {
+  if (post.type === "whitewind") {
+    return post.value.title?.split(" || ")[0] ?? "Untitled";
+  }
+  return post.value.title;
+}
 
 export default async function OpenGraphImage({
   params,
@@ -17,10 +25,11 @@ export default async function OpenGraphImage({
   const { rkey } = await params;
 
   const post = await getPost(rkey);
+  const title = getPostTitle(post);
 
   const fontData = await loadGoogleFont(
     "Google+Sans+Code",
-    "mmatt.net" + (post.value.title?.split(" || ")[0] ?? "Untitled"),
+    "mmatt.net" + title,
   );
 
   return new ImageResponse(
@@ -53,7 +62,7 @@ export default async function OpenGraphImage({
             letterSpacing: -1,
           }}
         >
-          {post.value.title?.split(" || ")[0] ?? "Untitled"}
+          {title}
         </h1>
         <h2
           style={{
