@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { type AppBskyFeedPost } from "@atcute/bluesky";
-import { ComWhtwndBlogEntry } from "@atcute/whitewind";
+import { useEffect, useState } from "react";
 
 import { env } from "#/lib/env";
 
@@ -25,9 +24,13 @@ interface LetterboxdEntry {
   description?: string;
 }
 
-interface InfoBoxData {
+ interface InfoBoxData {
   carInfo: CarRecord | null;
-  blogPost: ComWhtwndBlogEntry.Main | null;
+  blogPost: {
+    title: string;
+    description: string;
+    createdAt: string;
+  } | null;
   blogPostRkey: string | null;
   blueskyPost: AppBskyFeedPost.Main | null;
   blueskyPostRkey: string | null;
@@ -103,11 +106,11 @@ export default function InfoBoxClient({ data }: InfoBoxClientProps) {
             content: (
               <div className="space-y-1 text-xs text-black dark:text-white">
                 <Link href={`/post/${data.blogPostRkey}`}>
-                  {data.blogPost.title?.split(" || ")[0] || "Untitled Post"}
+                  {data.blogPost.title || "Untitled Post"}
                   <br />
                 </Link>
                 <p className="text-gray-600 dark:text-gray-400">
-                  {data.blogPost.title?.split(" || ")[1]}
+                  {data.blogPost.description}
                 </p>
                 <p className="text-gray-600 dark:text-gray-400">
                   {new Date(data.blogPost.createdAt ?? "").toLocaleDateString()}
