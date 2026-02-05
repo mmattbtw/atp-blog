@@ -1,7 +1,7 @@
 import { type AppBskyFeedPost } from "@atcute/bluesky";
 import { ok } from "@atcute/client";
-import { ComWhtwndBlogEntry } from "@atcute/whitewind";
 
+import { getPosts } from "#/lib/api";
 import { bsky } from "#/lib/bsky";
 import { env } from "#/lib/env";
 
@@ -22,7 +22,11 @@ interface LetterboxdEntry {
 
 interface InfoBoxData {
   carInfo: CarRecord | null;
-  blogPost: ComWhtwndBlogEntry.Main | null;
+  blogPost: {
+    title: string;
+    description: string;
+    createdAt: string;
+  } | null;
   blogPostRkey: string | null;
   blueskyPost: AppBskyFeedPost.Main | null;
   blueskyPostRkey: string | null;
@@ -75,27 +79,45 @@ export default async function InfoBox() {
       data.carInfo = cars.records[0].value as CarRecord;
     }
 
-    // Fetch latest blog post (com.whtwnd.blog.entry with visibility = public)
+    // Fetch latest blog post using getPosts (includes WhiteWind, Leaflet, and external posts)
     try {
-      const blog = await ok(
-        bsky.get("com.atproto.repo.listRecords", {
-          params: {
-            repo: env.NEXT_PUBLIC_BSKY_DID as `did:plc:${string}`,
-            collection: "com.whtwnd.blog.entry",
-            limit: 10,
-          },
-        }),
-      );
-      const publicPost = blog.records.find((record) => {
-        const value = record.value as ComWhtwndBlogEntry.Main;
-        return value.visibility === "public";
+      const posts = await getPosts();
+      console.log(posts);
+      // sort posts by createdAt descending
+      // convert leaflet "publishedAt" to "createdAt"
+      // make a new array of posts with the createdAt field
+      const newPosts = posts.map((post) => {
+        if (post.type === "leaflet") {
+          return {
+            ...post,
+            createdAt: post.value.publishedAt ?? "",
+          };
+        }
+        return {
+          ...post,
+          createdAt: post.value.createdAt ?? "",
+        };
       });
-      if (publicPost) {
-        data.blogPost = publicPost.value as ComWhtwndBlogEntry.Main;
-        data.blogPostRkey = publicPost.uri.split("/").pop() || null;
-      }
+      const sortedPosts = newPosts.sort((a, b) => {
+        return new Date(b.createdAt ?? "").getTime() - new Date(a.createdAt ?? "").getTime();
+      });
+      if (sortedPosts[0].type === "whitewind") {
+      data.blogPost = {
+        title: sortedPosts[0].value.title?.split(" || ")[0] || "Untitled Post",
+        description: sortedPosts[0].value.title?.split(" || ")[1] || "",
+        createdAt: sortedPosts[0].value.createdAt || "",
+      };
+      data.blogPostRkey = sortedPosts[0].uri.split("/").pop() || null;
+    } else {
+      data.blogPost = {
+        title: sortedPosts[0].value.title || "Untitled Post",
+        description: sortedPosts[0].value.description || "",
+        createdAt: sortedPosts[0].value.publishedAt || "",
+      };
+      data.blogPostRkey = sortedPosts[0].uri.split("/").pop() || null;
+    }
     } catch {
-      console.log("Blog collection not found or accessible");
+      console.log("Blog posts not found or accessible");
     }
 
     // Fetch latest Bluesky post (non-reply)

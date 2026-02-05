@@ -2,7 +2,7 @@ import { ArrowLeftIcon } from "lucide-react";
 import type { Metadata } from "next";
 import NextLink from "next/link";
 
-import { Title } from "#/components/typography";
+import { Paragraph, Title } from "#/components/typography";
 import { getCarRecords } from "#/lib/api";
 
 import { CarStatsClient } from "./car-stats-client";
@@ -51,6 +51,26 @@ export default async function CarStatsPage() {
               </p>
             </div>
           )}
+        </div>
+
+        <div className="w-full bg-yellow-200/50 p-4 border rounded-lg border-yellow-300">
+          <Title level="h2" className="mb-2">
+            ⚠️ Stats aren&apos;t updating right now. :(
+          </Title>
+          <Paragraph>
+            There is an{" "}
+            <a
+              href="https://brandreliability.smartcar.com/incidents/f1ffrg7ndlt7"
+              className="underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              upstream issue with Smartcar&apos;s API
+            </a>{" "}
+            that currently has an outage{" "}
+            <span className="italic">specifically</span> affecting Nissan
+            vehicles. :,(
+          </Paragraph>
         </div>
 
         <CarStatsClient
