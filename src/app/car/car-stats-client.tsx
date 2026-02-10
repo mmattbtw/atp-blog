@@ -308,7 +308,7 @@ function OdometerChart({ data }: { data: CarDataPoint[] }) {
                 labelFormatter={(value) => formatFullDate(value)}
                 formatter={(value) => [
                   `${Number(value).toLocaleString()} mi`,
-                  "Odometer",
+                  " Odometer",
                 ]}
               />
             }
@@ -396,7 +396,7 @@ function RangeChart({ data }: { data: CarDataPoint[] }) {
                 labelFormatter={(value) => formatFullDate(value)}
                 formatter={(value) => [
                   `${Number(value).toLocaleString()} mi`,
-                  "Est. Range",
+                  " Est. Range",
                 ]}
               />
             }
