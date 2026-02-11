@@ -1,0 +1,2436 @@
+{
+  "version": 1,
+  "config": {
+    "env": {
+      "next_plausible_proxy": "true",
+      "next_plausible_customDomain": "https://plausible.mmatt.net"
+    },
+    "webpack": null,
+    "eslint": {
+      "ignoreDuringBuilds": false
+    },
+    "typescript": {
+      "ignoreBuildErrors": false,
+      "tsconfigPath": "tsconfig.json"
+    },
+    "typedRoutes": false,
+    "distDir": ".next",
+    "cleanDistDir": true,
+    "assetPrefix": "",
+    "cacheMaxMemorySize": 52428800,
+    "configOrigin": "next.config.mjs",
+    "useFileSystemPublicRoutes": true,
+    "generateEtags": true,
+    "pageExtensions": [
+      "tsx",
+      "ts",
+      "jsx",
+      "js"
+    ],
+    "poweredByHeader": true,
+    "compress": true,
+    "images": {
+      "deviceSizes": [
+        640,
+        750,
+        828,
+        1080,
+        1200,
+        1920,
+        2048,
+        3840
+      ],
+      "imageSizes": [
+        16,
+        32,
+        48,
+        64,
+        96,
+        128,
+        256,
+        384
+      ],
+      "path": "/_next/image",
+      "loader": "default",
+      "loaderFile": "",
+      "domains": [],
+      "disableStaticImages": false,
+      "minimumCacheTTL": 60,
+      "formats": [
+        "image/webp"
+      ],
+      "dangerouslyAllowSVG": false,
+      "contentSecurityPolicy": "script-src 'none'; frame-src 'none'; sandbox;",
+      "contentDispositionType": "attachment",
+      "remotePatterns": [
+        {
+          "protocol": "https",
+          "hostname": "evil.gay",
+          "pathname": "/xrpc/com.atproto.sync.getBlob"
+        },
+        {
+          "protocol": "https",
+          "hostname": "pds.mmatt.net",
+          "pathname": "/xrpc/com.atproto.sync.getBlob"
+        },
+        {
+          "protocol": "https",
+          "hostname": "evil.gay",
+          "pathname": "/xrpc/com.atproto.sync.getBlob"
+        },
+        {
+          "protocol": "https",
+          "hostname": "cdn.some.pics",
+          "pathname": "/(mm|matt)/*"
+        },
+        {
+          "protocol": "https",
+          "hostname": "cdn.bsky.app",
+          "pathname": "/img/**"
+        }
+      ],
+      "qualities": [
+        75,
+        90,
+        100
+      ],
+      "unoptimized": false
+    },
+    "devIndicators": {
+      "position": "bottom-left"
+    },
+    "onDemandEntries": {
+      "maxInactiveAge": 60000,
+      "pagesBufferLength": 5
+    },
+    "amp": {
+      "canonicalBase": ""
+    },
+    "basePath": "",
+    "sassOptions": {},
+    "trailingSlash": false,
+    "i18n": null,
+    "productionBrowserSourceMaps": false,
+    "excludeDefaultMomentLocales": true,
+    "serverRuntimeConfig": {},
+    "publicRuntimeConfig": {},
+    "reactProductionProfiling": false,
+    "reactStrictMode": null,
+    "reactMaxHeadersLength": 6000,
+    "httpAgentOptions": {
+      "keepAlive": true
+    },
+    "logging": {},
+    "compiler": {},
+    "expireTime": 31536000,
+    "staticPageGenerationTimeout": 60,
+    "output": "standalone",
+    "modularizeImports": {
+      "@mui/icons-material": {
+        "transform": "@mui/icons-material/{{member}}"
+      },
+      "lodash": {
+        "transform": "lodash/{{member}}"
+      }
+    },
+    "outputFileTracingRoot": "/Users/matt/dev/mmattbtw/website",
+    "experimental": {
+      "useSkewCookie": false,
+      "cacheLife": {
+        "default": {
+          "stale": 300,
+          "revalidate": 900,
+          "expire": 4294967294
+        },
+        "seconds": {
+          "stale": 30,
+          "revalidate": 1,
+          "expire": 60
+        },
+        "minutes": {
+          "stale": 300,
+          "revalidate": 60,
+          "expire": 3600
+        },
+        "hours": {
+          "stale": 300,
+          "revalidate": 3600,
+          "expire": 86400
+        },
+        "days": {
+          "stale": 300,
+          "revalidate": 86400,
+          "expire": 604800
+        },
+        "weeks": {
+          "stale": 300,
+          "revalidate": 604800,
+          "expire": 2592000
+        },
+        "max": {
+          "stale": 300,
+          "revalidate": 2592000,
+          "expire": 4294967294
+        }
+      },
+      "cacheHandlers": {},
+      "cssChunking": true,
+      "multiZoneDraftMode": false,
+      "appNavFailHandling": false,
+      "prerenderEarlyExit": true,
+      "serverMinification": true,
+      "serverSourceMaps": false,
+      "linkNoTouchStart": false,
+      "caseSensitiveRoutes": false,
+      "clientSegmentCache": false,
+      "clientParamParsing": false,
+      "dynamicOnHover": false,
+      "preloadEntriesOnStart": true,
+      "clientRouterFilter": true,
+      "clientRouterFilterRedirects": false,
+      "fetchCacheKeyPrefix": "",
+      "middlewarePrefetch": "flexible",
+      "optimisticClientCache": true,
+      "manualClientBasePath": false,
+      "cpus": 13,
+      "memoryBasedWorkersCount": false,
+      "imgOptConcurrency": null,
+      "imgOptTimeoutInSeconds": 7,
+      "imgOptMaxInputPixels": 268402689,
+      "imgOptSequentialRead": null,
+      "imgOptSkipMetadata": null,
+      "isrFlushToDisk": true,
+      "workerThreads": false,
+      "optimizeCss": false,
+      "nextScriptWorkers": false,
+      "scrollRestoration": false,
+      "externalDir": false,
+      "disableOptimizedLoading": false,
+      "gzipSize": true,
+      "craCompat": false,
+      "esmExternals": true,
+      "fullySpecified": false,
+      "swcTraceProfiling": false,
+      "forceSwcTransforms": false,
+      "largePageDataBytes": 128000,
+      "typedEnv": false,
+      "parallelServerCompiles": false,
+      "parallelServerBuildTraces": false,
+      "ppr": false,
+      "authInterrupts": false,
+      "webpackMemoryOptimizations": false,
+      "optimizeServerReact": true,
+      "viewTransition": false,
+      "routerBFCache": false,
+      "removeUncaughtErrorAndRejectionListeners": false,
+      "validateRSCRequestHeaders": false,
+      "staleTimes": {
+        "dynamic": 0,
+        "static": 300
+      },
+      "serverComponentsHmrCache": true,
+      "staticGenerationMaxConcurrency": 8,
+      "staticGenerationMinPagesPerWorker": 25,
+      "cacheComponents": false,
+      "inlineCss": false,
+      "useCache": false,
+      "globalNotFound": false,
+      "devtoolSegmentExplorer": true,
+      "browserDebugInfoInTerminal": false,
+      "optimizeRouterScrolling": false,
+      "middlewareClientMaxBodySize": 10485760,
+      "optimizePackageImports": [
+        "lucide-react",
+        "date-fns",
+        "lodash-es",
+        "ramda",
+        "antd",
+        "react-bootstrap",
+        "ahooks",
+        "@ant-design/icons",
+        "@headlessui/react",
+        "@headlessui-float/react",
+        "@heroicons/react/20/solid",
+        "@heroicons/react/24/solid",
+        "@heroicons/react/24/outline",
+        "@visx/visx",
+        "@tremor/react",
+        "rxjs",
+        "@mui/material",
+        "@mui/icons-material",
+        "recharts",
+        "react-use",
+        "effect",
+        "@effect/schema",
+        "@effect/platform",
+        "@effect/platform-node",
+        "@effect/platform-browser",
+        "@effect/platform-bun",
+        "@effect/sql",
+        "@effect/sql-mssql",
+        "@effect/sql-mysql2",
+        "@effect/sql-pg",
+        "@effect/sql-sqlite-node",
+        "@effect/sql-sqlite-bun",
+        "@effect/sql-sqlite-wasm",
+        "@effect/sql-sqlite-react-native",
+        "@effect/rpc",
+        "@effect/rpc-http",
+        "@effect/typeclass",
+        "@effect/experimental",
+        "@effect/opentelemetry",
+        "@material-ui/core",
+        "@material-ui/icons",
+        "@tabler/icons-react",
+        "mui-core",
+        "react-icons/ai",
+        "react-icons/bi",
+        "react-icons/bs",
+        "react-icons/cg",
+        "react-icons/ci",
+        "react-icons/di",
+        "react-icons/fa",
+        "react-icons/fa6",
+        "react-icons/fc",
+        "react-icons/fi",
+        "react-icons/gi",
+        "react-icons/go",
+        "react-icons/gr",
+        "react-icons/hi",
+        "react-icons/hi2",
+        "react-icons/im",
+        "react-icons/io",
+        "react-icons/io5",
+        "react-icons/lia",
+        "react-icons/lib",
+        "react-icons/lu",
+        "react-icons/md",
+        "react-icons/pi",
+        "react-icons/ri",
+        "react-icons/rx",
+        "react-icons/si",
+        "react-icons/sl",
+        "react-icons/tb",
+        "react-icons/tfi",
+        "react-icons/ti",
+        "react-icons/vsc",
+        "react-icons/wi"
+      ],
+      "trustHostHeader": false,
+      "isExperimentalCompile": false
+    },
+    "htmlLimitedBots": "[\\w-]+-Google|Google-[\\w-]+|Chrome-Lighthouse|Slurp|DuckDuckBot|baiduspider|yandex|sogou|bitlybot|tumblr|vkShare|quora link preview|redditbot|ia_archiver|Bingbot|BingPreview|applebot|facebookexternalhit|facebookcatalog|Twitterbot|LinkedInBot|Slackbot|Discordbot|WhatsApp|SkypeUriPreview|Yeti|googleweblight",
+    "bundlePagesRouterDependencies": false,
+    "configFileName": "next.config.mjs",
+    "turbopack": {
+      "root": "/Users/matt/dev/mmattbtw/website"
+    },
+    "_originalRewrites": {
+      "beforeFiles": [],
+      "afterFiles": [
+        {
+          "source": "/(weblog|blog)/itl_2025",
+          "destination": "/post/3lls32ikpkk2s"
+        },
+        {
+          "source": "/(weblog|blog)/gg_usb",
+          "destination": "/post/3llrxjxkgws2s"
+        },
+        {
+          "source": "/(weblog|blog)/mastodon",
+          "destination": "/post/3lls3oimpf22a"
+        },
+        {
+          "source": "/(weblog|blog)/atd_v5",
+          "destination": "/post/3llrxgworic2s"
+        },
+        {
+          "source": "/devices",
+          "destination": "/uses"
+        },
+        {
+          "source": "/now",
+          "destination": "/right/now"
+        },
+        {
+          "source": "/js/script.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.js"
+        },
+        {
+          "source": "/js/script.exclusions.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.js"
+        },
+        {
+          "source": "/js/script.exclusions.local.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.local.js"
+        },
+        {
+          "source": "/js/script.exclusions.local.manual.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.local.manual.js"
+        },
+        {
+          "source": "/js/script.exclusions.local.manual.outbound-links.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.local.manual.outbound-links.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.local.manual.outbound-links.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.local.manual.outbound-links.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.local.manual.outbound-links.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.local.manual.outbound-links.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.local.manual.outbound-links.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.local.manual.outbound-links.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.local.manual.outbound-links.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.local.manual.outbound-links.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.local.manual.outbound-links.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.local.manual.outbound-links.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.local.manual.outbound-links.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.local.manual.outbound-links.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.local.manual.outbound-links.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.local.manual.outbound-links.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.local.manual.outbound-links.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.local.manual.outbound-links.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.local.manual.outbound-links.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.local.manual.outbound-links.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.local.manual.outbound-links.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.local.manual.outbound-links.pageview-props.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.local.manual.outbound-links.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.local.manual.outbound-links.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.local.manual.outbound-links.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.local.manual.outbound-links.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.local.manual.outbound-links.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.local.manual.outbound-links.pageview-props.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.local.manual.outbound-links.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.local.manual.outbound-links.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.local.manual.outbound-links.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.local.manual.outbound-links.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.local.manual.outbound-links.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.local.manual.outbound-links.js"
+        },
+        {
+          "source": "/js/script.exclusions.local.manual.outbound-links.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.local.manual.outbound-links.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.local.manual.outbound-links.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.local.manual.outbound-links.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.local.manual.outbound-links.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.local.manual.outbound-links.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.local.manual.outbound-links.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.local.manual.outbound-links.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.local.manual.outbound-links.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.local.manual.outbound-links.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.local.manual.outbound-links.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.local.manual.outbound-links.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.local.manual.outbound-links.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.local.manual.outbound-links.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.local.manual.outbound-links.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.local.manual.outbound-links.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.local.manual.outbound-links.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.local.manual.outbound-links.pageview-props.js"
+        },
+        {
+          "source": "/js/script.exclusions.local.manual.outbound-links.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.local.manual.outbound-links.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.local.manual.outbound-links.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.local.manual.outbound-links.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.local.manual.outbound-links.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.local.manual.outbound-links.pageview-props.js"
+        },
+        {
+          "source": "/js/script.exclusions.local.manual.outbound-links.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.local.manual.outbound-links.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.local.manual.outbound-links.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.local.manual.outbound-links.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.local.manual.outbound-links.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.local.manual.outbound-links.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.local.manual.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.local.manual.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.local.manual.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.local.manual.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.local.manual.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.local.manual.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.local.manual.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.local.manual.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.local.manual.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.local.manual.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.local.manual.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.local.manual.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.local.manual.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.local.manual.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.local.manual.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.local.manual.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.local.manual.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.local.manual.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.local.manual.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.local.manual.pageview-props.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.local.manual.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.local.manual.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.local.manual.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.local.manual.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.local.manual.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.local.manual.pageview-props.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.local.manual.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.local.manual.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.local.manual.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.local.manual.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.local.manual.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.local.manual.js"
+        },
+        {
+          "source": "/js/script.exclusions.local.manual.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.local.manual.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.local.manual.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.local.manual.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.local.manual.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.local.manual.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.local.manual.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.local.manual.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.local.manual.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.local.manual.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.local.manual.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.local.manual.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.local.manual.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.local.manual.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.local.manual.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.local.manual.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.local.manual.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.local.manual.pageview-props.js"
+        },
+        {
+          "source": "/js/script.exclusions.local.manual.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.local.manual.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.local.manual.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.local.manual.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.local.manual.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.local.manual.pageview-props.js"
+        },
+        {
+          "source": "/js/script.exclusions.local.manual.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.local.manual.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.local.manual.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.local.manual.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.local.manual.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.local.manual.js"
+        },
+        {
+          "source": "/js/script.exclusions.local.outbound-links.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.local.outbound-links.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.local.outbound-links.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.local.outbound-links.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.local.outbound-links.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.local.outbound-links.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.local.outbound-links.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.local.outbound-links.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.local.outbound-links.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.local.outbound-links.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.local.outbound-links.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.local.outbound-links.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.local.outbound-links.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.local.outbound-links.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.local.outbound-links.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.local.outbound-links.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.local.outbound-links.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.local.outbound-links.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.local.outbound-links.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.local.outbound-links.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.local.outbound-links.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.local.outbound-links.pageview-props.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.local.outbound-links.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.local.outbound-links.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.local.outbound-links.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.local.outbound-links.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.local.outbound-links.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.local.outbound-links.pageview-props.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.local.outbound-links.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.local.outbound-links.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.local.outbound-links.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.local.outbound-links.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.local.outbound-links.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.local.outbound-links.js"
+        },
+        {
+          "source": "/js/script.exclusions.local.outbound-links.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.local.outbound-links.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.local.outbound-links.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.local.outbound-links.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.local.outbound-links.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.local.outbound-links.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.local.outbound-links.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.local.outbound-links.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.local.outbound-links.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.local.outbound-links.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.local.outbound-links.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.local.outbound-links.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.local.outbound-links.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.local.outbound-links.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.local.outbound-links.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.local.outbound-links.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.local.outbound-links.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.local.outbound-links.pageview-props.js"
+        },
+        {
+          "source": "/js/script.exclusions.local.outbound-links.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.local.outbound-links.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.local.outbound-links.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.local.outbound-links.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.local.outbound-links.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.local.outbound-links.pageview-props.js"
+        },
+        {
+          "source": "/js/script.exclusions.local.outbound-links.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.local.outbound-links.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.local.outbound-links.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.local.outbound-links.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.local.outbound-links.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.local.outbound-links.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.local.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.local.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.local.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.local.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.local.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.local.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.local.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.local.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.local.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.local.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.local.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.local.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.local.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.local.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.local.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.local.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.local.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.local.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.local.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.local.pageview-props.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.local.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.local.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.local.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.local.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.local.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.local.pageview-props.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.local.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.local.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.local.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.local.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.local.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.local.js"
+        },
+        {
+          "source": "/js/script.exclusions.local.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.local.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.local.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.local.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.local.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.local.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.local.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.local.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.local.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.local.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.local.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.local.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.local.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.local.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.local.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.local.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.local.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.local.pageview-props.js"
+        },
+        {
+          "source": "/js/script.exclusions.local.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.local.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.local.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.local.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.local.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.local.pageview-props.js"
+        },
+        {
+          "source": "/js/script.exclusions.local.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.local.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.local.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.local.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.local.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.local.js"
+        },
+        {
+          "source": "/js/script.exclusions.manual.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.manual.js"
+        },
+        {
+          "source": "/js/script.exclusions.manual.outbound-links.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.manual.outbound-links.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.manual.outbound-links.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.manual.outbound-links.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.manual.outbound-links.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.manual.outbound-links.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.manual.outbound-links.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.manual.outbound-links.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.manual.outbound-links.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.manual.outbound-links.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.manual.outbound-links.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.manual.outbound-links.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.manual.outbound-links.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.manual.outbound-links.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.manual.outbound-links.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.manual.outbound-links.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.manual.outbound-links.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.manual.outbound-links.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.manual.outbound-links.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.manual.outbound-links.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.manual.outbound-links.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.manual.outbound-links.pageview-props.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.manual.outbound-links.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.manual.outbound-links.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.manual.outbound-links.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.manual.outbound-links.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.manual.outbound-links.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.manual.outbound-links.pageview-props.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.manual.outbound-links.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.manual.outbound-links.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.manual.outbound-links.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.manual.outbound-links.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.manual.outbound-links.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.manual.outbound-links.js"
+        },
+        {
+          "source": "/js/script.exclusions.manual.outbound-links.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.manual.outbound-links.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.manual.outbound-links.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.manual.outbound-links.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.manual.outbound-links.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.manual.outbound-links.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.manual.outbound-links.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.manual.outbound-links.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.manual.outbound-links.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.manual.outbound-links.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.manual.outbound-links.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.manual.outbound-links.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.manual.outbound-links.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.manual.outbound-links.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.manual.outbound-links.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.manual.outbound-links.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.manual.outbound-links.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.manual.outbound-links.pageview-props.js"
+        },
+        {
+          "source": "/js/script.exclusions.manual.outbound-links.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.manual.outbound-links.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.manual.outbound-links.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.manual.outbound-links.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.manual.outbound-links.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.manual.outbound-links.pageview-props.js"
+        },
+        {
+          "source": "/js/script.exclusions.manual.outbound-links.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.manual.outbound-links.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.manual.outbound-links.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.manual.outbound-links.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.manual.outbound-links.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.manual.outbound-links.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.manual.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.manual.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.manual.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.manual.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.manual.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.manual.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.manual.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.manual.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.manual.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.manual.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.manual.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.manual.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.manual.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.manual.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.manual.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.manual.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.manual.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.manual.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.manual.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.manual.pageview-props.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.manual.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.manual.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.manual.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.manual.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.manual.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.manual.pageview-props.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.manual.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.manual.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.manual.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.manual.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.manual.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.manual.js"
+        },
+        {
+          "source": "/js/script.exclusions.manual.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.manual.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.manual.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.manual.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.manual.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.manual.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.manual.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.manual.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.manual.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.manual.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.manual.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.manual.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.manual.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.manual.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.manual.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.manual.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.manual.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.manual.pageview-props.js"
+        },
+        {
+          "source": "/js/script.exclusions.manual.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.manual.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.manual.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.manual.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.manual.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.manual.pageview-props.js"
+        },
+        {
+          "source": "/js/script.exclusions.manual.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.manual.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.manual.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.manual.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.manual.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.manual.js"
+        },
+        {
+          "source": "/js/script.exclusions.outbound-links.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.outbound-links.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.outbound-links.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.outbound-links.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.outbound-links.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.outbound-links.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.outbound-links.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.outbound-links.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.outbound-links.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.outbound-links.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.outbound-links.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.outbound-links.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.outbound-links.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.outbound-links.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.outbound-links.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.outbound-links.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.outbound-links.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.outbound-links.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.outbound-links.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.outbound-links.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.outbound-links.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.outbound-links.pageview-props.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.outbound-links.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.outbound-links.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.outbound-links.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.outbound-links.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.outbound-links.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.outbound-links.pageview-props.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.outbound-links.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.outbound-links.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.outbound-links.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.outbound-links.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.outbound-links.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.outbound-links.js"
+        },
+        {
+          "source": "/js/script.exclusions.outbound-links.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.outbound-links.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.outbound-links.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.outbound-links.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.outbound-links.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.outbound-links.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.outbound-links.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.outbound-links.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.outbound-links.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.outbound-links.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.outbound-links.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.outbound-links.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.outbound-links.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.outbound-links.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.outbound-links.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.outbound-links.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.outbound-links.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.outbound-links.pageview-props.js"
+        },
+        {
+          "source": "/js/script.exclusions.outbound-links.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.outbound-links.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.outbound-links.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.outbound-links.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.outbound-links.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.outbound-links.pageview-props.js"
+        },
+        {
+          "source": "/js/script.exclusions.outbound-links.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.outbound-links.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.outbound-links.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.outbound-links.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.outbound-links.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.outbound-links.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.pageview-props.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.pageview-props.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.file-downloads.hash.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.file-downloads.hash.js"
+        },
+        {
+          "source": "/js/script.exclusions.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.tagged-events.js"
+        },
+        {
+          "source": "/js/script.exclusions.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.pageview-props.js"
+        },
+        {
+          "source": "/js/script.exclusions.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.pageview-props.js"
+        },
+        {
+          "source": "/js/script.exclusions.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.revenue.js"
+        },
+        {
+          "source": "/js/script.exclusions.hash.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.exclusions.hash.js"
+        },
+        {
+          "source": "/js/script.local.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.local.js"
+        },
+        {
+          "source": "/js/script.local.manual.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.local.manual.js"
+        },
+        {
+          "source": "/js/script.local.manual.outbound-links.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.local.manual.outbound-links.js"
+        },
+        {
+          "source": "/js/script.file-downloads.local.manual.outbound-links.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.local.manual.outbound-links.js"
+        },
+        {
+          "source": "/js/script.file-downloads.local.manual.outbound-links.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.local.manual.outbound-links.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.local.manual.outbound-links.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.local.manual.outbound-links.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.local.manual.outbound-links.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.local.manual.outbound-links.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.local.manual.outbound-links.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.local.manual.outbound-links.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.local.manual.outbound-links.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.local.manual.outbound-links.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.local.manual.outbound-links.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.local.manual.outbound-links.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.local.manual.outbound-links.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.local.manual.outbound-links.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.local.manual.outbound-links.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.local.manual.outbound-links.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.local.manual.outbound-links.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.local.manual.outbound-links.pageview-props.js"
+        },
+        {
+          "source": "/js/script.file-downloads.local.manual.outbound-links.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.local.manual.outbound-links.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.local.manual.outbound-links.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.local.manual.outbound-links.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.local.manual.outbound-links.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.local.manual.outbound-links.pageview-props.js"
+        },
+        {
+          "source": "/js/script.file-downloads.local.manual.outbound-links.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.local.manual.outbound-links.revenue.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.local.manual.outbound-links.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.local.manual.outbound-links.revenue.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.local.manual.outbound-links.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.local.manual.outbound-links.js"
+        },
+        {
+          "source": "/js/script.local.manual.outbound-links.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.local.manual.outbound-links.tagged-events.js"
+        },
+        {
+          "source": "/js/script.local.manual.outbound-links.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.local.manual.outbound-links.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.local.manual.outbound-links.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.local.manual.outbound-links.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.hash.local.manual.outbound-links.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.local.manual.outbound-links.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.hash.local.manual.outbound-links.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.local.manual.outbound-links.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.local.manual.outbound-links.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.local.manual.outbound-links.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.hash.local.manual.outbound-links.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.local.manual.outbound-links.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.hash.local.manual.outbound-links.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.local.manual.outbound-links.tagged-events.js"
+        },
+        {
+          "source": "/js/script.local.manual.outbound-links.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.local.manual.outbound-links.pageview-props.js"
+        },
+        {
+          "source": "/js/script.local.manual.outbound-links.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.local.manual.outbound-links.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.hash.local.manual.outbound-links.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.local.manual.outbound-links.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.hash.local.manual.outbound-links.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.local.manual.outbound-links.pageview-props.js"
+        },
+        {
+          "source": "/js/script.local.manual.outbound-links.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.local.manual.outbound-links.revenue.js"
+        },
+        {
+          "source": "/js/script.hash.local.manual.outbound-links.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.local.manual.outbound-links.revenue.js"
+        },
+        {
+          "source": "/js/script.hash.local.manual.outbound-links.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.local.manual.outbound-links.js"
+        },
+        {
+          "source": "/js/script.file-downloads.local.manual.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.local.manual.js"
+        },
+        {
+          "source": "/js/script.file-downloads.local.manual.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.local.manual.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.local.manual.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.local.manual.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.local.manual.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.local.manual.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.local.manual.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.local.manual.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.local.manual.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.local.manual.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.local.manual.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.local.manual.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.local.manual.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.local.manual.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.local.manual.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.local.manual.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.local.manual.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.local.manual.pageview-props.js"
+        },
+        {
+          "source": "/js/script.file-downloads.local.manual.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.local.manual.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.local.manual.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.local.manual.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.local.manual.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.local.manual.pageview-props.js"
+        },
+        {
+          "source": "/js/script.file-downloads.local.manual.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.local.manual.revenue.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.local.manual.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.local.manual.revenue.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.local.manual.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.local.manual.js"
+        },
+        {
+          "source": "/js/script.local.manual.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.local.manual.tagged-events.js"
+        },
+        {
+          "source": "/js/script.local.manual.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.local.manual.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.local.manual.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.local.manual.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.hash.local.manual.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.local.manual.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.hash.local.manual.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.local.manual.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.local.manual.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.local.manual.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.hash.local.manual.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.local.manual.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.hash.local.manual.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.local.manual.tagged-events.js"
+        },
+        {
+          "source": "/js/script.local.manual.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.local.manual.pageview-props.js"
+        },
+        {
+          "source": "/js/script.local.manual.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.local.manual.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.hash.local.manual.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.local.manual.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.hash.local.manual.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.local.manual.pageview-props.js"
+        },
+        {
+          "source": "/js/script.local.manual.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.local.manual.revenue.js"
+        },
+        {
+          "source": "/js/script.hash.local.manual.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.local.manual.revenue.js"
+        },
+        {
+          "source": "/js/script.hash.local.manual.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.local.manual.js"
+        },
+        {
+          "source": "/js/script.local.outbound-links.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.local.outbound-links.js"
+        },
+        {
+          "source": "/js/script.file-downloads.local.outbound-links.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.local.outbound-links.js"
+        },
+        {
+          "source": "/js/script.file-downloads.local.outbound-links.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.local.outbound-links.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.local.outbound-links.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.local.outbound-links.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.local.outbound-links.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.local.outbound-links.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.local.outbound-links.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.local.outbound-links.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.local.outbound-links.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.local.outbound-links.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.local.outbound-links.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.local.outbound-links.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.local.outbound-links.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.local.outbound-links.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.local.outbound-links.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.local.outbound-links.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.local.outbound-links.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.local.outbound-links.pageview-props.js"
+        },
+        {
+          "source": "/js/script.file-downloads.local.outbound-links.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.local.outbound-links.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.local.outbound-links.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.local.outbound-links.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.local.outbound-links.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.local.outbound-links.pageview-props.js"
+        },
+        {
+          "source": "/js/script.file-downloads.local.outbound-links.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.local.outbound-links.revenue.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.local.outbound-links.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.local.outbound-links.revenue.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.local.outbound-links.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.local.outbound-links.js"
+        },
+        {
+          "source": "/js/script.local.outbound-links.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.local.outbound-links.tagged-events.js"
+        },
+        {
+          "source": "/js/script.local.outbound-links.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.local.outbound-links.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.local.outbound-links.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.local.outbound-links.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.hash.local.outbound-links.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.local.outbound-links.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.hash.local.outbound-links.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.local.outbound-links.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.local.outbound-links.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.local.outbound-links.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.hash.local.outbound-links.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.local.outbound-links.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.hash.local.outbound-links.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.local.outbound-links.tagged-events.js"
+        },
+        {
+          "source": "/js/script.local.outbound-links.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.local.outbound-links.pageview-props.js"
+        },
+        {
+          "source": "/js/script.local.outbound-links.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.local.outbound-links.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.hash.local.outbound-links.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.local.outbound-links.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.hash.local.outbound-links.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.local.outbound-links.pageview-props.js"
+        },
+        {
+          "source": "/js/script.local.outbound-links.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.local.outbound-links.revenue.js"
+        },
+        {
+          "source": "/js/script.hash.local.outbound-links.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.local.outbound-links.revenue.js"
+        },
+        {
+          "source": "/js/script.hash.local.outbound-links.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.local.outbound-links.js"
+        },
+        {
+          "source": "/js/script.file-downloads.local.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.local.js"
+        },
+        {
+          "source": "/js/script.file-downloads.local.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.local.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.local.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.local.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.local.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.local.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.local.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.local.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.local.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.local.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.local.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.local.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.local.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.local.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.local.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.local.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.local.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.local.pageview-props.js"
+        },
+        {
+          "source": "/js/script.file-downloads.local.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.local.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.local.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.local.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.local.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.local.pageview-props.js"
+        },
+        {
+          "source": "/js/script.file-downloads.local.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.local.revenue.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.local.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.local.revenue.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.local.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.local.js"
+        },
+        {
+          "source": "/js/script.local.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.local.tagged-events.js"
+        },
+        {
+          "source": "/js/script.local.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.local.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.local.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.local.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.hash.local.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.local.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.hash.local.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.local.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.local.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.local.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.hash.local.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.local.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.hash.local.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.local.tagged-events.js"
+        },
+        {
+          "source": "/js/script.local.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.local.pageview-props.js"
+        },
+        {
+          "source": "/js/script.local.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.local.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.hash.local.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.local.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.hash.local.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.local.pageview-props.js"
+        },
+        {
+          "source": "/js/script.local.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.local.revenue.js"
+        },
+        {
+          "source": "/js/script.hash.local.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.local.revenue.js"
+        },
+        {
+          "source": "/js/script.hash.local.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.local.js"
+        },
+        {
+          "source": "/js/script.manual.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.manual.js"
+        },
+        {
+          "source": "/js/script.manual.outbound-links.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.manual.outbound-links.js"
+        },
+        {
+          "source": "/js/script.file-downloads.manual.outbound-links.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.manual.outbound-links.js"
+        },
+        {
+          "source": "/js/script.file-downloads.manual.outbound-links.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.manual.outbound-links.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.manual.outbound-links.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.manual.outbound-links.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.manual.outbound-links.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.manual.outbound-links.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.manual.outbound-links.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.manual.outbound-links.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.manual.outbound-links.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.manual.outbound-links.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.manual.outbound-links.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.manual.outbound-links.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.manual.outbound-links.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.manual.outbound-links.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.manual.outbound-links.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.manual.outbound-links.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.manual.outbound-links.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.manual.outbound-links.pageview-props.js"
+        },
+        {
+          "source": "/js/script.file-downloads.manual.outbound-links.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.manual.outbound-links.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.manual.outbound-links.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.manual.outbound-links.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.manual.outbound-links.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.manual.outbound-links.pageview-props.js"
+        },
+        {
+          "source": "/js/script.file-downloads.manual.outbound-links.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.manual.outbound-links.revenue.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.manual.outbound-links.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.manual.outbound-links.revenue.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.manual.outbound-links.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.manual.outbound-links.js"
+        },
+        {
+          "source": "/js/script.manual.outbound-links.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.manual.outbound-links.tagged-events.js"
+        },
+        {
+          "source": "/js/script.manual.outbound-links.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.manual.outbound-links.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.manual.outbound-links.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.manual.outbound-links.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.hash.manual.outbound-links.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.manual.outbound-links.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.hash.manual.outbound-links.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.manual.outbound-links.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.manual.outbound-links.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.manual.outbound-links.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.hash.manual.outbound-links.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.manual.outbound-links.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.hash.manual.outbound-links.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.manual.outbound-links.tagged-events.js"
+        },
+        {
+          "source": "/js/script.manual.outbound-links.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.manual.outbound-links.pageview-props.js"
+        },
+        {
+          "source": "/js/script.manual.outbound-links.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.manual.outbound-links.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.hash.manual.outbound-links.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.manual.outbound-links.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.hash.manual.outbound-links.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.manual.outbound-links.pageview-props.js"
+        },
+        {
+          "source": "/js/script.manual.outbound-links.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.manual.outbound-links.revenue.js"
+        },
+        {
+          "source": "/js/script.hash.manual.outbound-links.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.manual.outbound-links.revenue.js"
+        },
+        {
+          "source": "/js/script.hash.manual.outbound-links.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.manual.outbound-links.js"
+        },
+        {
+          "source": "/js/script.file-downloads.manual.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.manual.js"
+        },
+        {
+          "source": "/js/script.file-downloads.manual.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.manual.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.manual.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.manual.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.manual.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.manual.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.manual.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.manual.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.manual.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.manual.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.manual.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.manual.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.manual.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.manual.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.manual.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.manual.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.manual.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.manual.pageview-props.js"
+        },
+        {
+          "source": "/js/script.file-downloads.manual.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.manual.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.manual.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.manual.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.manual.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.manual.pageview-props.js"
+        },
+        {
+          "source": "/js/script.file-downloads.manual.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.manual.revenue.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.manual.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.manual.revenue.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.manual.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.manual.js"
+        },
+        {
+          "source": "/js/script.manual.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.manual.tagged-events.js"
+        },
+        {
+          "source": "/js/script.manual.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.manual.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.manual.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.manual.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.hash.manual.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.manual.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.hash.manual.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.manual.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.manual.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.manual.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.hash.manual.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.manual.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.hash.manual.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.manual.tagged-events.js"
+        },
+        {
+          "source": "/js/script.manual.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.manual.pageview-props.js"
+        },
+        {
+          "source": "/js/script.manual.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.manual.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.hash.manual.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.manual.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.hash.manual.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.manual.pageview-props.js"
+        },
+        {
+          "source": "/js/script.manual.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.manual.revenue.js"
+        },
+        {
+          "source": "/js/script.hash.manual.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.manual.revenue.js"
+        },
+        {
+          "source": "/js/script.hash.manual.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.manual.js"
+        },
+        {
+          "source": "/js/script.outbound-links.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.outbound-links.js"
+        },
+        {
+          "source": "/js/script.file-downloads.outbound-links.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.outbound-links.js"
+        },
+        {
+          "source": "/js/script.file-downloads.outbound-links.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.outbound-links.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.outbound-links.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.outbound-links.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.outbound-links.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.outbound-links.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.outbound-links.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.outbound-links.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.outbound-links.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.outbound-links.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.outbound-links.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.outbound-links.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.outbound-links.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.outbound-links.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.outbound-links.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.outbound-links.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.outbound-links.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.outbound-links.pageview-props.js"
+        },
+        {
+          "source": "/js/script.file-downloads.outbound-links.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.outbound-links.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.outbound-links.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.outbound-links.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.outbound-links.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.outbound-links.pageview-props.js"
+        },
+        {
+          "source": "/js/script.file-downloads.outbound-links.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.outbound-links.revenue.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.outbound-links.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.outbound-links.revenue.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.outbound-links.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.outbound-links.js"
+        },
+        {
+          "source": "/js/script.outbound-links.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.outbound-links.tagged-events.js"
+        },
+        {
+          "source": "/js/script.outbound-links.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.outbound-links.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.outbound-links.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.outbound-links.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.hash.outbound-links.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.outbound-links.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.hash.outbound-links.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.outbound-links.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.outbound-links.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.outbound-links.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.hash.outbound-links.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.outbound-links.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.hash.outbound-links.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.outbound-links.tagged-events.js"
+        },
+        {
+          "source": "/js/script.outbound-links.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.outbound-links.pageview-props.js"
+        },
+        {
+          "source": "/js/script.outbound-links.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.outbound-links.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.hash.outbound-links.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.outbound-links.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.hash.outbound-links.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.outbound-links.pageview-props.js"
+        },
+        {
+          "source": "/js/script.outbound-links.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.outbound-links.revenue.js"
+        },
+        {
+          "source": "/js/script.hash.outbound-links.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.outbound-links.revenue.js"
+        },
+        {
+          "source": "/js/script.hash.outbound-links.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.outbound-links.js"
+        },
+        {
+          "source": "/js/script.file-downloads.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.js"
+        },
+        {
+          "source": "/js/script.file-downloads.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.tagged-events.js"
+        },
+        {
+          "source": "/js/script.file-downloads.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.pageview-props.js"
+        },
+        {
+          "source": "/js/script.file-downloads.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.pageview-props.js"
+        },
+        {
+          "source": "/js/script.file-downloads.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.revenue.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.revenue.js"
+        },
+        {
+          "source": "/js/script.file-downloads.hash.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.file-downloads.hash.js"
+        },
+        {
+          "source": "/js/script.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.tagged-events.js"
+        },
+        {
+          "source": "/js/script.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.hash.pageview-props.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.pageview-props.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.hash.pageview-props.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.pageview-props.tagged-events.js"
+        },
+        {
+          "source": "/js/script.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.hash.revenue.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.revenue.tagged-events.js"
+        },
+        {
+          "source": "/js/script.hash.tagged-events.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.tagged-events.js"
+        },
+        {
+          "source": "/js/script.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.pageview-props.js"
+        },
+        {
+          "source": "/js/script.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.hash.pageview-props.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.pageview-props.revenue.js"
+        },
+        {
+          "source": "/js/script.hash.pageview-props.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.pageview-props.js"
+        },
+        {
+          "source": "/js/script.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.revenue.js"
+        },
+        {
+          "source": "/js/script.hash.revenue.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.revenue.js"
+        },
+        {
+          "source": "/js/script.hash.js",
+          "destination": "https://plausible.mmatt.net/js/plausible.hash.js"
+        },
+        {
+          "source": "/proxy/api/event",
+          "destination": "https://plausible.mmatt.net/api/event"
+        }
+      ],
+      "fallback": []
+    }
+  },
+  "appDir": "/Users/matt/dev/mmattbtw/website",
+  "relativeAppDir": "",
+  "files": [
+    ".next/routes-manifest.json",
+    ".next/server/pages-manifest.json",
+    ".next/build-manifest.json",
+    ".next/prerender-manifest.json",
+    ".next/server/functions-config-manifest.json",
+    ".next/server/middleware-manifest.json",
+    ".next/server/middleware-build-manifest.js",
+    ".next/server/middleware-react-loadable-manifest.js",
+    ".next/react-loadable-manifest.json",
+    ".next/server/app-paths-manifest.json",
+    ".next/app-path-routes-manifest.json",
+    ".next/app-build-manifest.json",
+    ".next/server/server-reference-manifest.js",
+    ".next/server/server-reference-manifest.json",
+    ".next/BUILD_ID",
+    ".next/server/next-font-manifest.js",
+    ".next/server/next-font-manifest.json",
+    ".next/required-server-files.json"
+  ],
+  "ignore": [
+    "node_modules/next/dist/compiled/@ampproject/toolbox-optimizer/**/*"
+  ]
+}

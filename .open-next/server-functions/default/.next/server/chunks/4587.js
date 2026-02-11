@@ -1,0 +1,1 @@
+"use strict";exports.id=4587,exports.ids=[4587],exports.modules={54587:(a,b,c)=>{c.r(b),c.d(b,{default:()=>h,displayName:()=>d,name:()=>e,patterns:()=>f,scopeName:()=>g});var d="TypeScript with Tags",e="ts-tags",f=[{include:"source.ts"}],g="source.ts.tags",h={displayName:d,name:e,patterns:f,scopeName:g}}};

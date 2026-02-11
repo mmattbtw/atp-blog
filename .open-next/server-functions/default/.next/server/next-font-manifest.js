@@ -1,0 +1,1 @@
+self.__NEXT_FONT_MANIFEST='{"pages":{},"app":{"/Users/matt/dev/mmattbtw/website/src/app/layout":["static/media/c6327667c3d423fe.p.woff2"]},"appUsingSizeAdjust":false,"pagesUsingSizeAdjust":false}';
