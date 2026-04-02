@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   title: "Right Now - mmatt.net",
   description: "its- its like its like. <_< ^_^ >_>",
   other: {
-    "fediverse:creator": "@matt@social.lol",
+    "fediverse:creator": "@matt@mmatt.net",
   },
 };
 

@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     },
   },
   other: {
-    "fediverse:creator": "@matt@social.lol",
+    "fediverse:creator": "@matt@mmatt.net",
   },
 };
 

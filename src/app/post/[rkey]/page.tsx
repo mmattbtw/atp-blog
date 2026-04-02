@@ -80,7 +80,7 @@ export async function generateMetadata({
     ],
     description: `by Matt · ${readingTime(content).text}`,
     other: {
-      "fediverse:creator": "@matt@social.lol",
+      "fediverse:creator": "@matt@mmatt.net",
     },
   };
 }

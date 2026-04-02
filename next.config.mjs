@@ -34,6 +34,28 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/.well-known/webfinger",
+        has: [{ type: "host", value: "(www\\.)?mmatt\\.net" }],
+        destination: "https://fediverse.mmatt.net/.well-known/webfinger",
+        permanent: true,
+      },
+      {
+        source: "/.well-known/host-meta",
+        has: [{ type: "host", value: "(www\\.)?mmatt\\.net" }],
+        destination: "https://fediverse.mmatt.net/.well-known/host-meta",
+        permanent: true,
+      },
+      {
+        source: "/.well-known/nodeinfo",
+        has: [{ type: "host", value: "(www\\.)?mmatt\\.net" }],
+        destination: "https://fediverse.mmatt.net/.well-known/nodeinfo",
+        permanent: true,
+      },
+    ];
+  },
   async rewrites() {
     return [
       {
