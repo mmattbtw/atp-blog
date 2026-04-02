@@ -38,6 +38,19 @@ async function ViewCountInner({ path }: { path: string }) {
       revalidate: 60 * 60,
     },
   });
+
+  const contentType = response.headers.get("content-type") ?? "";
+  if (!response.ok || !contentType.includes("application/json")) {
+    const body = await response.text();
+    console.error("Invalid Plausible response", {
+      path,
+      status: response.status,
+      contentType,
+      body: body.slice(0, 200),
+    });
+    return null;
+  }
+
   const data = (await response.json()) as
     | {
         results: [{ metrics: number[] }];
