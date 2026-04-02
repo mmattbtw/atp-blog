@@ -1,6 +1,4 @@
-import Image from "next/image";
 import Markdown from "react-markdown";
-import { Code as SyntaxHighlighter } from "bright";
 import rehypeRaw from "rehype-raw";
 import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
 import remarkGfm from "remark-gfm";
@@ -72,13 +70,11 @@ export function WhiteWindRenderer({ content }: WhiteWindRendererProps) {
             const match = /language-(\w+)/.exec(className || "");
             if (match) {
               return (
-                <SyntaxHighlighter
-                  {...rest}
-                  // eslint-disable-next-line react/no-children-prop
-                  children={String(children).replace(/\n$/, "")}
-                  lang={match[1]}
-                  className="mt-8! text-sm rounded-sm max-w-full! overflow-hidden"
-                />
+                <pre className="mt-8 p-4 bg-slate-100 dark:bg-slate-900 rounded-sm overflow-x-auto">
+                  <code {...rest} className="text-sm">
+                    {String(children).replace(/\n$/, "")}
+                  </code>
+                </pre>
               );
             } else {
               return <Code {...props} />;
@@ -93,12 +89,11 @@ export function WhiteWindRenderer({ content }: WhiteWindRendererProps) {
           ),
           img: ({ src, alt }) => (
             <span className="block mt-8 w-full aspect-video relative">
-              <Image
+              <img
                 src={typeof src === "string" ? src : ""}
-                alt={alt!}
-                className="object-contain"
-                quality={90}
-                fill
+                alt={alt ?? ""}
+                className="object-contain w-full h-full absolute inset-0"
+                loading="lazy"
               />
             </span>
           ),

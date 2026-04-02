@@ -1,0 +1,15 @@
+---
+import { getPosts } from "#/lib/blog";
+
+import PostListItem from "./post-list-item";
+
+const posts = await getPosts();
+---
+
+<div class="flex flex-col">
+  {
+    posts.map((post) => (
+      <PostListItem post={post} />
+    ))
+  }
+</div>

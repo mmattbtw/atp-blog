@@ -1,0 +1,24 @@
+---
+import PostList from "#/components/PostList.astro";
+import { BlogVideoBackground } from "#/components/home-video-background";
+import BaseLayout from "#/layouts/base-layout.astro";
+import { getCacheHeaders } from "#/lib/http-cache";
+
+Object.entries(getCacheHeaders()).forEach(([name, value]) =>
+  Astro.response.headers.set(name, value),
+);
+---
+
+<BaseLayout title="writing - mmatt.net" description="<_< ^_^ >_>" canonical="/writing">
+  <main class="relative min-h-screen overflow-hidden">
+    <BlogVideoBackground client:load />
+    <div class="absolute inset-0 z-10 min-h-screen">
+      <div class="space-y-4 max-w-148 pt-1.5 pl-1.5">
+        <h1 class="font-bold text-black dark:text-white bg-white dark:bg-black inline">
+          (;;;*_*) writing
+        </h1>
+        <PostList />
+      </div>
+    </div>
+  </main>
+</BaseLayout>

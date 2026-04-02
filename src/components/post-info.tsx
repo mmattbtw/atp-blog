@@ -1,5 +1,4 @@
 import { ClockIcon, NotepadTextIcon } from "lucide-react";
-import Image from "next/image";
 import readingTime from "reading-time";
 
 import me from "#/assets/matt.jpeg";
@@ -34,15 +33,15 @@ export function PostInfo({
       <Paragraph className={className}>
         {includeAuthor && (
           <>
-            <Image
+            <img
               width={14}
               height={14}
-              src={me}
+              src={me.src}
               alt="Matt's profile picture"
               className="inline rounded-full mr-1.5 mb-0.5"
             />
             <a
-              href={`https://bsky.app/profile/${env.NEXT_PUBLIC_BSKY_DID}`}
+              href={`https://bsky.app/profile/${env.PUBLIC_BSKY_DID}`}
               className="hover:underline hover:underline-offset-4"
             >
               Matt

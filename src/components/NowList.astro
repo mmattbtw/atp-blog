@@ -1,0 +1,27 @@
+---
+import { getStatuses } from "#/lib/api";
+
+const posts = await getStatuses();
+const sortedPosts = posts.sort(
+  (a, b) =>
+    new Date(b.value.createdAt ?? 0).getTime() -
+    new Date(a.value.createdAt ?? 0).getTime(),
+);
+---
+
+{
+  sortedPosts.map((record) => {
+    const post = record.value;
+    return (
+      <div class="flex flex-row justify-between items-center">
+        <div>
+          <p class="text-pretty">{post.text}</p>
+          <p class="text-xs text-gray-500">
+            {new Date(post.createdAt).toLocaleString()}
+          </p>
+        </div>
+        {post.emoji && <p class="text-5xl">{post.emoji}</p>}
+      </div>
+    );
+  })
+}

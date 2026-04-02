@@ -1,4 +1,3 @@
-import Image from "next/image";
 import type {
   PubLeafletBlocksBlockquote,
   PubLeafletBlocksBskyPost,
@@ -11,9 +10,8 @@ import type {
   PubLeafletPagesLinearDocument,
   PubLeafletRichtextFacet,
 } from "@atcute/leaflet";
-import { BlueskyPostEmbed } from "@hamstack/bluesky-embed-rsc";
-import { Code as SyntaxHighlighter } from "bright";
 
+import { BlueskyPostEmbed } from "./bluesky-embed";
 import { Code, Paragraph, Title } from "./typography";
 
 type RichtextFacet = PubLeafletRichtextFacet.Main;
@@ -135,17 +133,6 @@ function HeaderBlock({ block }: { block: PubLeafletBlocksHeader.Main }) {
 }
 
 function CodeBlock({ block }: { block: PubLeafletBlocksCode.Main }) {
-  if (block.language) {
-    return (
-      <SyntaxHighlighter
-        lang={block.language}
-        className="mt-8! text-sm rounded-sm max-w-full! overflow-hidden"
-      >
-        {block.plaintext}
-      </SyntaxHighlighter>
-    );
-  }
-
   return (
     <pre className="mt-8 p-4 bg-slate-100 dark:bg-slate-900 rounded-sm overflow-x-auto">
       <code className="text-sm">{block.plaintext}</code>
@@ -160,20 +147,42 @@ function ImageBlock({
   block: PubLeafletBlocksImage.Main;
   did: string;
 }) {
-  // Construct blob URL from the image ref
-  // The blob can be either a Blob or LegacyBlob type
-  const imageBlob = block.image as { ref?: { $link: string }; cid?: string };
-  const blobCid = imageBlob.ref?.$link ?? imageBlob.cid ?? "";
-  const imageUrl = `https://cdn.bsky.app/img/feed_fullsize/plain/${did}/${blobCid}@jpeg`;
+  // Construct blob URL from the image ref.
+  // Depending on the parser, `ref` may be a raw {$link} object or a CID instance.
+  const imageBlob = block.image as {
+    ref?: { $link?: string; toString?: () => string } | string;
+    cid?: string;
+    mimeType?: string;
+    original?: {
+      ref?: { $link?: string; toString?: () => string } | string;
+    };
+  };
+  const rawRef = imageBlob.ref ?? imageBlob.original?.ref;
+  const blobCid =
+    imageBlob.cid ??
+    (typeof rawRef === "string"
+      ? rawRef
+      : rawRef?.$link ??
+        (typeof rawRef?.toString === "function" ? rawRef.toString() : "")) ??
+    "";
+  const mimeType = imageBlob.mimeType ?? "image/jpeg";
+  const extension =
+    mimeType === "image/png"
+      ? "png"
+      : mimeType === "image/webp"
+        ? "webp"
+        : mimeType === "image/gif"
+          ? "gif"
+          : "jpeg";
+  const imageUrl = `https://cdn.bsky.app/img/feed_fullsize/plain/${did}/${blobCid}@${extension}`;
 
   return (
     <span className="block mt-8 w-full aspect-video relative">
-      <Image
+      <img
         src={imageUrl}
         alt={block.alt ?? ""}
-        className="object-contain"
-        quality={90}
-        fill
+        className="object-contain w-full h-full absolute inset-0"
+        loading="lazy"
       />
     </span>
   );
@@ -201,15 +210,9 @@ function BskyPostBlock({ block }: { block: PubLeafletBlocksBskyPost.Main }) {
   // Convert AT URI to bsky.app URL
   // at://did:plc:xxx/app.bsky.feed.post/rkey -> https://bsky.app/profile/did:plc:xxx/post/rkey
   const atUri = block.postRef.uri;
-  const [, , did, , rkey] = atUri.split("/");
-  const bskyUrl = `https://bsky.app/profile/${did}/post/${rkey}`;
 
   return (
-    <BlueskyPostEmbed src={bskyUrl}>
-      <p className="text-muted-foreground italic">
-        Failed to load Bluesky post
-      </p>
-    </BlueskyPostEmbed>
+    <BlueskyPostEmbed uri={atUri} />
   );
 }
 
@@ -353,6 +356,23 @@ function LinearDocumentPage({
 }
 
 // Main document renderer
+function getLeafletUrl(basePath: string | undefined, did: string, rkey: string | undefined) {
+  if (!rkey) {
+    return `https://leaflet.pub/${did}`;
+  }
+
+  if (!basePath) {
+    return `https://leaflet.pub/${did}/${rkey}`;
+  }
+
+  if (basePath.startsWith("http://") || basePath.startsWith("https://")) {
+    const url = new URL(basePath);
+    return url.pathname === "/" ? `${url.origin}/${rkey}` : url.toString();
+  }
+
+  return `https://${basePath}/${rkey}`;
+}
+
 export function LeafletRenderer({
   document,
   did,
@@ -370,9 +390,7 @@ export function LeafletRenderer({
   // base_path from publication is the full domain (e.g., "mat.leaflet.pub")
   // Otherwise fall back to: https://leaflet.pub/{did}/{rkey}
   const rkey = uri.split("/").pop();
-  const leafletUrl = basePath
-    ? `https://${basePath}/${rkey}`
-    : `https://leaflet.pub/${did}/${rkey}`;
+  const leafletUrl = getLeafletUrl(basePath, did, rkey);
 
   return (
     <div className="[&>.bluesky-embed]:mt-8 [&>.bluesky-embed]:mb-0">

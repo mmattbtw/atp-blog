@@ -1,0 +1,58 @@
+---
+import { ArrowLeftIcon } from "lucide-react";
+
+import { CarStatsClient } from "#/components/car-stats-client";
+import { Title } from "#/components/typography";
+import BaseLayout from "#/layouts/base-layout.astro";
+import { getCarRecords } from "#/lib/api";
+
+const { records: carRecords, cursor } = await getCarRecords();
+const sortedRecords = [...carRecords].sort(
+  (a, b) =>
+    new Date(a.value.createdAt).getTime() -
+    new Date(b.value.createdAt).getTime(),
+);
+const latestRecord = carRecords[0]?.value;
+---
+
+<BaseLayout
+  title="my car - mmatt.net"
+  description="various statistics about my car and how I drive."
+  canonical="/car"
+  image="/car/opengraph-image.png"
+>
+  <div class="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-dvh p-8 pb-20 gap-16 sm:p-20">
+    <main class="flex flex-col gap-8 row-start-2 items-center sm:items-start w-full max-w-4xl">
+      <a
+        href="/"
+        class="hover:underline hover:underline-offset-4 font-medium"
+      >
+        <ArrowLeftIcon className="inline size-4 align-middle mb-px mr-1" />
+        Back
+      </a>
+
+      <div class="w-full">
+        <Title level="h1">Car Stats</Title>
+        {latestRecord && (
+          <div class="mt-4 p-4 border rounded-lg bg-white/5">
+            <p class="text-2xl font-bold">
+              {latestRecord.carYear} {latestRecord.carMake} {latestRecord.carModel}
+            </p>
+          </div>
+        )}
+      </div>
+
+      <CarStatsClient
+        client:load
+        initialRecords={sortedRecords.map((r) => ({
+          createdAt: r.value.createdAt,
+          carFuelRange: r.value.carFuelRange,
+          carPercentFuelRemaining: r.value.carPercentFuelRemaining,
+          amountRemaining: r.value.amountRemaining,
+          carTraveledDistance: r.value.carTraveledDistance,
+        }))}
+        initialCursor={cursor}
+      />
+    </main>
+  </div>
+</BaseLayout>

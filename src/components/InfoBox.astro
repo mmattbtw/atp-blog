@@ -1,0 +1,138 @@
+---
+import { type AppBskyFeedPost } from "@atcute/bluesky";
+import { ok } from "@atcute/client";
+
+import { getPosts } from "#/lib/blog";
+import { bsky } from "#/lib/bsky";
+import { readEnvFromLocals } from "#/lib/env";
+import { fetchLetterboxdEntries, type LetterboxdEntry } from "#/lib/letterboxd";
+
+import type { Record as TealPlayRecord } from "../../lexiconTypes/types/fm/teal/alpha/feed/play";
+import type { Record as NowRecord } from "../../lexiconTypes/types/net/mmatt/right/now";
+import type { Record as CarRecord } from "../../lexiconTypes/types/net/mmatt/vitals/car";
+import InfoBoxClient from "./info-box-client";
+
+interface InfoBoxData {
+  carInfo: CarRecord | null;
+  blogPost: {
+    title: string;
+    description: string;
+    createdAt: string;
+  } | null;
+  blogPostRkey: string | null;
+  blueskyPost: AppBskyFeedPost.Main | null;
+  blueskyPostRkey: string | null;
+  tealPlay: TealPlayRecord | null;
+  letterboxdEntry: LetterboxdEntry | null;
+  nowEntry: NowRecord | null;
+}
+
+const appEnv = readEnvFromLocals(Astro.locals);
+
+const data: InfoBoxData = {
+  carInfo: null,
+  blogPost: null,
+  blogPostRkey: null,
+  blueskyPost: null,
+  blueskyPostRkey: null,
+  tealPlay: null,
+  letterboxdEntry: null,
+  nowEntry: null,
+};
+
+try {
+  const cars = await ok(
+    bsky.get("com.atproto.repo.listRecords", {
+      params: {
+        repo: appEnv.PUBLIC_BSKY_DID as `did:plc:${string}`,
+        collection: "net.mmatt.vitals.car",
+        limit: 1,
+      },
+    }),
+  );
+  if (cars.records.length > 0) {
+    data.carInfo = cars.records[0].value as CarRecord;
+  }
+
+  try {
+    const [latestPost] = await getPosts();
+    if (latestPost) {
+      data.blogPost = {
+        title: latestPost.title,
+        description: latestPost.description ?? "",
+        createdAt: latestPost.createdAt ?? "",
+      };
+      data.blogPostRkey = latestPost.rkey;
+    }
+  } catch {
+    console.log("Blog posts not found or accessible");
+  }
+
+  try {
+    const bluesky = await ok(
+      bsky.get("com.atproto.repo.listRecords", {
+        params: {
+          repo: appEnv.PUBLIC_BSKY_DID as `did:plc:${string}`,
+          collection: "app.bsky.feed.post",
+          limit: 10,
+        },
+      }),
+    );
+    const nonReplyPost = bluesky.records.find((record) => {
+      const value = record.value as AppBskyFeedPost.Main;
+      return !value.reply;
+    });
+    if (nonReplyPost) {
+      data.blueskyPost = nonReplyPost.value as AppBskyFeedPost.Main;
+      data.blueskyPostRkey = nonReplyPost.uri.split("/").pop() || null;
+    }
+  } catch {
+    console.log("Bluesky posts not found or accessible");
+  }
+
+  try {
+    const teal = await ok(
+      bsky.get("com.atproto.repo.listRecords", {
+        params: {
+          repo: appEnv.PUBLIC_BSKY_DID as `did:plc:${string}`,
+          collection: "fm.teal.alpha.feed.play",
+          limit: 1,
+        },
+      }),
+    );
+    if (teal.records.length > 0) {
+      data.tealPlay = teal.records[0].value as TealPlayRecord;
+    }
+  } catch {
+    console.log("Teal.fm plays not found or accessible");
+  }
+
+  try {
+    const entries = await fetchLetterboxdEntries();
+    data.letterboxdEntry = entries[0] ?? null;
+  } catch {
+    console.log("Letterboxd RSS not accessible");
+  }
+
+  try {
+    const now = await ok(
+      bsky.get("com.atproto.repo.listRecords", {
+        params: {
+          repo: appEnv.PUBLIC_BSKY_DID as `did:plc:${string}`,
+          collection: "net.mmatt.right.now",
+          limit: 1,
+        },
+      }),
+    );
+    if (now.records.length > 0) {
+      data.nowEntry = now.records[0].value as NowRecord;
+    }
+  } catch {
+    console.log("Statuslog entries not found or accessible");
+  }
+} catch (error) {
+  console.error("Error fetching data:", error);
+}
+---
+
+<InfoBoxClient client:load data={data} />

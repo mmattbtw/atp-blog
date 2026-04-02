@@ -1,0 +1,18 @@
+---
+import { EyeIcon } from "lucide-react";
+
+import { readEnvFromLocals } from "#/lib/env";
+import { fetchPageViewCount, formatPageViewCount } from "#/lib/plausible";
+
+const { path } = Astro.props;
+const appEnv = readEnvFromLocals(Astro.locals);
+const pageviews = await fetchPageViewCount(path, appEnv);
+---
+
+{pageviews !== null && (
+  <>
+    {" "}
+    &middot; <EyeIcon className="text-inherit inline size-3.5 mb-0.5" />{" "}
+    {formatPageViewCount(pageviews)}
+  </>
+)}

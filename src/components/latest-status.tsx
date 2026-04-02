@@ -1,11 +1,10 @@
-import Link from "next/link";
-
-import { getLastestStatus } from "#/lib/api";
+import { getLatestStatus } from "#/lib/api";
 
 import { Paragraph, Title } from "./typography";
+import Link from "./ui/link";
 
 export default async function LatestStatus() {
-  const status = await getLastestStatus();
+  const status = await getLatestStatus();
 
   return (
     <div className="flex flex-col w-full dark:border-white border-black border-2 rounded-lg p-4">

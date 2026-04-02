@@ -1,0 +1,28 @@
+---
+import BaseLayout from "#/layouts/base-layout.astro";
+
+const { rkey } = Astro.params;
+const error = Astro.url.searchParams.get("error");
+---
+
+<BaseLayout
+  title="Purge Post - mmatt.net"
+  description="cache purge"
+  canonical={`/post/${rkey}/purge`}
+>
+  <form
+    action="/api/purge"
+    method="post"
+    class="flex flex-col gap-4 p-2 mt-24 mx-auto max-w-96"
+  >
+    <input type="hidden" name="rkey" value={rkey} />
+    <input
+      type="password"
+      name="password"
+      placeholder="Password"
+      class="p-2 border rounded-xs"
+    />
+    {error && <p class="text-red-500">wrong password mate</p>}
+    <button type="submit" class="p-2 border rounded-xs">Purge</button>
+  </form>
+</BaseLayout>

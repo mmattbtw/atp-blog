@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "include": [
+    "/*"
+  ],
+  "exclude": [
+    "/_astro/*",
+    "/blogbg.png",
+    "/favicon.ico",
+    "/indexbg.png",
+    "/car/opengraph-image.png",
+    "/blog/*",
+    "/devices",
+    "/now",
+    "/weblog/*"
+  ]
+}

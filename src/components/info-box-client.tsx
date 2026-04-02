@@ -3,11 +3,9 @@
 import { type AppBskyFeedPost } from "@atcute/bluesky";
 import { useEffect, useState } from "react";
 
-import { env } from "#/lib/env";
-
-import { Record as TealPlayRecord } from "../../lexiconTypes/types/fm/teal/alpha/feed/play";
-import { Record as NowRecord } from "../../lexiconTypes/types/net/mmatt/right/now";
-import { Record as CarRecord } from "../../lexiconTypes/types/net/mmatt/vitals/car";
+import type { Record as TealPlayRecord } from "../../lexiconTypes/types/fm/teal/alpha/feed/play";
+import type { Record as NowRecord } from "../../lexiconTypes/types/net/mmatt/right/now";
+import type { Record as CarRecord } from "../../lexiconTypes/types/net/mmatt/vitals/car";
 import {
   Carousel,
   CarouselContent,
@@ -50,6 +48,7 @@ interface InfoBoxClientProps {
 }
 
 export default function InfoBoxClient({ data }: InfoBoxClientProps) {
+  const bskyDid = import.meta.env.PUBLIC_BSKY_DID || "did:plc:tas6hj2xjrqben5653v5kohk";
   const [api, setApi] = useState<CarouselApi | undefined>();
 
   const contentItems: ContentItem[] = [
@@ -130,7 +129,7 @@ export default function InfoBoxClient({ data }: InfoBoxClientProps) {
             content: (
               <div className="space-y-1 text-xs text-black dark:text-white">
                 <Link
-                  href={`https://bsky.app/profile/${env.NEXT_PUBLIC_BSKY_DID}/post/${data.blueskyPostRkey}`}
+                  href={`https://bsky.app/profile/${bskyDid}/post/${data.blueskyPostRkey}`}
                 >
                   {data.blueskyPost.text.length > 100
                     ? `${data.blueskyPost.text.substring(0, 100)}...`

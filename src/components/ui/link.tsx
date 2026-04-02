@@ -1,5 +1,4 @@
-import { ReactNode } from "react";
-import NextLink from "next/link";
+import type { ReactNode } from "react";
 
 interface LinkProps {
   href: string;
@@ -33,8 +32,8 @@ export default function Link({
   }
 
   return (
-    <NextLink href={href} className={linkClassName}>
+    <a href={href} className={linkClassName}>
       {children}
-    </NextLink>
+    </a>
   );
 }

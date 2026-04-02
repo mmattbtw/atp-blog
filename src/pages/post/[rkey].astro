@@ -1,0 +1,108 @@
+---
+import { ArrowLeftIcon, ClockIcon, NotepadTextIcon } from "lucide-react";
+import readingTime from "reading-time";
+
+import me from "#/assets/matt.jpeg";
+import ViewCount from "#/components/ViewCount.astro";
+import { LeafletRenderer } from "#/components/leaflet-renderer";
+import { StandardSiteRenderer } from "#/components/standard-site-renderer";
+import { Title } from "#/components/typography";
+import { WhiteWindRenderer } from "#/components/whitewind-renderer";
+import BaseLayout from "#/layouts/base-layout.astro";
+import { getPost } from "#/lib/blog";
+import { date } from "#/lib/date";
+import { getCacheHeaders } from "#/lib/http-cache";
+import { getPostContent, getPostCreatedAt, getPostDescription, getPostTitle } from "#/lib/posts";
+
+const { rkey } = Astro.params;
+const post = await getPost(rkey ?? "");
+const title = getPostTitle(post);
+const description = getPostDescription(post);
+const content = getPostContent(post);
+const createdAt = getPostCreatedAt(post);
+const reading = readingTime(content).text;
+const did = post.uri.split("/")[2] ?? "";
+
+Object.entries(getCacheHeaders()).forEach(([name, value]) =>
+  Astro.response.headers.set(name, value),
+);
+---
+
+<BaseLayout
+  title={`${title} — mmatt.net`}
+  description={`by Matt · ${reading}`}
+  canonical={`/post/${post.rkey}`}
+  image={`/post/${post.rkey}/opengraph-image`}
+>
+  <Fragment slot="head">
+    <link rel="alternate" href={post.uri} />
+  </Fragment>
+
+  <div class="grid grid-rows-[20px_1fr_20px] justify-items-center min-h-dvh py-8 px-4 xs:px-8 pb-20 gap-16 sm:p-20">
+    <main class="flex flex-col gap-8 row-start-2 items-center sm:items-start w-full max-w-6xl overflow-hidden">
+      <article class="w-full space-y-8">
+        <div class="space-y-4 w-full">
+          <a
+            href="/"
+            class="hover:underline hover:underline-offset-4 font-medium"
+          >
+            <ArrowLeftIcon className="inline size-4 align-middle mb-px mr-1" />
+            Back
+          </a>
+          <Title className="text-center">{title}</Title>
+
+          {description && (
+            <p class="font-sans text-pretty text-sm">
+              <NotepadTextIcon className="text-inherit inline size-3.5 mb-0.5" />{" "}
+              {description}
+            </p>
+          )}
+
+          <p class="font-sans text-pretty text-sm">
+            <img
+              width="14"
+              height="14"
+              src={me.src}
+              alt="Matt's profile picture"
+              class="inline rounded-full mr-1.5 mb-0.5"
+            />
+            <a
+              href="https://bsky.app/profile/did:plc:tas6hj2xjrqben5653v5kohk"
+              class="hover:underline hover:underline-offset-4"
+            >
+              Matt
+            </a>{" "}
+            &middot;{" "}
+            {createdAt && (
+              <>
+                <time datetime={createdAt}>{date(new Date(createdAt))}</time> &middot;{" "}
+              </>
+            )}
+            <ClockIcon className="text-inherit inline size-3.5 mb-0.5" /> {reading}
+            <ViewCount path={`/post/${post.rkey}`} />
+          </p>
+          <hr />
+        </div>
+
+        {post.type === "whitewind" ? (
+          <WhiteWindRenderer content={post.value.content} />
+        ) : post.type === "leaflet" ? (
+          <LeafletRenderer
+            document={post.value}
+            did={did}
+            uri={post.uri}
+            basePath={post.basePath}
+            isExternal={post.isExternal}
+          />
+        ) : (
+          <StandardSiteRenderer
+            content={post.value.content as { $type?: string; text?: string; pages?: unknown[] } | undefined}
+            uri={post.uri}
+            did={did}
+            basePath={post.basePath}
+          />
+        )}
+      </article>
+    </main>
+  </div>
+</BaseLayout>

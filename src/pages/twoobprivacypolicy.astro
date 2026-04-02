@@ -1,0 +1,40 @@
+---
+import { MarkdownDocument } from "#/components/markdown-document";
+import BaseLayout from "#/layouts/base-layout.astro";
+
+const markdownContent = `# Privacy Policy
+
+**Last updated:** February 5, 2026
+
+## Overview
+Twoob is a browser extension that adds a Twitch chat tab alongside YouTube Live chat on YouTube watch pages. This policy explains what data is handled and why.
+
+## Data We Collect
+Twoob does not collect, transmit, or sell personal data. The extension does not use analytics or tracking.
+
+## Data Stored Locally
+The extension stores the Twitch channel you enter for a given YouTube video so it can load the correct chat tab the next time you visit that video. This data is stored locally in your browser using \`chrome.storage.local\` and is not sent anywhere.
+
+## Host Permissions
+The extension needs access to the following hosts to function:
+- \`https://www.youtube.com/*\` to inject the content script and render the tabs on YouTube watch pages.
+- \`https://www.twitch.tv/*\` and \`https://player.twitch.tv/*\` to embed and load Twitch chat within the extension UI.
+
+## Remote Code
+Twoob does not use remote code. All JavaScript and CSS are bundled within the extension package. No external scripts, modules, or eval’d code are used.
+
+## Changes
+If this policy changes, the updated version will be posted in this file.
+
+## Contact
+If you have questions about this policy, contact matt (@) mmatt.net 
+`;
+---
+
+<BaseLayout
+  title="Twoob Privacy Policy — mmatt.net"
+  description="Privacy policy for the Twoob app and related services."
+  canonical="/twoobprivacypolicy"
+>
+  <MarkdownDocument title="Twoob Privacy Policy" content={markdownContent} />
+</BaseLayout>

@@ -1,0 +1,59 @@
+---
+import "../styles/globals.css";
+
+const {
+  title = "mmatt.net",
+  description = "<_< ^_^ >_>",
+  canonical,
+  image,
+} = Astro.props;
+
+const canonicalUrl = canonical
+  ? new URL(canonical, Astro.site ?? Astro.url).toString()
+  : undefined;
+const imageUrl = image
+  ? new URL(image, Astro.site ?? Astro.url).toString()
+  : undefined;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#BEFCFF" />
+    <meta name="description" content={description} />
+    <meta name="fediverse:creator" content="@matt@social.lol" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="mmatt.net" />
+    {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
+    {imageUrl && <meta property="og:image" content={imageUrl} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {imageUrl && <meta name="twitter:image" content={imageUrl} />}
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+    <link rel="alternate" type="application/rss+xml" href="/rss" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      is:inline
+      defer
+      data-domain="mmatt.net"
+      data-api="https://plausible.mmatt.net/api/event"
+      src="https://plausible.mmatt.net/js/script.outbound-links.js"
+    ></script>
+    <slot name="head" />
+    <title>{title}</title>
+  </head>
+  <body class="antialiased font-sans">
+    <slot />
+  </body>
+</html>

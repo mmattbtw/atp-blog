@@ -1,35 +1,33 @@
 "use client";
 
 import { useEffect, useId, useState } from "react";
-import { usePathname } from "next/navigation";
 
 const EMBED_URL = "https://embed.bsky.app";
 
 export function BlueskyPostEmbed({ uri }: { uri: string }) {
   const id = useId();
-  const pathname = usePathname();
-  const [height, setHeight] = useState(0);
+  const [height, setHeight] = useState(320);
 
   useEffect(() => {
     const abortController = new AbortController();
     const { signal } = abortController;
+    const handleMessage = (event: MessageEvent<{ id?: string; height?: number }>) => {
+      if (event.origin !== EMBED_URL) {
+        return;
+      }
+
+      if (event.data?.id !== id) {
+        return;
+      }
+
+      if (typeof event.data.height === "number" && event.data.height > 0) {
+        setHeight(event.data.height);
+      }
+    };
+
     window.addEventListener(
       "message",
-      (event) => {
-        if (event.origin !== EMBED_URL) {
-          return;
-        }
-
-        const iframeId = (event.data as { id: string }).id;
-        if (id !== iframeId) {
-          return;
-        }
-
-        const internalHeight = (event.data as { height: number }).height;
-        if (internalHeight && typeof internalHeight === "number") {
-          setHeight(internalHeight);
-        }
-      },
+      handleMessage,
       { signal },
     );
 
@@ -38,12 +36,11 @@ export function BlueskyPostEmbed({ uri }: { uri: string }) {
     };
   }, [id]);
 
-  const ref_url =
-    "https://" + process.env.VERCEL_PROJECT_PRODUCTION_URL + pathname;
-
   const searchParams = new URLSearchParams();
   searchParams.set("id", id);
-  searchParams.set("ref_url", encodeURIComponent(ref_url));
+  if (typeof window !== "undefined") {
+    searchParams.set("ref_url", window.location.href);
+  }
   searchParams.set("colorMode", "system");
 
   return (
@@ -53,12 +50,11 @@ export function BlueskyPostEmbed({ uri }: { uri: string }) {
     >
       <iframe
         className="w-full block border-none grow"
-        style={{ height }}
+        style={{ height, overflow: "hidden" }}
         data-bluesky-uri={uri}
         src={`${EMBED_URL}/embed/${uri.slice("at://".length)}?${searchParams.toString()}`}
+        title="Bluesky post embed"
         width="100%"
-        frameBorder="0"
-        scrolling="no"
       />
     </div>
   );
