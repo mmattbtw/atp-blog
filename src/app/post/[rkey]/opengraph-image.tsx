@@ -9,11 +9,7 @@ export const size = {
 };
 export const contentType = "image/png";
 
-// Helper to get title from either post type
 function getPostTitle(post: BlogPost): string {
-  if (post.type === "whitewind") {
-    return post.value.title?.split(" || ")[0] ?? "Untitled";
-  }
   return post.value.title;
 }
 

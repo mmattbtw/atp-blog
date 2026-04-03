@@ -1,4 +1,5 @@
 import { ArrowLeftIcon } from "lucide-react";
+import type { PubLeafletPagesLinearDocument } from "@atcute/leaflet";
 import { Viewport, type Metadata } from "next";
 import Link from "next/link";
 import readingTime from "reading-time";
@@ -7,41 +8,36 @@ import { LeafletRenderer } from "#/components/leaflet-renderer";
 import { PostInfo } from "#/components/post-info";
 import { Title } from "#/components/typography";
 import { ViewCount } from "#/components/view-count";
-import { WhiteWindRenderer } from "#/components/whitewind-renderer";
 import { getPost, getPosts } from "#/lib/api";
 import { env } from "#/lib/env";
 
 export const dynamic = "force-static";
 export const revalidate = 3600; // 1 hour
 
-// Helper to get title from either post type
 function getPostTitle(post: Awaited<ReturnType<typeof getPost>>): string {
-  if (post.type === "whitewind") {
-    return post.value.title?.split(" || ")[0] ?? "Untitled";
-  }
   return post.value.title;
 }
 
-// Helper to get description from either post type
 function getPostDescription(post: Awaited<ReturnType<typeof getPost>>): string | undefined {
-  if (post.type === "whitewind") {
-    return post.value.title?.split(" || ")[1];
-  }
   return post.value.description;
 }
 
-// Helper to get content for reading time calculation
 function getPostContent(post: Awaited<ReturnType<typeof getPost>>): string {
-  if (post.type === "whitewind") {
-    return post.value.content;
+  if (post.value.textContent) return post.value.textContent;
+  if (
+    !post.value.content ||
+    post.value.content.$type !== "pub.leaflet.content" ||
+    !post.value.content.pages
+  ) {
+    return "";
   }
-  // For Leaflet, extract plaintext from all blocks
+
   let content = "";
-  for (const page of post.value.pages) {
+  for (const page of post.value.content.pages) {
     if (page.$type === "pub.leaflet.pages.linearDocument") {
-      const linearPage = page as { blocks: Array<{ block: { plaintext?: string } }> };
+      const linearPage = page as PubLeafletPagesLinearDocument.Main;
       for (const blockWrapper of linearPage.blocks) {
-        if (blockWrapper.block.plaintext) {
+        if ("plaintext" in blockWrapper.block && blockWrapper.block.plaintext) {
           content += blockWrapper.block.plaintext + " ";
         }
       }
@@ -50,11 +46,7 @@ function getPostContent(post: Awaited<ReturnType<typeof getPost>>): string {
   return content;
 }
 
-// Helper to get createdAt from either post type
 function getPostCreatedAt(post: Awaited<ReturnType<typeof getPost>>): string | undefined {
-  if (post.type === "whitewind") {
-    return post.value.createdAt;
-  }
   return post.value.publishedAt;
 }
 
@@ -104,6 +96,7 @@ export default async function BlogPage({
   const description = getPostDescription(post);
   const content = getPostContent(post);
   const createdAt = getPostCreatedAt(post);
+  const originalUrl = new URL(post.value.path ?? `/post/${rkey}`, post.publication.url).toString();
 
   return (
     <div className="grid grid-rows-[20px_1fr_20px] justify-items-center min-h-dvh py-8 px-4 xs:px-8 pb-20 gap-16 sm:p-20">
@@ -125,21 +118,29 @@ export default async function BlogPage({
               includeAuthor
               className="text-sm"
               desc={description}
+              originalUrl={originalUrl}
             >
               <ViewCount path={`/post/${rkey}`} />
             </PostInfo>
             <hr />
           </div>
-          {post.type === "whitewind" ? (
-            <WhiteWindRenderer content={post.value.content} />
-          ) : (
+          {post.value.content &&
+          post.value.content.$type === "pub.leaflet.content" &&
+          post.value.content.pages ? (
             <LeafletRenderer
-              document={post.value}
-              did={post.uri.split("/")[2]} // Extract DID from AT URI
-              uri={post.uri}
-              basePath={post.basePath}
+              content={post.value.content}
+              did={post.uri.split("/")[2]}
+              originalUrl={originalUrl}
               isExternal={post.isExternal}
             />
+          ) : (
+            <div className="space-y-6">
+              {post.value.textContent?.split(/\n{2,}/).map((paragraph, index) => (
+                <p key={index} className="leading-7">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
           )}
         </article>
       </main>

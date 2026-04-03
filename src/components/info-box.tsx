@@ -79,43 +79,24 @@ export default async function InfoBox() {
       data.carInfo = cars.records[0].value as CarRecord;
     }
 
-    // Fetch latest blog post using getPosts (includes WhiteWind, Leaflet, and external posts)
+    // Fetch latest blog post from the standard.site publication
     try {
       const posts = await getPosts();
-      console.log(posts);
-      // sort posts by createdAt descending
-      // convert leaflet "publishedAt" to "createdAt"
-      // make a new array of posts with the createdAt field
-      const newPosts = posts.map((post) => {
-        if (post.type === "leaflet") {
-          return {
-            ...post,
-            createdAt: post.value.publishedAt ?? "",
-          };
-        }
-        return {
-          ...post,
-          createdAt: post.value.createdAt ?? "",
+      const sortedPosts = posts.sort((a, b) => {
+        return (
+          new Date(b.value.publishedAt ?? "").getTime() -
+          new Date(a.value.publishedAt ?? "").getTime()
+        );
+      });
+      const latestPost = sortedPosts[0];
+      if (latestPost) {
+        data.blogPost = {
+          title: latestPost.value.title || "Untitled Post",
+          description: latestPost.value.description || "",
+          createdAt: latestPost.value.publishedAt || "",
         };
-      });
-      const sortedPosts = newPosts.sort((a, b) => {
-        return new Date(b.createdAt ?? "").getTime() - new Date(a.createdAt ?? "").getTime();
-      });
-      if (sortedPosts[0].type === "whitewind") {
-      data.blogPost = {
-        title: sortedPosts[0].value.title?.split(" || ")[0] || "Untitled Post",
-        description: sortedPosts[0].value.title?.split(" || ")[1] || "",
-        createdAt: sortedPosts[0].value.createdAt || "",
-      };
-      data.blogPostRkey = sortedPosts[0].uri.split("/").pop() || null;
-    } else {
-      data.blogPost = {
-        title: sortedPosts[0].value.title || "Untitled Post",
-        description: sortedPosts[0].value.description || "",
-        createdAt: sortedPosts[0].value.publishedAt || "",
-      };
-      data.blogPostRkey = sortedPosts[0].uri.split("/").pop() || null;
-    }
+        data.blogPostRkey = latestPost.uri.split("/").pop() || null;
+      }
     } catch {
       console.log("Blog posts not found or accessible");
     }

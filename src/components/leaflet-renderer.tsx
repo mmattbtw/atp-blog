@@ -7,7 +7,6 @@ import type {
   PubLeafletBlocksImage,
   PubLeafletBlocksText,
   PubLeafletBlocksUnorderedList,
-  PubLeafletDocument,
   PubLeafletPagesLinearDocument,
   PubLeafletRichtextFacet,
 } from "@atcute/leaflet";
@@ -354,59 +353,33 @@ function LinearDocumentPage({
 
 // Main document renderer
 export function LeafletRenderer({
-  document,
+  content,
   did,
-  uri,
-  basePath,
+  originalUrl,
   isExternal,
 }: {
-  document: PubLeafletDocument.Main;
+  content: { pages?: Array<{ $type?: string }> };
   did: string;
-  uri: string;
-  basePath?: string;
+  originalUrl?: string;
   isExternal?: boolean;
 }) {
-  // Convert AT URI to Leaflet.pub URL
-  // base_path from publication is the full domain (e.g., "mat.leaflet.pub")
-  // Otherwise fall back to: https://leaflet.pub/{did}/{rkey}
-  const rkey = uri.split("/").pop();
-  const leafletUrl = basePath
-    ? `https://${basePath}/${rkey}`
-    : `https://leaflet.pub/${did}/${rkey}`;
-
   return (
     <div className="[&>.bluesky-embed]:mt-8 [&>.bluesky-embed]:mb-0">
-      <p className="text-sm text-muted-foreground italic mb-6 bg-yellow-100/50 dark:bg-yellow-900/50 p-4 rounded-sm">
-        {isExternal ? (
-          <>
-            This article was written for another publication, see the original{" "}
-            <a
-              href={leafletUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline underline-offset-4 hover:text-foreground"
-            >
-              here
-            </a>
-            .
-          </>
-        ) : (
-          <>
-            This was originally written on Leaflet so it might look better over
-            there, see the original{" "}
-            <a
-              href={leafletUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline underline-offset-4 hover:text-foreground"
-            >
-              here
-            </a>
-            .
-          </>
-        )}
-      </p>
-      {document.pages.map((page, idx) => {
+      {isExternal && originalUrl && (
+        <p className="text-sm text-muted-foreground italic mb-6 bg-yellow-100/50 dark:bg-yellow-900/50 p-4 rounded-sm">
+          This article was written for another publication, see the original{" "}
+          <a
+            href={originalUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-4 hover:text-foreground"
+          >
+            here
+          </a>
+          .
+        </p>
+      )}
+      {(content.pages ?? []).map((page, idx) => {
         if (page.$type === "pub.leaflet.pages.linearDocument") {
           return (
             <LinearDocumentPage

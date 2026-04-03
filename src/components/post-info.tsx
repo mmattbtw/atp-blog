@@ -15,6 +15,7 @@ export function PostInfo({
   className,
   children,
   desc,
+  originalUrl,
 }: {
   createdAt?: string;
   content: string;
@@ -22,6 +23,7 @@ export function PostInfo({
   className?: string;
   children?: React.ReactNode;
   desc?: string;
+  originalUrl?: string;
 }) {
   return (
     <>
@@ -58,6 +60,20 @@ export function PostInfo({
         )}
         <ClockIcon className="text-inherit inline size-3.5 mb-0.5" />{" "}
         {readingTime(content).text}
+        {originalUrl && (
+          <>
+            {" "}
+            &middot;{" "}
+            <a
+              href={originalUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline hover:underline-offset-4"
+            >
+              Original Page
+            </a>
+          </>
+        )}
         {children}
       </Paragraph>
     </>

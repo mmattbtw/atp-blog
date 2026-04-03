@@ -1,2 +1,2 @@
 // env.d.ts
-/// <reference types="@atcute/whitewind/lexicons" />
+/// <reference types="@atcute/standard-site" />

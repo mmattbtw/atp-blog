@@ -3,11 +3,7 @@ import { getPosts, type BlogPost } from "#/lib/api";
 import { PostListItem } from "./post-list-item";
 import { ViewCount } from "./view-count";
 
-// Helper to get createdAt from either post type
 function getPostCreatedAt(post: BlogPost): string | undefined {
-  if (post.type === "whitewind") {
-    return post.value.createdAt;
-  }
   return post.value.publishedAt;
 }
 

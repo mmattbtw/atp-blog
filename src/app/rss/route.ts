@@ -1,3 +1,4 @@
+import type { PubLeafletPagesLinearDocument } from "@atcute/leaflet";
 import rehypeFormat from "rehype-format";
 import rehypeStringify from "rehype-stringify";
 import remarkParse from "remark-parse";
@@ -10,34 +11,30 @@ import { getPosts, type BlogPost } from "#/lib/api";
 export const dynamic = "force-static";
 export const revalidate = 3600; // 1 hour
 
-// Helper to get title from either post type
 function getPostTitle(post: BlogPost): string {
-  if (post.type === "whitewind") {
-    return post.value.title?.split(" || ")[0] ?? "Untitled";
-  }
   return post.value.title;
 }
 
-// Helper to get description from either post type
 function getPostDescription(post: BlogPost): string {
-  if (post.type === "whitewind") {
-    return post.value.title?.split(" || ").slice(1).join(" || ") ?? "";
-  }
   return post.value.description ?? "";
 }
 
-// Helper to get content from either post type
 function getPostContent(post: BlogPost): string {
-  if (post.type === "whitewind") {
-    return post.value.content;
+  if (post.value.textContent) return post.value.textContent;
+  if (
+    !post.value.content ||
+    post.value.content.$type !== "pub.leaflet.content" ||
+    !post.value.content.pages
+  ) {
+    return "";
   }
-  // For Leaflet, extract plaintext from all blocks
+
   let content = "";
-  for (const page of post.value.pages) {
+  for (const page of post.value.content.pages) {
     if (page.$type === "pub.leaflet.pages.linearDocument") {
-      const linearPage = page as { blocks: Array<{ block: { plaintext?: string } }> };
+      const linearPage = page as PubLeafletPagesLinearDocument.Main;
       for (const blockWrapper of linearPage.blocks) {
-        if (blockWrapper.block.plaintext) {
+        if ("plaintext" in blockWrapper.block && blockWrapper.block.plaintext) {
           content += blockWrapper.block.plaintext + "\n\n";
         }
       }
@@ -46,11 +43,7 @@ function getPostContent(post: BlogPost): string {
   return content;
 }
 
-// Helper to get createdAt from either post type
 function getPostCreatedAt(post: BlogPost): string | undefined {
-  if (post.type === "whitewind") {
-    return post.value.createdAt;
-  }
   return post.value.publishedAt;
 }
 

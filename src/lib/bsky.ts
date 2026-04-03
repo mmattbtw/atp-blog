@@ -10,20 +10,50 @@ const client = new Client({
 
 export const bsky = client;
 
-// Resolve a DID to its PDS URL using slingshot's resolveMiniDoc endpoint
-export async function resolvePds(did: string): Promise<string> {
+async function resolvePdsFromPlc(did: string): Promise<string> {
   const response = await fetch(
-    `https://slingshot.mmatt.net/xrpc/com.bad-example.identity.resolveMiniDoc?identifier=${encodeURIComponent(did)}`
+    `https://plc.directory/${encodeURIComponent(did)}`,
   );
   if (!response.ok) {
-    throw new Error(`Failed to resolve DID ${did}: ${response.statusText}`);
+    throw new Error(`Failed to resolve DID ${did} via plc.directory: ${response.statusText}`);
   }
-  const miniDoc = await response.json();
-  // Extract the PDS endpoint from the mini doc
-  if (!miniDoc.pds) {
+
+  const didDocument = (await response.json()) as {
+    service?: Array<{
+      id?: string;
+      type?: string;
+      serviceEndpoint?: string;
+    }>;
+  };
+
+  const pdsService = didDocument.service?.find(
+    (service) =>
+      service.id === "#atproto_pds" || service.type === "AtprotoPersonalDataServer",
+  );
+
+  if (!pdsService?.serviceEndpoint) {
     throw new Error(`No PDS found for DID ${did}`);
   }
-  return miniDoc.pds;
+
+  return pdsService.serviceEndpoint;
+}
+
+export async function resolvePds(did: string): Promise<string> {
+  try {
+    const response = await fetch(
+      `https://slingshot.microcosm.blue/xrpc/com.bad-example.identity.resolveMiniDoc?identifier=${encodeURIComponent(did)}`,
+    );
+    if (response.ok) {
+      const miniDoc = (await response.json()) as { pds?: string };
+      if (miniDoc.pds) {
+        return miniDoc.pds;
+      }
+    }
+  } catch {
+    // Fall back to resolving through the PLC directory below.
+  }
+
+  return resolvePdsFromPlc(did);
 }
 
 // Create a client for a specific PDS
