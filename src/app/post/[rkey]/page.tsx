@@ -1,7 +1,7 @@
 import { ArrowLeftIcon } from "lucide-react";
-import type { PubLeafletPagesLinearDocument } from "@atcute/leaflet";
 import { Viewport, type Metadata } from "next";
 import Link from "next/link";
+import type { PubLeafletPagesLinearDocument } from "@atcute/leaflet";
 import readingTime from "reading-time";
 
 import { LeafletRenderer } from "#/components/leaflet-renderer";
@@ -18,7 +18,9 @@ function getPostTitle(post: Awaited<ReturnType<typeof getPost>>): string {
   return post.value.title;
 }
 
-function getPostDescription(post: Awaited<ReturnType<typeof getPost>>): string | undefined {
+function getPostDescription(
+  post: Awaited<ReturnType<typeof getPost>>,
+): string | undefined {
   return post.value.description;
 }
 
@@ -46,7 +48,9 @@ function getPostContent(post: Awaited<ReturnType<typeof getPost>>): string {
   return content;
 }
 
-function getPostCreatedAt(post: Awaited<ReturnType<typeof getPost>>): string | undefined {
+function getPostCreatedAt(
+  post: Awaited<ReturnType<typeof getPost>>,
+): string | undefined {
   return post.value.publishedAt;
 }
 
@@ -66,11 +70,11 @@ export async function generateMetadata({
     title: title + " — mmatt.net",
     authors: [
       {
-        name: "Matt",
+        name: "matt",
         url: `https://bsky.app/profile/${env.NEXT_PUBLIC_BSKY_DID}`,
       },
     ],
-    description: `by Matt · ${readingTime(content).text}`,
+    description: `by ˙⋆✮ matt ✮⋆˙ · ${readingTime(content).text}`,
     other: {
       "fediverse:creator": "@matt@mmatt.net",
     },
@@ -96,7 +100,10 @@ export default async function BlogPage({
   const description = getPostDescription(post);
   const content = getPostContent(post);
   const createdAt = getPostCreatedAt(post);
-  const originalUrl = new URL(post.value.path ?? `/post/${rkey}`, post.publication.url).toString();
+  const originalUrl = new URL(
+    post.value.path ?? `/post/${rkey}`,
+    post.publication.url,
+  ).toString();
 
   return (
     <div className="grid grid-rows-[20px_1fr_20px] justify-items-center min-h-dvh py-8 px-4 xs:px-8 pb-20 gap-16 sm:p-20">
@@ -135,11 +142,13 @@ export default async function BlogPage({
             />
           ) : (
             <div className="space-y-6">
-              {post.value.textContent?.split(/\n{2,}/).map((paragraph, index) => (
-                <p key={index} className="leading-7">
-                  {paragraph}
-                </p>
-              ))}
+              {post.value.textContent
+                ?.split(/\n{2,}/)
+                .map((paragraph, index) => (
+                  <p key={index} className="leading-7">
+                    {paragraph}
+                  </p>
+                ))}
             </div>
           )}
         </article>
