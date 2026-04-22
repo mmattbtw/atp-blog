@@ -7,7 +7,7 @@ import { NowList } from "#/components/now-list";
 import { Paragraph, Title } from "#/components/typography";
 import Link from "#/components/ui/link";
 
-import me from "../../../assets/matt.jpeg";
+import me from "../../../assets/matt.webp";
 
 export const dynamic = "force-dynamic";
 

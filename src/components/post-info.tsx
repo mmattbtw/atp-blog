@@ -2,7 +2,7 @@ import { ClockIcon, NotepadTextIcon } from "lucide-react";
 import Image from "next/image";
 import readingTime from "reading-time";
 
-import me from "#/assets/matt.jpeg";
+import me from "#/assets/matt.webp";
 import { date } from "#/lib/date";
 import { env } from "#/lib/env";
 
@@ -47,7 +47,7 @@ export function PostInfo({
               href={`https://bsky.app/profile/${env.NEXT_PUBLIC_BSKY_DID}`}
               className="hover:underline hover:underline-offset-4"
             >
-              Matt
+              ˙⋆✮ matt ✮⋆˙
             </a>{" "}
             &middot;{" "}
           </>
